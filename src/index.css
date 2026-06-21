@@ -1,48 +1,64 @@
 @import "tailwindcss";
+@import "@fontsource/plus-jakarta-sans/700.css";
+@import "@fontsource/plus-jakarta-sans/900.css";
+@import "@fontsource/inter/400.css";
+@import "@fontsource/inter/500.css";
+@import "@fontsource/inter/600.css";
+@import "@fontsource/jetbrains-mono/400.css";
 
 /* ===== AI TRIP PLANNER — DESIGN SYSTEM ===== */
 
 @theme {
-  /* Brand Colors */
-  --color-primary-50: #eef2ff;
-  --color-primary-100: #e0e7ff;
-  --color-primary-200: #c7d2fe;
-  --color-primary-300: #a5b4fc;
-  --color-primary-400: #818cf8;
-  --color-primary-500: #6366f1;
-  --color-primary-600: #4f46e5;
-  --color-primary-700: #4338ca;
-  --color-primary-800: #3730a3;
-  --color-primary-900: #312e81;
-  
-  --color-accent-50: #fdf2f8;
-  --color-accent-100: #fce7f3;
-  --color-accent-200: #fbcfe8;
-  --color-accent-300: #f9a8d4;
-  --color-accent-400: #f472b6;
-  --color-accent-500: #ec4899;
-  --color-accent-600: #db2777;
-  --color-accent-700: #be185d;
-  
-  --color-success-500: #22c55e;
-  --color-warning-500: #f59e0b;
-  --color-error-500: #ef4444;
-  
-  --color-dark-50: #f8fafc;
-  --color-dark-100: #f1f5f9;
-  --color-dark-200: #e2e8f0;
-  --color-dark-300: #cbd5e1;
-  --color-dark-400: #94a3b8;
-  --color-dark-500: #64748b;
-  --color-dark-600: #475569;
-  --color-dark-700: #334155;
-  --color-dark-800: #1e293b;
-  --color-dark-900: #0f172a;
-  --color-dark-950: #020617;
+  /* Exact Colors from Premium Guide */
+  --color-primary-dark: #0F1117;
+  --color-secondary-dark: #1A1D27;
+  --color-brand-blue: #3B82F6;
+  --color-brand-gold: #F59E0B;
+  --color-surface: #242736;
+  --color-text-primary: #F1F5F9;
+  --color-text-secondary: #94A3B8;
+  --color-text-muted: #475569;
+  --color-success: #10B981;
+  --color-error: #EF4444;
+  --color-border-dark: #2D3148;
 
-  /* Typography */
-  --font-heading: 'Outfit', sans-serif;
+  /* Legacy mappings to prevent breaking existing classes */
+  --color-dark-900: #0F1117;
+  --color-dark-800: #1A1D27;
+  --color-dark-700: #242736;
+  --color-dark-600: #2D3148;
+  --color-dark-500: #475569;
+  --color-dark-400: #94A3B8;
+  --color-dark-300: #cbd5e1;
+  --color-dark-200: #e2e8f0;
+  --color-dark-100: #f1f5f9;
+
+  --color-primary-300: #93c5fd;
+  --color-primary-400: #60a5fa;
+  --color-primary-500: #3B82F6;
+  --color-primary-600: #2563eb;
+
+  --color-accent-400: #fbbf24;
+  --color-accent-500: #F59E0B;
+  --color-accent-600: #d97706;
+
+  --color-success-500: #10B981;
+  --color-warning-500: #f59e0b;
+  --color-error-500: #EF4444;
+
+  /* Typography System from Guide */
+  --font-heading: 'Plus Jakarta Sans', sans-serif;
   --font-body: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Spacing overrides for Tailwind v4 */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-2xl: 48px;
+  --spacing-3xl: 64px;
 
   /* Animations */
   --animate-float: float 6s ease-in-out infinite;
@@ -166,62 +182,39 @@ h1, h2, h3, h4, h5, h6 {
 /* ===== UTILITY CLASSES ===== */
 
 .glass {
-  background: rgba(15, 23, 42, 0.75);
+  background: rgba(15, 17, 23, 0.75);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid var(--color-border-dark);
 }
 
 .glass-light {
-  background: rgba(30, 41, 59, 0.6);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-dark);
 }
 
 .glass-card {
-  background: linear-gradient(145deg, rgba(30, 41, 59, 0.7), rgba(15, 23, 42, 0.8));
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  border-radius: 20px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  background: var(--color-secondary-dark);
+  border: 1px solid var(--color-border-dark);
+  border-radius: 12px; /* rounded-xl */
+  padding: 24px; /* p-6 inside cards as per guide */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
 }
 
 .glass-card:hover {
-  background: linear-gradient(145deg, rgba(30, 41, 59, 0.85), rgba(15, 23, 42, 0.95));
-  border-color: rgba(99, 102, 241, 0.4);
-  transform: translateY(-6px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(99, 102, 241, 0.1);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+  border-color: rgba(59, 130, 246, 0.3); /* Brand Blue slight glow */
 }
 
 .gradient-text {
-  background: linear-gradient(135deg, #a5b4fc 0%, #f472b6 50%, #fcd34d 100%);
-  background-size: 200% 200%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: gradient-shift 6s ease infinite;
+  color: var(--color-brand-blue);
 }
 
 .gradient-border {
-  position: relative;
-  border-radius: 20px;
-  background: var(--color-dark-900);
-}
-
-.gradient-border::before {
-  content: '';
-  position: absolute;
-  inset: -1px;
-  border-radius: inherit;
-  padding: 1px;
-  background: linear-gradient(135deg, #6366f1, #ec4899, #f59e0b);
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  pointer-events: none;
+  border: 1px solid var(--color-brand-blue);
+  border-radius: 12px;
 }
 
 .btn-primary {
@@ -229,25 +222,25 @@ h1, h2, h3, h4, h5, h6 {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  padding: 12px 32px;
-  background: linear-gradient(135deg, #6366f1, #4f46e5);
+  padding: 12px 24px;
+  background: var(--color-brand-blue);
   color: white;
   font-weight: 600;
-  letter-spacing: 0.025em;
-  border-radius: 14px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  letter-spacing: 0.01em;
+  border-radius: 8px; /* rounded-lg for buttons */
+  border: none;
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.2s ease;
   font-family: var(--font-body);
   font-size: 0.95rem;
   text-decoration: none;
-  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
 }
 
 .btn-primary:hover {
-  background: linear-gradient(135deg, #818cf8, #6366f1);
-  transform: translateY(-2px);
-  box-shadow: 0 10px 30px rgba(99, 102, 241, 0.5);
+  background: #2563eb;
+  transform: scale(0.98); /* subtle press animation */
+  box-shadow: 0 6px 16px rgba(59, 130, 246, 0.3);
 }
 
 .btn-secondary {
@@ -255,26 +248,23 @@ h1, h2, h3, h4, h5, h6 {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  padding: 12px 32px;
-  background: rgba(255, 255, 255, 0.03);
-  color: var(--color-dark-100);
+  padding: 12px 24px;
+  background: transparent;
+  color: var(--color-text-primary);
   font-weight: 600;
-  letter-spacing: 0.025em;
-  border-radius: 14px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  border: 1px solid var(--color-border-dark);
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.2s ease;
   font-family: var(--font-body);
   font-size: 0.95rem;
   text-decoration: none;
 }
 
 .btn-secondary:hover {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.2);
-  color: white;
-  transform: translateY(-2px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  background: var(--color-surface);
+  border-color: var(--color-text-muted);
+  transform: scale(0.98);
 }
 
 .btn-accent {
@@ -282,53 +272,50 @@ h1, h2, h3, h4, h5, h6 {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  padding: 12px 32px;
-  background: linear-gradient(135deg, #ec4899, #db2777);
-  color: white;
-  font-weight: 600;
-  letter-spacing: 0.025em;
-  border-radius: 14px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 12px 24px;
+  background: var(--color-brand-gold);
+  color: #000;
+  font-weight: 700;
+  border-radius: 8px;
+  border: none;
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.2s ease;
   font-family: var(--font-body);
   font-size: 0.95rem;
   text-decoration: none;
-  box-shadow: 0 4px 15px rgba(236, 72, 153, 0.3);
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.2);
 }
 
 .btn-accent:hover {
-  background: linear-gradient(135deg, #f472b6, #ec4899);
-  transform: translateY(-2px);
-  box-shadow: 0 10px 30px rgba(236, 72, 153, 0.5);
+  background: #d97706;
+  transform: scale(0.98);
 }
 
 .input-field {
   width: 100%;
-  padding: 14px 18px;
-  background: rgba(15, 23, 42, 0.6);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 14px;
-  color: white;
+  padding: 16px; /* p-4 inside input */
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-dark);
+  border-radius: 8px; /* rounded-lg */
+  color: var(--color-text-primary);
   font-family: var(--font-body);
   font-size: 0.95rem;
   transition: all 0.3s ease;
   outline: none;
-  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .input-field:focus {
-  border-color: var(--color-primary-400);
-  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15), inset 0 2px 4px rgba(0, 0, 0, 0.1);
-  background: rgba(15, 23, 42, 0.8);
+  border-color: var(--color-brand-blue);
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+  background: var(--color-secondary-dark);
 }
 
 .input-field::placeholder {
-  color: var(--color-dark-500);
+  color: var(--color-text-secondary);
 }
 
 .section-padding {
-  padding: 120px 0;
+  padding: 64px 24px; /* py-16 / 3xl as per guide */
 }
 
 .container-custom {
