@@ -16,7 +16,7 @@ export default function NotFound() {
         </motion.div>
         <h1 className="text-6xl sm:text-8xl font-bold font-heading text-white mb-4">404</h1>
         <h2 className="text-2xl font-semibold text-white mb-4">Lost in space?</h2>
-        <p className="text-dark-400 mb-8 max-w-md mx-auto">
+        <p className="text-dark-400 mb-8 max-w-[400px] mx-auto">
           We couldn't find the page you're looking for. It might have been moved or doesn't exist.
         </p>
         <Link to="/" className="btn-primary no-underline inline-flex">

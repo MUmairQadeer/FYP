@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { motion, useInView } from 'framer-motion';
 import {
   Plane, Search, Sparkles, ArrowRight, Star, Globe, Map, Wallet,
-  Brain, Users, Route, ChevronRight, MapPin, Calendar, TrendingUp
+  Brain, Users, Route, MapPin
 } from 'lucide-react';
 import {
   FEATURED_DESTINATIONS, FEATURES, HOW_IT_WORKS,
@@ -46,7 +46,8 @@ function Section({ children, className = '' }) {
       initial={{ opacity: 0, y: 40 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.7, ease: 'easeOut' }}
-      className={`section-padding ${className}`}
+      className={className}
+      style={{ padding: '80px 0' }}
     >
       {children}
     </motion.section>
@@ -65,53 +66,54 @@ export default function Home() {
   return (
     <div className="page-transition">
       {/* ===== HERO ===== */}
-      <section className="relative min-h-screen flex items-center overflow-hidden">
+      <section style={{ position: 'relative', minHeight: '100vh', display: 'flex', alignItems: 'center', overflow: 'hidden' }}>
         {/* Background effects */}
-        <div className="absolute inset-0">
-          <div className="glow-dot w-[600px] h-[600px] bg-primary-500 top-[-200px] right-[-100px]" />
-          <div className="glow-dot w-[500px] h-[500px] bg-accent-500 bottom-[-150px] left-[-100px]" />
-          <div className="glow-dot w-[400px] h-[400px] bg-primary-700 top-[40%] left-[50%] translate-x-[-50%]" />
-          {/* Grid pattern */}
-          <div className="absolute inset-0" style={{
-            backgroundImage: 'radial-gradient(rgba(148,163,184,0.06) 1px, transparent 1px)',
-            backgroundSize: '40px 40px'
-          }} />
+        <div style={{ position: 'absolute', inset: 0 }}>
+          <div className="glow-dot" style={{ width: 600, height: 600, background: 'var(--color-primary-500)', top: -200, right: -100 }} />
+          <div className="glow-dot" style={{ width: 500, height: 500, background: 'var(--color-accent-500)', bottom: -150, left: -100 }} />
+          <div className="glow-dot" style={{ width: 400, height: 400, background: 'var(--color-primary-700)', top: '40%', left: '50%', transform: 'translateX(-50%)' }} />
+          <div style={{ position: 'absolute', inset: 0, backgroundImage: 'radial-gradient(rgba(148,163,184,0.06) 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
         </div>
 
         {/* Floating icons */}
         <motion.div
           animate={{ y: [0, -20, 0] }}
           transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
-          className="absolute top-[20%] left-[10%] text-4xl opacity-20 hidden md:block"
+          style={{ position: 'absolute', top: '20%', left: '10%', fontSize: '2rem', opacity: 0.2, display: 'none' }}
+          className="md:!block"
         >✈️</motion.div>
         <motion.div
           animate={{ y: [0, 15, 0] }}
           transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
-          className="absolute top-[30%] right-[15%] text-3xl opacity-20 hidden md:block"
+          style={{ position: 'absolute', top: '30%', right: '15%', fontSize: '1.75rem', opacity: 0.2, display: 'none' }}
+          className="md:!block"
         >🌍</motion.div>
         <motion.div
           animate={{ y: [0, -12, 0] }}
           transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut', delay: 2 }}
-          className="absolute bottom-[25%] left-[20%] text-3xl opacity-15 hidden md:block"
+          style={{ position: 'absolute', bottom: '25%', left: '20%', fontSize: '1.75rem', opacity: 0.15, display: 'none' }}
+          className="md:!block"
         >🗺️</motion.div>
         <motion.div
           animate={{ y: [0, 18, 0] }}
           transition={{ duration: 5.5, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
-          className="absolute top-[60%] right-[10%] text-3xl opacity-15 hidden md:block"
+          style={{ position: 'absolute', top: '60%', right: '10%', fontSize: '1.75rem', opacity: 0.15, display: 'none' }}
+          className="md:!block"
         >🧳</motion.div>
 
-        <div className="container-custom mx-auto px-6 relative z-10 pt-24">
-          <div className="max-w-4xl mx-auto text-center">
+        <div style={{ width: '100%', maxWidth: 1280, margin: '0 auto', padding: '96px 24px 0', position: 'relative', zIndex: 10 }}>
+          <div style={{ maxWidth: 896, margin: '0 auto', textAlign: 'center' }}>
             {/* Badge */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-light text-sm text-dark-300 mb-8"
+              style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '8px 16px', borderRadius: 9999, fontSize: '0.875rem', color: 'var(--color-dark-300)', marginBottom: 32 }}
+              className="glass-light"
             >
-              <Sparkles className="w-4 h-4 text-primary-400" />
-              <span>Powered by <strong className="text-primary-400">GPT-4o</strong> AI</span>
-              <span className="w-1.5 h-1.5 rounded-full bg-success-500 animate-pulse" />
+              <Sparkles style={{ width: 16, height: 16, color: 'var(--color-primary-400)' }} />
+              <span>Powered by <strong style={{ color: 'var(--color-primary-400)' }}>GPT-4o</strong> AI</span>
+              <span style={{ width: 6, height: 6, borderRadius: '50%', background: 'var(--color-success-500)' }} className="animate-pulse" />
             </motion.div>
 
             {/* Title */}
@@ -119,10 +121,10 @@ export default function Home() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.15 }}
-              className="text-5xl sm:text-6xl lg:text-7xl font-bold font-heading leading-tight mb-6"
+              style={{ fontSize: 'clamp(2.5rem, 6vw, 4.5rem)', fontWeight: 800, lineHeight: 1.1, marginBottom: 24, letterSpacing: '-0.02em', fontFamily: 'var(--font-heading)', color: 'white' }}
             >
               Plan Anywhere.{' '}
-              <span className="gradient-text">Travel Everywhere.</span>
+              <span style={{ color: 'var(--color-brand-blue)' }}>Travel Everywhere.</span>
             </motion.h1>
 
             {/* Subtitle */}
@@ -130,10 +132,10 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.3 }}
-              className="text-lg sm:text-xl text-dark-400 max-w-2xl mx-auto mb-10 leading-relaxed"
+              style={{ fontSize: 'clamp(1rem, 2vw, 1.25rem)', color: 'var(--color-dark-400)', maxWidth: 640, margin: '0 auto 40px', lineHeight: 1.7 }}
             >
               Generate personalized day-by-day travel itineraries for{' '}
-              <strong className="text-dark-200">195 countries</strong> in seconds. 
+              <strong style={{ color: 'var(--color-dark-200)' }}>195 countries</strong> in seconds.
               AI-powered plans with budget tracking, interactive maps, and local insights.
             </motion.p>
 
@@ -143,25 +145,22 @@ export default function Home() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.45 }}
               onSubmit={handleSearch}
-              className="relative max-w-xl mx-auto mb-6"
+              style={{ maxWidth: 580, margin: '0 auto 24px' }}
             >
-              <div className="relative glass rounded-2xl p-1.5 flex items-center group hover:border-primary-500/30 transition-all duration-300">
-                <div className="flex items-center gap-3 px-4 flex-1">
-                  <Search className="w-5 h-5 text-dark-400" />
+              <div className="glass" style={{ borderRadius: 16, padding: 6, display: 'flex', alignItems: 'center', border: '1px solid var(--color-border-dark)', transition: 'border-color 0.3s' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '0 16px', flex: 1, minWidth: 0 }}>
+                  <Search style={{ width: 20, height: 20, color: 'var(--color-dark-400)', flexShrink: 0 }} />
                   <input
                     type="text"
-                    placeholder="Where do you want to go? Try 'Paris', 'Tokyo', 'Lahore'..."
+                    placeholder="Where do you want to go? Try 'Paris', 'Tokyo'..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    className="w-full py-3 bg-transparent text-white placeholder-dark-500 outline-none text-base"
+                    style={{ width: '100%', padding: '12px 0', background: 'transparent', color: 'white', border: 'none', outline: 'none', fontSize: '1rem', fontFamily: 'var(--font-body)' }}
                   />
                 </div>
-                <button
-                  type="submit"
-                  className="btn-primary !rounded-xl !py-3 !px-6 shrink-0"
-                >
-                  <Sparkles className="w-4 h-4" />
-                  <span className="hidden sm:inline">Plan with AI</span>
+                <button type="submit" className="btn-primary" style={{ borderRadius: 12, padding: '12px 20px', flexShrink: 0 }}>
+                  <Sparkles style={{ width: 16, height: 16 }} />
+                  <span className="sm:inline" style={{ display: 'none' }}>Plan with AI</span>
                 </button>
               </div>
             </motion.form>
@@ -171,14 +170,16 @@ export default function Home() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.6 }}
-              className="flex flex-wrap items-center justify-center gap-2 text-sm"
+              style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center', gap: 8, fontSize: '0.875rem' }}
             >
-              <span className="text-dark-500">Popular:</span>
+              <span style={{ color: 'var(--color-dark-500)' }}>Popular:</span>
               {['Paris', 'Tokyo', 'Dubai', 'New York', 'Lahore'].map((city) => (
                 <button
                   key={city}
                   onClick={() => { setSearchQuery(city); navigate(`/plan?destination=${city}`); }}
-                  className="px-3 py-1 rounded-lg bg-white/[0.04] border border-white/[0.06] text-dark-300 hover:text-white hover:border-primary-500/30 transition-all cursor-pointer"
+                  style={{ padding: '4px 12px', borderRadius: 8, background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.06)', color: 'var(--color-dark-300)', cursor: 'pointer', transition: 'all 0.2s', fontFamily: 'var(--font-body)', fontSize: '0.875rem' }}
+                  onMouseEnter={(e) => { e.target.style.color = 'white'; e.target.style.borderColor = 'rgba(59,130,246,0.3)'; }}
+                  onMouseLeave={(e) => { e.target.style.color = 'var(--color-dark-300)'; e.target.style.borderColor = 'rgba(255,255,255,0.06)'; }}
                 >
                   {city}
                 </button>
@@ -191,29 +192,29 @@ export default function Home() {
         <motion.div
           animate={{ y: [0, 8, 0] }}
           transition={{ duration: 2, repeat: Infinity }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-dark-500 text-xs"
+          style={{ position: 'absolute', bottom: 32, left: '50%', transform: 'translateX(-50%)', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8, color: 'var(--color-dark-500)', fontSize: '0.75rem' }}
         >
           <span>Scroll to explore</span>
-          <div className="w-5 h-8 rounded-full border border-dark-600 flex items-start justify-center p-1">
+          <div style={{ width: 20, height: 32, borderRadius: 9999, border: '1px solid var(--color-dark-600)', display: 'flex', justifyContent: 'center', paddingTop: 4 }}>
             <motion.div
               animate={{ y: [0, 10, 0] }}
               transition={{ duration: 1.5, repeat: Infinity }}
-              className="w-1.5 h-1.5 rounded-full bg-primary-400"
+              style={{ width: 6, height: 6, borderRadius: '50%', background: 'var(--color-primary-400)' }}
             />
           </div>
         </motion.div>
       </section>
 
       {/* ===== STATS BAR ===== */}
-      <section className="relative py-12 border-y border-white/[0.06]">
-        <div className="container-custom mx-auto px-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {APP_STATS.map((stat, i) => (
-              <div key={stat.label} className="text-center">
-                <div className="text-3xl sm:text-4xl font-bold font-heading text-white mb-1">
+      <section style={{ position: 'relative', padding: '48px 0', borderTop: '1px solid rgba(255,255,255,0.06)', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
+        <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 24px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 32 }}>
+            {APP_STATS.map((stat) => (
+              <div key={stat.label} style={{ textAlign: 'center' }}>
+                <div style={{ fontSize: 'clamp(1.75rem, 3vw, 2.5rem)', fontWeight: 800, fontFamily: 'var(--font-heading)', color: 'white', marginBottom: 4, whiteSpace: 'nowrap' }}>
                   <Counter value={stat.value} suffix={stat.suffix} />
                 </div>
-                <div className="text-dark-400 text-sm">{stat.label}</div>
+                <div style={{ color: 'var(--color-dark-400)', fontSize: '0.875rem' }}>{stat.label}</div>
               </div>
             ))}
           </div>
@@ -222,19 +223,19 @@ export default function Home() {
 
       {/* ===== FEATURES ===== */}
       <Section>
-        <div className="container-custom mx-auto">
-          <div className="text-center mb-16">
-            <span className="inline-block px-4 py-1.5 rounded-full bg-primary-500/10 text-primary-400 text-xs font-semibold uppercase tracking-wider mb-4">Features</span>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-heading text-white mb-4">
+        <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 24px' }}>
+          <div style={{ textAlign: 'center', marginBottom: 64 }}>
+            <span style={{ display: 'inline-block', padding: '6px 16px', borderRadius: 9999, background: 'rgba(59,130,246,0.1)', color: 'var(--color-primary-400)', fontSize: '0.75rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 16 }}>Features</span>
+            <h2 style={{ fontSize: 'clamp(1.75rem, 4vw, 3rem)', fontWeight: 800, fontFamily: 'var(--font-heading)', color: 'white', marginBottom: 16, letterSpacing: '-0.02em' }}>
               Everything You Need to{' '}
-              <span className="gradient-text">Travel Smart</span>
+              <span style={{ color: 'var(--color-brand-blue)' }}>Travel Smart</span>
             </h2>
-            <p className="text-dark-400 max-w-xl mx-auto">
+            <p style={{ color: 'var(--color-dark-400)', maxWidth: 560, margin: '0 auto', lineHeight: 1.7 }}>
               From AI-generated itineraries to real-time budget tracking — we've built the ultimate travel companion.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: 24 }}>
             {FEATURES.map((feature, i) => {
               const Icon = iconMap[feature.icon] || Globe;
               return (
@@ -244,16 +245,16 @@ export default function Home() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.1 }}
-                  className="glass-card p-8 group"
+                  className="glass-card"
+                  style={{ padding: 32 }}
                 >
                   <div
-                    className="w-14 h-14 rounded-2xl flex items-center justify-center mb-5 transition-transform group-hover:scale-110"
-                    style={{ background: `${feature.color}15` }}
+                    style={{ width: 56, height: 56, borderRadius: 16, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 20, background: `${feature.color}15`, transition: 'transform 0.3s' }}
                   >
-                    <Icon className="w-7 h-7" style={{ color: feature.color }} />
+                    <Icon style={{ width: 28, height: 28, color: feature.color }} />
                   </div>
-                  <h3 className="text-lg font-semibold text-white mb-2 font-heading">{feature.title}</h3>
-                  <p className="text-dark-400 text-sm leading-relaxed">{feature.description}</p>
+                  <h3 style={{ fontSize: '1.125rem', fontWeight: 600, color: 'white', marginBottom: 8, fontFamily: 'var(--font-heading)' }}>{feature.title}</h3>
+                  <p style={{ color: 'var(--color-dark-400)', fontSize: '0.875rem', lineHeight: 1.7 }}>{feature.description}</p>
                 </motion.div>
               );
             })}
@@ -262,23 +263,18 @@ export default function Home() {
       </Section>
 
       {/* ===== HOW IT WORKS ===== */}
-      <Section className="relative">
-        <div className="absolute inset-0">
-          <div className="glow-dot w-[500px] h-[500px] bg-primary-600 top-0 left-[30%]" />
-        </div>
-        <div className="container-custom mx-auto relative z-10">
-          <div className="text-center mb-16">
-            <span className="inline-block px-4 py-1.5 rounded-full bg-accent-500/10 text-accent-400 text-xs font-semibold uppercase tracking-wider mb-4">How It Works</span>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-heading text-white mb-4">
+      <Section style={{ position: 'relative' }}>
+        <div className="glow-dot" style={{ width: 500, height: 500, background: 'var(--color-primary-600)', position: 'absolute', top: 0, left: '30%' }} />
+        <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 24px', position: 'relative', zIndex: 10 }}>
+          <div style={{ textAlign: 'center', marginBottom: 64 }}>
+            <span style={{ display: 'inline-block', padding: '6px 16px', borderRadius: 9999, background: 'rgba(245,158,11,0.1)', color: 'var(--color-accent-400)', fontSize: '0.75rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 16 }}>How It Works</span>
+            <h2 style={{ fontSize: 'clamp(1.75rem, 4vw, 3rem)', fontWeight: 800, fontFamily: 'var(--font-heading)', color: 'white', marginBottom: 16, letterSpacing: '-0.02em' }}>
               Plan Your Dream Trip in{' '}
-              <span className="gradient-text">3 Simple Steps</span>
+              <span style={{ color: 'var(--color-brand-blue)' }}>3 Simple Steps</span>
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
-            {/* Connection line */}
-            <div className="hidden md:block absolute top-[60px] left-[20%] right-[20%] h-px bg-gradient-to-r from-primary-500/30 via-accent-500/30 to-primary-500/30" />
-            
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: 32, position: 'relative' }}>
             {HOW_IT_WORKS.map((step, i) => (
               <motion.div
                 key={step.step}
@@ -286,27 +282,27 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.2 }}
-                className="text-center relative"
+                style={{ textAlign: 'center', position: 'relative' }}
               >
-                <div className="relative inline-flex mb-6">
-                  <div className="w-[100px] h-[100px] rounded-3xl bg-dark-800/80 border border-white/[0.08] flex items-center justify-center text-4xl relative z-10">
+                <div style={{ position: 'relative', display: 'inline-flex', marginBottom: 24 }}>
+                  <div style={{ width: 100, height: 100, borderRadius: 24, background: 'var(--color-dark-800)', border: '1px solid rgba(255,255,255,0.08)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '2.5rem', position: 'relative', zIndex: 10 }}>
                     {step.icon}
                   </div>
-                  <div className="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-gradient-to-br from-primary-500 to-accent-500 flex items-center justify-center text-white text-sm font-bold z-20">
+                  <div style={{ position: 'absolute', top: -8, right: -8, width: 32, height: 32, borderRadius: '50%', background: 'linear-gradient(135deg, var(--color-primary-500), var(--color-accent-500))', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontSize: '0.875rem', fontWeight: 700, zIndex: 20 }}>
                     {step.step}
                   </div>
                 </div>
-                <h3 className="text-xl font-semibold text-white mb-3 font-heading">{step.title}</h3>
-                <p className="text-dark-400 text-sm leading-relaxed max-w-xs mx-auto">{step.description}</p>
+                <h3 style={{ fontSize: '1.25rem', fontWeight: 600, color: 'white', marginBottom: 12, fontFamily: 'var(--font-heading)' }}>{step.title}</h3>
+                <p style={{ color: 'var(--color-dark-400)', fontSize: '0.875rem', lineHeight: 1.7, maxWidth: 300, margin: '0 auto' }}>{step.description}</p>
               </motion.div>
             ))}
           </div>
 
-          <div className="text-center mt-14">
-            <Link to="/plan" className="btn-primary !py-4 !px-8 !text-base no-underline">
-              <Sparkles className="w-5 h-5" />
+          <div style={{ textAlign: 'center', marginTop: 56 }}>
+            <Link to="/plan" className="btn-primary" style={{ padding: '16px 32px', fontSize: '1rem', textDecoration: 'none' }}>
+              <Sparkles style={{ width: 20, height: 20 }} />
               Start Planning Now
-              <ArrowRight className="w-5 h-5" />
+              <ArrowRight style={{ width: 20, height: 20 }} />
             </Link>
           </div>
         </div>
@@ -314,19 +310,19 @@ export default function Home() {
 
       {/* ===== DESTINATIONS ===== */}
       <Section>
-        <div className="container-custom mx-auto">
-          <div className="text-center mb-16">
-            <span className="inline-block px-4 py-1.5 rounded-full bg-success-500/10 text-success-500 text-xs font-semibold uppercase tracking-wider mb-4">Destinations</span>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-heading text-white mb-4">
-              Explore the <span className="gradient-text">World</span>
+        <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 24px' }}>
+          <div style={{ textAlign: 'center', marginBottom: 64 }}>
+            <span style={{ display: 'inline-block', padding: '6px 16px', borderRadius: 9999, background: 'rgba(16,185,129,0.1)', color: 'var(--color-success-500)', fontSize: '0.75rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 16 }}>Destinations</span>
+            <h2 style={{ fontSize: 'clamp(1.75rem, 4vw, 3rem)', fontWeight: 800, fontFamily: 'var(--font-heading)', color: 'white', marginBottom: 16, letterSpacing: '-0.02em' }}>
+              Explore the <span style={{ color: 'var(--color-brand-blue)' }}>World</span>
             </h2>
-            <p className="text-dark-400 max-w-xl mx-auto">
+            <p style={{ color: 'var(--color-dark-400)', maxWidth: 560, margin: '0 auto', lineHeight: 1.7 }}>
               From iconic cities to hidden gems — plan your perfect trip to any of 195 countries.
             </p>
           </div>
 
           {/* Destination cards */}
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))', gap: 16 }}>
             {FEATURED_DESTINATIONS.map((dest, i) => (
               <motion.div
                 key={dest.id}
@@ -337,30 +333,28 @@ export default function Home() {
               >
                 <Link
                   to={`/plan?destination=${dest.city}`}
-                  className="glass-card block p-5 no-underline group relative overflow-hidden"
-                  style={{ '--dest-color': dest.color }}
+                  className="glass-card"
+                  style={{ display: 'block', padding: 20, textDecoration: 'none', position: 'relative', overflow: 'hidden' }}
                 >
-                  <div className="absolute top-0 right-0 w-24 h-24 rounded-full opacity-[0.07] transform translate-x-8 -translate-y-8" style={{ background: dest.color }} />
-                  <span className="text-3xl mb-3 block">{dest.emoji}</span>
-                  <h3 className="text-white font-semibold text-base mb-0.5">{dest.city}</h3>
-                  <p className="text-dark-400 text-xs">{dest.country}</p>
-                  <p className="text-dark-500 text-[11px] mt-1 italic">{dest.tagline}</p>
-                  <div className="mt-3 flex items-center gap-1 text-xs text-primary-400 opacity-0 group-hover:opacity-100 transition-opacity">
-                    <span>Plan trip</span>
-                    <ArrowRight className="w-3 h-3" />
-                  </div>
+                  <div style={{ position: 'absolute', top: 0, right: 0, width: 96, height: 96, borderRadius: '50%', opacity: 0.07, transform: 'translate(32px, -32px)', background: dest.color }} />
+                  <span style={{ fontSize: '1.75rem', marginBottom: 12, display: 'block' }}>{dest.emoji}</span>
+                  <h3 style={{ color: 'white', fontWeight: 600, fontSize: '1rem', marginBottom: 2 }}>{dest.city}</h3>
+                  <p style={{ color: 'var(--color-dark-400)', fontSize: '0.75rem' }}>{dest.country}</p>
+                  <p style={{ color: 'var(--color-dark-500)', fontSize: '0.6875rem', marginTop: 4, fontStyle: 'italic' }}>{dest.tagline}</p>
                 </Link>
               </motion.div>
             ))}
           </div>
 
           {/* Region tags */}
-          <div className="flex flex-wrap justify-center gap-3 mt-10">
+          <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 12, marginTop: 40 }}>
             {REGIONS.map(region => (
               <Link
                 key={region.id}
                 to={`/community?region=${region.id}`}
-                className="px-4 py-2 rounded-xl bg-white/[0.03] border border-white/[0.06] text-sm text-dark-300 hover:text-white hover:border-primary-500/30 transition-all no-underline flex items-center gap-2"
+                style={{ padding: '8px 16px', borderRadius: 12, background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.06)', fontSize: '0.875rem', color: 'var(--color-dark-300)', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 8, transition: 'all 0.2s' }}
+                onMouseEnter={(e) => { e.currentTarget.style.color = 'white'; e.currentTarget.style.borderColor = 'rgba(59,130,246,0.3)'; }}
+                onMouseLeave={(e) => { e.currentTarget.style.color = 'var(--color-dark-300)'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.06)'; }}
               >
                 <span>{region.icon}</span>
                 {region.name}
@@ -371,19 +365,17 @@ export default function Home() {
       </Section>
 
       {/* ===== TESTIMONIALS ===== */}
-      <Section className="relative">
-        <div className="absolute inset-0">
-          <div className="glow-dot w-[400px] h-[400px] bg-accent-600 bottom-0 right-[20%]" />
-        </div>
-        <div className="container-custom mx-auto relative z-10">
-          <div className="text-center mb-16">
-            <span className="inline-block px-4 py-1.5 rounded-full bg-warning-500/10 text-warning-500 text-xs font-semibold uppercase tracking-wider mb-4">Testimonials</span>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-heading text-white mb-4">
-              Loved by <span className="gradient-text">Travelers</span>
+      <Section style={{ position: 'relative' }}>
+        <div className="glow-dot" style={{ width: 400, height: 400, background: 'var(--color-accent-600)', position: 'absolute', bottom: 0, right: '20%' }} />
+        <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 24px', position: 'relative', zIndex: 10 }}>
+          <div style={{ textAlign: 'center', marginBottom: 64 }}>
+            <span style={{ display: 'inline-block', padding: '6px 16px', borderRadius: 9999, background: 'rgba(245,158,11,0.1)', color: 'var(--color-warning-500)', fontSize: '0.75rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 16 }}>Testimonials</span>
+            <h2 style={{ fontSize: 'clamp(1.75rem, 4vw, 3rem)', fontWeight: 800, fontFamily: 'var(--font-heading)', color: 'white', marginBottom: 16, letterSpacing: '-0.02em' }}>
+              Loved by <span style={{ color: 'var(--color-brand-blue)' }}>Travelers</span>
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 24, maxWidth: 1024, margin: '0 auto' }}>
             {TESTIMONIALS.map((t, i) => (
               <motion.div
                 key={i}
@@ -391,20 +383,21 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.15 }}
-                className="glass-card p-6"
+                className="glass-card"
+                style={{ padding: 24 }}
               >
-                <div className="flex items-center gap-1 mb-4">
+                <div style={{ display: 'flex', alignItems: 'center', gap: 4, marginBottom: 16 }}>
                   {Array.from({ length: t.rating }).map((_, j) => (
-                    <Star key={j} className="w-4 h-4 text-warning-500 fill-warning-500" />
+                    <Star key={j} style={{ width: 16, height: 16, color: 'var(--color-warning-500)', fill: 'var(--color-warning-500)' }} />
                   ))}
                 </div>
-                <p className="text-dark-300 text-sm leading-relaxed mb-5 italic">"{t.text}"</p>
-                <div className="flex items-center gap-3 pt-4 border-t border-white/[0.06]">
-                  <span className="text-2xl">{t.avatar}</span>
+                <p style={{ color: 'var(--color-dark-300)', fontSize: '0.875rem', lineHeight: 1.7, marginBottom: 20, fontStyle: 'italic' }}>"{t.text}"</p>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 12, paddingTop: 16, borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+                  <span style={{ fontSize: '1.5rem' }}>{t.avatar}</span>
                   <div>
-                    <p className="text-white text-sm font-medium">{t.name}</p>
-                    <p className="text-dark-500 text-xs flex items-center gap-1">
-                      <MapPin className="w-3 h-3" />
+                    <p style={{ color: 'white', fontSize: '0.875rem', fontWeight: 500 }}>{t.name}</p>
+                    <p style={{ color: 'var(--color-dark-500)', fontSize: '0.75rem', display: 'flex', alignItems: 'center', gap: 4 }}>
+                      <MapPin style={{ width: 12, height: 12 }} />
                       {t.destination}
                     </p>
                   </div>
@@ -417,29 +410,29 @@ export default function Home() {
 
       {/* ===== CTA ===== */}
       <Section>
-        <div className="container-custom mx-auto">
-          <div className="relative rounded-3xl overflow-hidden glass-card !bg-gradient-to-br !from-dark-900/90 !to-dark-800/90 p-12 sm:p-16 text-center">
-            <div className="absolute inset-0 bg-gradient-to-r from-primary-500/10 via-accent-500/10 to-primary-500/10" />
-            <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary-500/50 to-transparent" />
-            <div className="relative z-10">
+        <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 24px' }}>
+          <div className="glass-card" style={{ position: 'relative', borderRadius: 24, overflow: 'hidden', background: 'linear-gradient(135deg, rgba(15,17,23,0.9), rgba(26,29,39,0.9))', padding: 'clamp(48px, 6vw, 64px)', textAlign: 'center' }}>
+            <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(135deg, rgba(59,130,246,0.1), rgba(245,158,11,0.1), rgba(59,130,246,0.1))' }} />
+            <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: 1, background: 'linear-gradient(90deg, transparent, rgba(59,130,246,0.5), transparent)' }} />
+            <div style={{ position: 'relative', zIndex: 10 }}>
               <motion.div
                 animate={{ rotate: 360 }}
                 transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
-                className="inline-block mb-6 text-5xl"
+                style={{ display: 'inline-block', marginBottom: 24, fontSize: '3rem' }}
               >🌍</motion.div>
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-heading text-white mb-4">
+              <h2 style={{ fontSize: 'clamp(1.75rem, 4vw, 3rem)', fontWeight: 800, fontFamily: 'var(--font-heading)', color: 'white', marginBottom: 16, letterSpacing: '-0.02em' }}>
                 Ready to Explore the World?
               </h2>
-              <p className="text-dark-400 max-w-lg mx-auto mb-8 text-lg">
+              <p style={{ color: 'var(--color-dark-400)', maxWidth: 480, margin: '0 auto 32px', fontSize: '1.125rem', lineHeight: 1.7 }}>
                 Join thousands of travelers using AI to plan unforgettable trips. Your next adventure starts here.
               </p>
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <Link to="/register" className="btn-primary !py-4 !px-8 !text-base no-underline">
-                  <Sparkles className="w-5 h-5" />
+              <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center', gap: 16 }}>
+                <Link to="/register" className="btn-primary" style={{ padding: '16px 32px', fontSize: '1rem', textDecoration: 'none' }}>
+                  <Sparkles style={{ width: 20, height: 20 }} />
                   Get Started — It's Free
                 </Link>
-                <Link to="/plan" className="btn-secondary !py-4 !px-8 !text-base no-underline">
-                  <Plane className="w-5 h-5" />
+                <Link to="/plan" className="btn-secondary" style={{ padding: '16px 32px', fontSize: '1rem', textDecoration: 'none' }}>
+                  <Plane style={{ width: 20, height: 20 }} />
                   Plan a Trip Now
                 </Link>
               </div>

@@ -28,7 +28,7 @@ export default function BudgetTracker() {
     <div className="min-h-screen pt-24 pb-16 px-6 page-transition">
       <div className="container-custom mx-auto">
         <div className="mb-8">
-          <h1 className="text-3xl font-bold font-heading text-white mb-2">Budget Tracker</h1>
+          <h1 className="text-3xl font-bold font-heading text-white mb-2 tracking-tight">Budget Tracker</h1>
           <p className="text-dark-400">Keep track of your expenses across all currencies</p>
         </div>
 
