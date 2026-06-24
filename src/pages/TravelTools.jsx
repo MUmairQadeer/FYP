@@ -3,6 +3,9 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Cloud, Search, Plane, Clock, ShieldAlert, Check, HelpCircle, ArrowRight } from 'lucide-react';
 import { PASSPORT_COUNTRIES } from '../utils/constants';
 
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+
+
 export default function TravelTools() {
   const [activeTool, setActiveTool] = useState(null);
   
@@ -65,7 +68,7 @@ export default function TravelTools() {
     setVisaLoading(true);
     setVisaResult(null);
     try {
-      const res = await fetch(`http://localhost:5000/api/tools/visa?passport=${encodeURIComponent(visaPassport)}&destination=${encodeURIComponent(visaDestination)}`);
+      const res = await fetch(`${API_URL}/tools/visa?passport=${encodeURIComponent(visaPassport)}&destination=${encodeURIComponent(visaDestination)}`);
       if (res.ok) {
         const data = await res.json();
         setVisaResult(data);
@@ -83,7 +86,7 @@ export default function TravelTools() {
     setWeatherLoading(true);
     setWeatherResult(null);
     try {
-      const res = await fetch(`http://localhost:5000/api/tools/weather?destination=${encodeURIComponent(weatherCity)}`);
+      const res = await fetch(`${API_URL}/tools/weather?destination=${encodeURIComponent(weatherCity)}`);
       if (res.ok) {
         const data = await res.json();
         setWeatherResult(data);
@@ -100,7 +103,7 @@ export default function TravelTools() {
     setInfoLoading(true);
     setInfoResult(null);
     try {
-      const res = await fetch(`http://localhost:5000/api/tools/country-info?country=${encodeURIComponent(infoCountry)}`);
+      const res = await fetch(`${API_URL}/tools/country-info?country=${encodeURIComponent(infoCountry)}`);
       if (res.ok) {
         const data = await res.json();
         setInfoResult(data);

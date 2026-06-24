@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
 
 const TripContext = createContext(null);
-const API_URL = 'http://localhost:5000/api';
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 
 // Helper to normalize backend database schemas to frontend-compatible structures
 const normalizeTrip = (dbTrip) => {

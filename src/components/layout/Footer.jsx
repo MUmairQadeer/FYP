@@ -1,153 +1,314 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Plane, Globe, Mail, Heart, MapPin, MessageCircle, Link as LinkIcon, ArrowRight, Send } from 'lucide-react';
+import {
+  Plane, Globe, Mail, Heart, MapPin, MessageCircle,
+  Link as LinkIcon, Send, LayoutDashboard, Wallet,
+  Wrench, Users, LifeBuoy, ShieldCheck,
+  FileText, PhoneCall, Route,
+} from 'lucide-react';
 
+/* ── Product link with isolated hover state ── */
+function ProductLink({ label, path, Icon }) {
+  const [hovered, setHovered] = useState(false);
+  return (
+    <li>
+      <Link
+        to={path}
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
+        style={{
+          display: 'flex', alignItems: 'center', gap: 10,
+          padding: '8px 10px', borderRadius: 8,
+          color: hovered ? 'white' : 'var(--color-text-secondary)',
+          background: hovered ? 'rgba(255,255,255,0.04)' : 'transparent',
+          border: hovered ? '1px solid rgba(255,255,255,0.07)' : '1px solid transparent',
+          fontSize: '0.875rem', textDecoration: 'none', transition: 'all 0.18s',
+        }}
+      >
+        <span style={{
+          width: 28, height: 28, borderRadius: 7, flexShrink: 0,
+          background: hovered ? 'rgba(59,130,246,0.15)' : 'rgba(255,255,255,0.04)',
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          color: hovered ? '#60a5fa' : 'var(--color-text-muted)',
+          transition: 'all 0.18s',
+        }}>
+          <Icon style={{ width: 13, height: 13 }} />
+        </span>
+        {label}
+      </Link>
+    </li>
+  );
+}
+
+/* ── Destination link with dot indicator ── */
+function DestLink({ label, path }) {
+  const [hovered, setHovered] = useState(false);
+  return (
+    <li>
+      <Link
+        to={path}
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
+        style={{
+          display: 'flex', alignItems: 'center', gap: 8,
+          padding: '8px 10px', borderRadius: 8,
+          color: hovered ? '#60a5fa' : 'var(--color-text-secondary)',
+          background: hovered ? 'rgba(59,130,246,0.06)' : 'transparent',
+          fontSize: '0.875rem', textDecoration: 'none', transition: 'all 0.18s',
+        }}
+      >
+        <span style={{
+          width: 5, height: 5, borderRadius: '50%', flexShrink: 0,
+          background: hovered ? '#60a5fa' : 'rgba(255,255,255,0.2)',
+          transition: 'background 0.18s',
+        }} />
+        {label}
+      </Link>
+    </li>
+  );
+}
+
+/* ── Support link ── */
+function SupportLink({ label, path, Icon }) {
+  const [hovered, setHovered] = useState(false);
+  return (
+    <li>
+      <Link
+        to={path}
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
+        style={{
+          display: 'flex', alignItems: 'center', gap: 8,
+          padding: '8px 10px', borderRadius: 8,
+          color: hovered ? 'white' : 'var(--color-text-secondary)',
+          background: hovered ? 'rgba(255,255,255,0.04)' : 'transparent',
+          fontSize: '0.875rem', textDecoration: 'none', transition: 'all 0.18s',
+        }}
+      >
+        <Icon style={{ width: 13, height: 13, flexShrink: 0, opacity: 0.5 }} />
+        {label}
+      </Link>
+    </li>
+  );
+}
+
+/* ══════════ Footer ══════════ */
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
-  const footerLinks = {
-    product: [
-      { label: 'Plan Trip', path: '/plan' },
-      { label: 'Dashboard', path: '/dashboard' },
-      { label: 'Budget Tracker', path: '/budget' },
-      { label: 'Travel Tools', path: '/tools' },
-      { label: 'Community', path: '/community' },
-    ],
-    destinations: [
-      { label: 'Europe', path: '/community?region=europe' },
-      { label: 'Asia', path: '/community?region=asia' },
-      { label: 'Middle East', path: '/community?region=middle-east' },
-      { label: 'North America', path: '/community?region=north-america' },
-      { label: 'Pakistan', path: '/community?region=south-asia' },
-    ],
-    support: [
-      { label: 'Help Center', path: '#' },
-      { label: 'Privacy Policy', path: '#' },
-      { label: 'Terms of Service', path: '#' },
-      { label: 'Contact Us', path: '#' },
-    ],
-  };
+  const product = [
+    { label: 'Plan Trip',      path: '/plan',      icon: Route },
+    { label: 'Dashboard',      path: '/dashboard', icon: LayoutDashboard },
+    { label: 'Budget Tracker', path: '/budget',    icon: Wallet },
+    { label: 'Travel Tools',   path: '/tools',     icon: Wrench },
+    { label: 'Community',      path: '/community', icon: Users },
+  ];
+
+  const destinations = [
+    { label: 'Europe',        path: '/community?region=europe' },
+    { label: 'Asia',          path: '/community?region=asia' },
+    { label: 'Middle East',   path: '/community?region=middle-east' },
+    { label: 'North America', path: '/community?region=north-america' },
+    { label: 'Pakistan',      path: '/community?region=south-asia' },
+  ];
+
+  const support = [
+    { label: 'Help Center',      path: '#', icon: LifeBuoy },
+    { label: 'Privacy Policy',   path: '#', icon: ShieldCheck },
+    { label: 'Terms of Service', path: '#', icon: FileText },
+    { label: 'Contact Us',       path: '#', icon: PhoneCall },
+  ];
+
+  const socials = [
+    { Icon: MessageCircle, href: '#', label: 'Twitter' },
+    { Icon: LinkIcon,      href: '#', label: 'LinkedIn' },
+    { Icon: Globe,         href: '#', label: 'Website' },
+    { Icon: Mail,          href: '#', label: 'Email' },
+  ];
 
   return (
-    <footer className="relative border-t border-white/[0.06] bg-dark-950">
-      {/* Gradient line */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary-500/50 to-transparent" />
+    <footer style={{
+      position: 'relative',
+      borderTop: '1px solid rgba(255,255,255,0.06)',
+      background: 'var(--color-dark-950)',
+    }}>
+      {/* Top gradient line */}
+      <div style={{
+        position: 'absolute', top: 0, left: 0, right: 0, height: 1,
+        background: 'linear-gradient(90deg, transparent, rgba(59,130,246,0.5), transparent)',
+      }} />
 
-      <div style={{ maxWidth: 1280, margin: '0 auto', padding: '80px 24px 40px' }}>
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '64px', justifyContent: 'space-between' }}>
-          {/* Brand */}
-          <div style={{ flex: '1 1 350px', maxWidth: 450 }}>
-            <Link to="/" className="flex items-center gap-3 no-underline mb-4">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary-500 to-accent-500 flex items-center justify-center">
-                <Plane className="w-5 h-5 text-white" />
+      <div style={{ maxWidth: 1280, margin: '0 auto', padding: '72px 24px 40px' }}>
+        <div className="footer-grid" style={{
+          display: 'grid',
+          gap: '48px 40px',
+        }}>
+
+          {/* ── Brand ── */}
+          <div>
+            <Link to="/" style={{ display: 'inline-flex', alignItems: 'center', gap: 10, textDecoration: 'none', marginBottom: 16 }}>
+              <div style={{
+                width: 40, height: 40, borderRadius: 12,
+                background: 'linear-gradient(135deg, #3B82F6, #F59E0B)',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+              }}>
+                <Plane style={{ width: 20, height: 20, color: 'white' }} />
               </div>
-              <span className="text-lg font-bold font-heading text-white tracking-tight">
-                Trip<span className="text-primary-400">Planner</span>
+              <span style={{ fontSize: '1.1rem', fontWeight: 800, fontFamily: 'var(--font-heading)', color: 'white' }}>
+                Trip<span style={{ color: '#60a5fa' }}>Planner</span>
               </span>
             </Link>
-            <p style={{ color: 'var(--color-dark-400)', fontSize: '0.875rem', lineHeight: 1.8, marginBottom: 32, maxWidth: 400 }}>
-              AI-powered travel planning for 195 countries. Generate personalized itineraries, 
-              track budgets, and explore the world — all in one platform.
+
+            <p style={{
+              color: 'var(--color-text-secondary)', fontSize: '0.875rem',
+              lineHeight: 1.75, marginBottom: 28, maxWidth: 340,
+            }}>
+              AI-powered travel planning for 195 countries. Generate personalized
+              itineraries, track budgets, and explore the world — all in one platform.
             </p>
-            
-            {/* Newsletter Subscription */}
-            <div style={{ marginBottom: 40 }}>
-              <h5 style={{ color: 'white', fontSize: '0.75rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: 12 }}>Join our newsletter</h5>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 8, maxWidth: 384 }}>
-                <div className="relative flex-1 group" style={{ display: 'flex' }}>
-                  <Mail style={{ width: 16, height: 16, position: 'absolute', left: 16, top: '50%', transform: 'translateY(-50%)', color: 'var(--color-dark-500)', zIndex: 10 }} />
-                  <input 
-                    type="email" 
-                    placeholder="Enter your email" 
-                    style={{ width: '100%', background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: 8, padding: '10px 16px 10px 42px', fontSize: '0.875rem', color: 'white', outline: 'none' }}
-                    onFocus={(e) => { e.target.style.borderColor = 'var(--color-primary-500)'; e.target.style.background = 'rgba(255,255,255,0.05)'; }}
-                    onBlur={(e) => { e.target.style.borderColor = 'rgba(255,255,255,0.08)'; e.target.style.background = 'rgba(255,255,255,0.03)'; }}
+
+            {/* Newsletter */}
+            <div style={{ marginBottom: 28 }}>
+              <h5 style={{
+                color: 'white', fontSize: '0.7rem', fontWeight: 700,
+                textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: 12,
+              }}>
+                Join our newsletter
+              </h5>
+              <div style={{ display: 'flex', gap: 8, maxWidth: 360 }}>
+                <div style={{ position: 'relative', flex: 1 }}>
+                  <Mail style={{
+                    width: 15, height: 15,
+                    position: 'absolute', left: 14, top: '50%', transform: 'translateY(-50%)',
+                    color: 'var(--color-text-muted)',
+                  }} />
+                  <input
+                    type="email"
+                    placeholder="Enter your email"
+                    style={{
+                      width: '100%', paddingLeft: 40, paddingRight: 14,
+                      paddingTop: 11, paddingBottom: 11,
+                      background: 'rgba(255,255,255,0.04)',
+                      border: '1px solid rgba(255,255,255,0.08)',
+                      borderRadius: 8, fontSize: '0.85rem', color: 'white', outline: 'none',
+                    }}
+                    onFocus={e => { e.target.style.borderColor = '#3B82F6'; e.target.style.background = 'rgba(255,255,255,0.06)'; }}
+                    onBlur={e => { e.target.style.borderColor = 'rgba(255,255,255,0.08)'; e.target.style.background = 'rgba(255,255,255,0.04)'; }}
                   />
                 </div>
-                <button className="btn-primary" style={{ padding: '10px 16px', borderRadius: 8, flexShrink: 0 }}>
-                  <Send style={{ width: 16, height: 16 }} />
+                <button className="btn-primary" style={{ padding: '10px 14px', borderRadius: 8, flexShrink: 0 }}>
+                  <Send style={{ width: 15, height: 15 }} />
                 </button>
               </div>
             </div>
 
-            <div className="flex items-center gap-3">
-              {[
-                { Icon: MessageCircle, href: '#' },
-                { Icon: LinkIcon, href: '#' },
-                { Icon: Globe, href: '#' },
-                { Icon: Mail, href: '#' },
-              ].map(({ Icon, href }, i) => (
-                <a
-                  key={i}
-                  href={href}
-                  className="w-9 h-9 rounded-lg bg-white/[0.04] border border-white/[0.06] flex items-center justify-center text-dark-400 hover:text-primary-400 hover:bg-primary-500/10 hover:border-primary-500/30 hover:-translate-y-1 transition-all duration-300"
-                >
-                  <Icon className="w-4 h-4" />
-                </a>
+            {/* Socials */}
+            <div style={{ display: 'flex', gap: 10 }}>
+              {socials.map(({ Icon, href, label }) => (
+                <SocialIcon key={label} Icon={Icon} href={href} label={label} />
               ))}
             </div>
           </div>
 
-          {/* Product */}
-          <div style={{ flex: '1 1 140px' }}>
-            <h4 style={{ color: 'white', fontWeight: 600, fontSize: '0.875rem', marginBottom: 20, textTransform: 'uppercase', letterSpacing: '0.05em' }}>Product</h4>
-            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 16 }}>
-              {footerLinks.product.map((link) => (
-                <li key={link.label}>
-                  <Link to={link.path} className="group flex items-center gap-2 text-dark-400 hover:text-white text-sm transition-colors no-underline">
-                    <ArrowRight className="w-3 h-3 opacity-0 -ml-5 group-hover:opacity-100 group-hover:ml-0 group-hover:text-primary-400 transition-all duration-300" />
-                    {link.label}
-                  </Link>
-                </li>
+          {/* ── Product ── */}
+          <div>
+            <h4 style={{
+              color: 'white', fontWeight: 700, fontSize: '0.75rem',
+              textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: 20,
+            }}>
+              Product
+            </h4>
+            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 2 }}>
+              {product.map(({ label, path, icon }) => (
+                <ProductLink key={label} label={label} path={path} Icon={icon} />
               ))}
             </ul>
           </div>
 
-          {/* Destinations */}
-          <div style={{ flex: '1 1 140px' }}>
-            <h4 style={{ color: 'white', fontWeight: 600, fontSize: '0.875rem', marginBottom: 20, textTransform: 'uppercase', letterSpacing: '0.05em', display: 'flex', alignItems: 'center', gap: 8 }}>
-              <MapPin style={{ width: 14, height: 14 }} />
+          {/* ── Destinations ── */}
+          <div>
+            <h4 style={{
+              color: 'white', fontWeight: 700, fontSize: '0.75rem',
+              textTransform: 'uppercase', letterSpacing: '0.1em',
+              marginBottom: 20, display: 'flex', alignItems: 'center', gap: 6,
+            }}>
+              <MapPin style={{ width: 13, height: 13, color: '#60a5fa' }} />
               Destinations
             </h4>
-            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 16 }}>
-              {footerLinks.destinations.map((link) => (
-                <li key={link.label}>
-                  <Link to={link.path} className="group flex items-center gap-2 text-dark-400 hover:text-white text-sm transition-colors no-underline">
-                    <ArrowRight className="w-3 h-3 opacity-0 -ml-5 group-hover:opacity-100 group-hover:ml-0 group-hover:text-primary-400 transition-all duration-300" />
-                    {link.label}
-                  </Link>
-                </li>
+            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 2 }}>
+              {destinations.map(({ label, path }) => (
+                <DestLink key={label} label={label} path={path} />
               ))}
             </ul>
           </div>
 
-          {/* Support */}
-          <div style={{ flex: '1 1 140px' }}>
-            <h4 style={{ color: 'white', fontWeight: 600, fontSize: '0.875rem', marginBottom: 20, textTransform: 'uppercase', letterSpacing: '0.05em' }}>Support</h4>
-            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 16 }}>
-              {footerLinks.support.map((link) => (
-                <li key={link.label}>
-                  <Link to={link.path} className="group flex items-center gap-2 text-dark-400 hover:text-white text-sm transition-colors no-underline">
-                    <ArrowRight className="w-3 h-3 opacity-0 -ml-5 group-hover:opacity-100 group-hover:ml-0 group-hover:text-primary-400 transition-all duration-300" />
-                    {link.label}
-                  </Link>
-                </li>
+          {/* ── Support ── */}
+          <div>
+            <h4 style={{
+              color: 'white', fontWeight: 700, fontSize: '0.75rem',
+              textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: 20,
+            }}>
+              Support
+            </h4>
+            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 2 }}>
+              {support.map(({ label, path, icon }) => (
+                <SupportLink key={label} label={label} path={path} Icon={icon} />
               ))}
             </ul>
           </div>
         </div>
 
-        {/* Bottom */}
-        <div style={{ marginTop: 56, paddingTop: 32, borderTop: '1px solid rgba(255,255,255,0.06)', display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: 16 }}>
-          <p style={{ color: 'var(--color-dark-500)', fontSize: '0.75rem', display: 'flex', alignItems: 'center', gap: 4, margin: 0 }}>
-            © {currentYear} AI Trip Planner. Made with <Heart style={{ width: 12, height: 12, color: 'var(--color-accent-500)', fill: 'var(--color-accent-500)' }} /> for travelers worldwide.
+        {/* ── Bottom bar ── */}
+        <div style={{
+          marginTop: 56, paddingTop: 28,
+          borderTop: '1px solid rgba(255,255,255,0.06)',
+          display: 'flex', flexWrap: 'wrap', alignItems: 'center',
+          justifyContent: 'space-between', gap: 12,
+        }}>
+          <p style={{
+            color: 'var(--color-text-muted)', fontSize: '0.78rem',
+            display: 'flex', alignItems: 'center', gap: 5, margin: 0,
+          }}>
+            © {currentYear} AI Trip Planner. Made with{' '}
+            <Heart style={{ width: 12, height: 12, color: '#F59E0B', fill: '#F59E0B' }} />{' '}
+            for travelers worldwide.
           </p>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 8, color: 'var(--color-dark-500)', fontSize: '0.75rem' }}>
-            <Globe style={{ width: 14, height: 14 }} />
-            <span>195 Countries • 150+ Currencies • Powered by GPT-4o</span>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8, color: 'var(--color-text-muted)', fontSize: '0.78rem' }}>
+            <Globe style={{ width: 13, height: 13 }} />
+            <span>195 Countries · 150+ Currencies · Powered by Gemini AI</span>
           </div>
         </div>
       </div>
+
+      <style>{`
+        .footer-grid { grid-template-columns: minmax(260px, 1.8fr) 1fr 1fr 1fr; }
+        @media (max-width: 900px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
+        @media (max-width: 560px) { .footer-grid { grid-template-columns: 1fr; } }
+      `}</style>
     </footer>
+  );
+}
+
+/* ── Social icon (isolated state) ── */
+function SocialIcon({ Icon, href, label }) {
+  const [hovered, setHovered] = useState(false);
+  return (
+    <a
+      href={href}
+      title={label}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      style={{
+        width: 36, height: 36, borderRadius: 9,
+        background: hovered ? 'rgba(59,130,246,0.1)' : 'rgba(255,255,255,0.04)',
+        border: hovered ? '1px solid rgba(59,130,246,0.25)' : '1px solid rgba(255,255,255,0.06)',
+        display: 'flex', alignItems: 'center', justifyContent: 'center',
+        color: hovered ? '#60a5fa' : 'var(--color-text-muted)',
+        textDecoration: 'none', transition: 'all 0.2s',
+        transform: hovered ? 'translateY(-2px)' : 'translateY(0)',
+      }}
+    >
+      <Icon style={{ width: 15, height: 15 }} />
+    </a>
   );
 }

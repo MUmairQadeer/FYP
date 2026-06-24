@@ -3,18 +3,18 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import {
   Plus, MapPin, Calendar, Users, Wallet, Plane, ChevronRight,
-  Clock, Globe, Sparkles
+  Clock, Globe, Sparkles, LayoutDashboard
 } from 'lucide-react';
 import { useTrips } from '../contexts/TripContext';
 import { useAuth } from '../contexts/AuthContext';
 
 const statusColors = {
-  upcoming: { bg: 'bg-primary-500/10', text: 'text-primary-400', label: 'Upcoming' },
-  ongoing: { bg: 'bg-success-500/10', text: 'text-success-500', label: 'Ongoing' },
-  completed: { bg: 'bg-dark-600/30', text: 'text-dark-400', label: 'Completed' },
+  upcoming: { bg: 'rgba(59,130,246,0.12)', text: '#60a5fa', label: 'Upcoming' },
+  ongoing:  { bg: 'rgba(16,185,129,0.12)', text: '#10B981', label: 'Ongoing' },
+  completed:{ bg: 'rgba(71,85,105,0.25)',  text: '#94A3B8', label: 'Completed' },
 };
 
-function TripCard({ trip }) {
+function TripCard({ trip, index }) {
   const sc = statusColors[trip.status] || statusColors.upcoming;
   const daysCount = trip.daysCount || trip.days?.length || 0;
   const activitiesCount = trip.activities || 0;
@@ -23,52 +23,95 @@ function TripCard({ trip }) {
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      whileHover={{ y: -4 }}
-      className="glass-card !p-0 overflow-hidden group"
+      transition={{ delay: index * 0.07 }}
+      whileHover={{ y: -4, transition: { duration: 0.2 } }}
+      style={{
+        background: 'var(--color-secondary-dark)',
+        border: '1px solid var(--color-border-dark)',
+        borderRadius: 16,
+        overflow: 'hidden',
+        boxShadow: '0 4px 16px rgba(0,0,0,0.12)',
+        transition: 'box-shadow 0.3s',
+        display: 'flex',
+        flexDirection: 'column',
+      }}
     >
-      {/* Color bar */}
-      <div className="h-1.5 bg-gradient-to-r from-primary-500 via-accent-500 to-primary-500" />
-      
-      <div className="p-6">
-        <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: 16 }}>
+      {/* Gradient accent bar */}
+      <div style={{
+        height: 4,
+        background: 'linear-gradient(90deg, #3B82F6, #F59E0B, #3B82F6)',
+        flexShrink: 0,
+      }} />
+
+      <div style={{ padding: '20px 24px', display: 'flex', flexDirection: 'column', flex: 1 }}>
+        {/* Card Header */}
+        <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: 16, gap: 12 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 12, minWidth: 0 }}>
-            <span className="text-3xl shrink-0">{trip.emoji}</span>
-            <div className="min-w-0">
-              <h3 className="text-white font-semibold text-base truncate">{trip.destination}</h3>
-              <p className="text-dark-500 text-xs">{trip.country}</p>
+            <span style={{ fontSize: '2rem', flexShrink: 0, lineHeight: 1 }}>{trip.emoji}</span>
+            <div style={{ minWidth: 0 }}>
+              <h3 style={{
+                color: 'white', fontWeight: 700, fontSize: '1rem',
+                whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis',
+                marginBottom: 2,
+              }}>
+                {trip.destination}
+              </h3>
+              <p style={{ color: 'var(--color-text-muted)', fontSize: '0.75rem' }}>{trip.country}</p>
             </div>
           </div>
-          <span className={`px-2.5 py-1 rounded-full text-[11px] font-medium shrink-0 ${sc.bg} ${sc.text}`}>
+          <span style={{
+            padding: '4px 10px', borderRadius: 999, fontSize: '0.7rem', fontWeight: 600,
+            background: sc.bg, color: sc.text, flexShrink: 0, whiteSpace: 'nowrap',
+          }}>
             {sc.label}
           </span>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12, marginBottom: 16 }}>
-          <div className="flex items-center gap-2 text-dark-400 text-xs">
-            <Calendar className="w-3.5 h-3.5 shrink-0" />
-            <span className="truncate">{trip.startDate}</span>
+        {/* Trip Metadata Grid */}
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px 16px', marginBottom: 16 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 7 }}>
+            <Calendar style={{ width: 13, height: 13, color: 'var(--color-text-muted)', flexShrink: 0 }} />
+            <span style={{ color: 'var(--color-text-muted)', fontSize: '0.75rem', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+              {trip.startDate}
+            </span>
           </div>
-          <div className="flex items-center gap-2 text-dark-400 text-xs">
-            <Clock className="w-3.5 h-3.5 shrink-0" />
-            <span>{daysCount} days</span>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 7 }}>
+            <Clock style={{ width: 13, height: 13, color: 'var(--color-text-muted)', flexShrink: 0 }} />
+            <span style={{ color: 'var(--color-text-muted)', fontSize: '0.75rem' }}>
+              {daysCount} day{daysCount !== 1 ? 's' : ''}
+            </span>
           </div>
-          <div className="flex items-center gap-2 text-dark-400 text-xs">
-            <Users className="w-3.5 h-3.5 shrink-0" />
-            <span>{trip.travelers} traveler{trip.travelers > 1 ? 's' : ''}</span>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 7 }}>
+            <Users style={{ width: 13, height: 13, color: 'var(--color-text-muted)', flexShrink: 0 }} />
+            <span style={{ color: 'var(--color-text-muted)', fontSize: '0.75rem' }}>
+              {trip.travelers} traveler{trip.travelers > 1 ? 's' : ''}
+            </span>
           </div>
-          <div className="flex items-center gap-2 text-dark-400 text-xs">
-            <Wallet className="w-3.5 h-3.5 shrink-0" />
-            <span className="truncate">{trip.currency} {Number(trip.budget).toLocaleString()}</span>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 7 }}>
+            <Wallet style={{ width: 13, height: 13, color: 'var(--color-text-muted)', flexShrink: 0 }} />
+            <span style={{ color: 'var(--color-text-muted)', fontSize: '0.75rem', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+              {trip.currency} {Number(trip.budget).toLocaleString()}
+            </span>
           </div>
         </div>
 
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingTop: 16, borderTop: '1px solid rgba(255,255,255,0.06)' }}>
-          <span className="text-dark-500 text-xs">{activitiesCount} activities</span>
+        {/* Card Footer */}
+        <div style={{
+          display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+          paddingTop: 14, borderTop: '1px solid rgba(255,255,255,0.06)', marginTop: 'auto',
+        }}>
+          <span style={{ color: 'var(--color-text-muted)', fontSize: '0.75rem' }}>
+            {activitiesCount} activities
+          </span>
           <Link
             to={`/itinerary/${trip.id}`}
-            className="flex items-center gap-1 text-primary-400 text-xs font-medium no-underline hover:text-primary-300 transition-colors"
+            style={{
+              display: 'flex', alignItems: 'center', gap: 4,
+              color: 'var(--color-brand-blue)', fontSize: '0.8rem', fontWeight: 600,
+              textDecoration: 'none', transition: 'color 0.2s',
+            }}
           >
-            View <ChevronRight className="w-3.5 h-3.5" />
+            View <ChevronRight style={{ width: 14, height: 14 }} />
           </Link>
         </div>
       </div>
@@ -76,132 +119,333 @@ function TripCard({ trip }) {
   );
 }
 
+const FILTERS = [
+  { key: 'all', label: 'All Trips' },
+  { key: 'upcoming', label: 'Upcoming' },
+  { key: 'ongoing', label: 'Ongoing' },
+  { key: 'completed', label: 'Completed' },
+];
+
 export default function Dashboard() {
   const { trips, fetchUserTrips, isLoadingTrips } = useTrips();
   const { user } = useAuth();
   const [filter, setFilter] = useState('all');
 
-  // Re-fetch trips when user changes (after login)
   useEffect(() => {
-    if (user) {
-      fetchUserTrips();
-    }
+    if (user) fetchUserTrips();
   }, [user, fetchUserTrips]);
 
   const filtered = filter === 'all' ? trips : trips.filter(t => t.status === filter);
 
-  // Compute real stats from trips
   const uniqueCountries = new Set(trips.map(t => t.country).filter(Boolean));
   const totalDaysPlanned = trips.reduce((sum, t) => sum + (t.daysCount || 0), 0);
   const sharedTrips = trips.filter(t => t.isPublic).length;
 
   const stats = [
-    { icon: Globe, label: 'Countries', value: uniqueCountries.size.toString(), color: 'text-primary-400', bg: 'bg-primary-500/10' },
-    { icon: Plane, label: 'Total Trips', value: trips.length.toString(), color: 'text-accent-400', bg: 'bg-accent-500/10' },
-    { icon: Calendar, label: 'Days Planned', value: totalDaysPlanned.toString(), color: 'text-success-500', bg: 'bg-success-500/10' },
-    { icon: Users, label: 'Trips Shared', value: sharedTrips.toString(), color: 'text-warning-500', bg: 'bg-warning-500/10' },
+    {
+      icon: Globe,
+      label: 'Countries',
+      value: uniqueCountries.size,
+      color: '#60a5fa',
+      bg: 'rgba(59,130,246,0.12)',
+    },
+    {
+      icon: Plane,
+      label: 'Total Trips',
+      value: trips.length,
+      color: '#F59E0B',
+      bg: 'rgba(245,158,11,0.12)',
+    },
+    {
+      icon: Calendar,
+      label: 'Days Planned',
+      value: totalDaysPlanned,
+      color: '#10B981',
+      bg: 'rgba(16,185,129,0.12)',
+    },
+    {
+      icon: Users,
+      label: 'Trips Shared',
+      value: sharedTrips,
+      color: '#f59e0b',
+      bg: 'rgba(245,158,11,0.1)',
+    },
   ];
 
   return (
-    <div className="page-transition" style={{ minHeight: '100vh', paddingTop: 120, paddingBottom: 80, paddingLeft: 24, paddingRight: 24 }}>
-      <div style={{ maxWidth: 1280, margin: '0 auto' }}>
-        {/* Header */}
+    <div
+      className="page-transition"
+      style={{ minHeight: '100vh', paddingTop: '96px', paddingBottom: '80px' }}
+    >
+      <div style={{ maxWidth: 1280, margin: '0 auto', paddingLeft: 24, paddingRight: 24 }}>
+
+        {/* ── Page Header ── */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: 16, marginBottom: 32 }}
+          style={{
+            display: 'flex', flexWrap: 'wrap', alignItems: 'center',
+            justifyContent: 'space-between', gap: 16, marginBottom: 36,
+          }}
         >
           <div>
-            <h1 className="text-2xl sm:text-3xl font-bold font-heading text-white tracking-tight">
-              Welcome back{user ? `, ${user.name.split(' ')[0]}` : ''} 👋
-            </h1>
-            <p className="text-dark-400 mt-1 text-sm">Here's an overview of your travel plans</p>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 6 }}>
+              <div style={{
+                width: 36, height: 36, borderRadius: 10,
+                background: 'rgba(59,130,246,0.12)',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+              }}>
+                <LayoutDashboard style={{ width: 18, height: 18, color: '#60a5fa' }} />
+              </div>
+              <h1 style={{
+                fontSize: 'clamp(1.4rem, 3vw, 1.9rem)',
+                fontWeight: 800,
+                fontFamily: 'var(--font-heading)',
+                color: 'white',
+                letterSpacing: '-0.02em',
+                lineHeight: 1.2,
+              }}>
+                Welcome back{user ? `, ${user.name.split(' ')[0]}` : ''} 👋
+              </h1>
+            </div>
+            <p style={{ color: 'var(--color-text-secondary)', fontSize: '0.9rem', paddingLeft: 46 }}>
+              Here's an overview of your travel plans
+            </p>
           </div>
-          <Link to="/plan" className="btn-primary no-underline shrink-0">
-            <Plus className="w-4 h-4" />
+
+          <Link
+            to="/plan"
+            className="btn-primary"
+            style={{ textDecoration: 'none', flexShrink: 0, padding: '12px 24px' }}
+          >
+            <Plus style={{ width: 16, height: 16 }} />
             Plan New Trip
           </Link>
         </motion.div>
 
-        {/* Stats */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: 16, marginBottom: 32 }}>
+        {/* ── Stats Row ── */}
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+          gap: 16,
+          marginBottom: 36,
+        }}>
           {stats.map((stat, i) => (
             <motion.div
               key={stat.label}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.1 }}
-              className="glass-card !p-4 sm:!p-5 flex items-center gap-3 sm:gap-4"
+              transition={{ delay: i * 0.08 }}
+              style={{
+                background: 'var(--color-secondary-dark)',
+                border: '1px solid var(--color-border-dark)',
+                borderRadius: 14,
+                padding: '18px 20px',
+                display: 'flex',
+                alignItems: 'center',
+                gap: 16,
+                transition: 'border-color 0.3s',
+              }}
             >
-              <div className={`w-10 h-10 sm:w-12 sm:h-12 rounded-2xl ${stat.bg} flex items-center justify-center shrink-0`}>
-                <stat.icon className={`w-5 h-5 sm:w-6 sm:h-6 ${stat.color}`} />
+              <div style={{
+                width: 48, height: 48, borderRadius: 12,
+                background: stat.bg,
+                display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
+              }}>
+                <stat.icon style={{ width: 22, height: 22, color: stat.color }} />
               </div>
-              <div className="min-w-0">
-                <p className="text-dark-400 text-[11px] sm:text-xs">{stat.label}</p>
-                <p className="text-white text-xl sm:text-2xl font-bold font-heading">{stat.value}</p>
+              <div>
+                <p style={{ color: 'var(--color-text-muted)', fontSize: '0.72rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 4 }}>
+                  {stat.label}
+                </p>
+                <p style={{ color: 'white', fontSize: '1.75rem', fontWeight: 800, fontFamily: 'var(--font-heading)', lineHeight: 1 }}>
+                  {stat.value}
+                </p>
               </div>
             </motion.div>
           ))}
         </div>
 
-        {/* Filters */}
-        <div className="hide-scrollbar" style={{ display: 'flex', alignItems: 'center', gap: 8, overflowX: 'auto', paddingBottom: 8, marginBottom: 24 }}>
-          {['all', 'upcoming', 'ongoing', 'completed'].map(f => (
+        {/* ── Filter Tabs ── */}
+        <div style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: 8,
+          marginBottom: 28,
+          overflowX: 'auto',
+          paddingBottom: 4,
+          msOverflowStyle: 'none',
+          scrollbarWidth: 'none',
+        }}>
+          {FILTERS.map(f => (
             <button
-              key={f}
-              onClick={() => setFilter(f)}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-all cursor-pointer capitalize whitespace-nowrap ${
-                filter === f
-                  ? 'bg-primary-500 text-white shadow-lg shadow-primary-500/25'
-                  : 'text-dark-400 hover:text-white hover:bg-white/[0.06] border border-white/[0.08]'
-              }`}
+              key={f.key}
+              onClick={() => setFilter(f.key)}
+              style={{
+                padding: '8px 18px',
+                borderRadius: 999,
+                fontSize: '0.85rem',
+                fontWeight: 600,
+                cursor: 'pointer',
+                whiteSpace: 'nowrap',
+                transition: 'all 0.2s',
+                border: filter === f.key
+                  ? 'none'
+                  : '1px solid rgba(255,255,255,0.08)',
+                background: filter === f.key
+                  ? 'var(--color-brand-blue)'
+                  : 'transparent',
+                color: filter === f.key
+                  ? 'white'
+                  : 'var(--color-text-muted)',
+                boxShadow: filter === f.key
+                  ? '0 4px 12px rgba(59,130,246,0.25)'
+                  : 'none',
+              }}
             >
-              {f}
+              {f.label}
             </button>
           ))}
+
+          {/* Trip count badge */}
+          <span style={{
+            marginLeft: 'auto',
+            flexShrink: 0,
+            fontSize: '0.8rem',
+            color: 'var(--color-text-muted)',
+            whiteSpace: 'nowrap',
+          }}>
+            {filtered.length} trip{filtered.length !== 1 ? 's' : ''}
+          </span>
         </div>
 
-        {/* Loading State */}
+        {/* ── Loading State ── */}
         {isLoadingTrips && trips.length === 0 && (
-          <div className="glass-card flex flex-col items-center justify-center py-20 text-center">
-            <div className="w-16 h-16 border-4 border-dark-700 border-t-primary-500 rounded-full animate-spin mb-6" />
-            <p className="text-dark-400">Loading your trips...</p>
+          <div style={{
+            background: 'var(--color-secondary-dark)',
+            border: '1px solid var(--color-border-dark)',
+            borderRadius: 16,
+            display: 'flex', flexDirection: 'column',
+            alignItems: 'center', justifyContent: 'center',
+            padding: '80px 24px', textAlign: 'center',
+          }}>
+            <div style={{
+              width: 56, height: 56,
+              border: '4px solid var(--color-dark-700)',
+              borderTopColor: 'var(--color-brand-blue)',
+              borderRadius: '50%', marginBottom: 20,
+            }} className="animate-spin" />
+            <p style={{ color: 'var(--color-text-secondary)' }}>Loading your trips...</p>
           </div>
         )}
 
-        {/* Trips Grid */}
-        {!isLoadingTrips && filtered.length > 0 ? (
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: 24 }}>
-            {filtered.map(trip => (
-              <TripCard key={trip.id} trip={trip} />
+        {/* ── Trips Grid ── */}
+        {!isLoadingTrips && filtered.length > 0 && (
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
+            gap: 24,
+          }}>
+            {filtered.map((trip, i) => (
+              <TripCard key={trip.id} trip={trip} index={i} />
             ))}
-            {/* Add New Card */}
+
+            {/* Add New Trip card */}
             <Link
               to="/plan"
-              className="glass-card !p-0 flex items-center justify-center min-h-[240px] border-2 border-dashed !border-white/[0.08] hover:!border-primary-500/50 hover:bg-primary-500/5 transition-all no-underline group"
+              style={{
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                minHeight: 220,
+                background: 'rgba(255,255,255,0.02)',
+                border: '2px dashed rgba(255,255,255,0.08)',
+                borderRadius: 16,
+                textDecoration: 'none',
+                transition: 'all 0.25s',
+                cursor: 'pointer',
+              }}
+              onMouseEnter={e => {
+                e.currentTarget.style.borderColor = 'rgba(59,130,246,0.45)';
+                e.currentTarget.style.background = 'rgba(59,130,246,0.05)';
+              }}
+              onMouseLeave={e => {
+                e.currentTarget.style.borderColor = 'rgba(255,255,255,0.08)';
+                e.currentTarget.style.background = 'rgba(255,255,255,0.02)';
+              }}
             >
-              <div className="text-center">
-                <div className="w-14 h-14 rounded-full bg-white/[0.04] flex items-center justify-center mx-auto mb-3 group-hover:scale-110 group-hover:bg-primary-500/20 transition-all">
-                  <Plus className="w-6 h-6 text-dark-400 group-hover:text-primary-400 transition-colors" />
+              <div style={{ textAlign: 'center' }}>
+                <div style={{
+                  width: 56, height: 56, borderRadius: '50%',
+                  background: 'rgba(255,255,255,0.04)',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  margin: '0 auto 12px',
+                  transition: 'all 0.2s',
+                }}>
+                  <Plus style={{ width: 24, height: 24, color: 'var(--color-text-muted)' }} />
                 </div>
-                <p className="text-dark-400 text-sm font-medium group-hover:text-white transition-colors">Plan New Trip</p>
+                <p style={{ color: 'var(--color-text-muted)', fontSize: '0.9rem', fontWeight: 600 }}>
+                  Plan New Trip
+                </p>
               </div>
             </Link>
           </div>
-        ) : !isLoadingTrips && (
-          <div className="glass-card flex flex-col items-center justify-center py-20 sm:py-24 text-center">
-            <div className="w-20 h-20 bg-primary-500/10 rounded-full flex items-center justify-center mb-6">
-              <Plane className="w-10 h-10 text-primary-400" />
-            </div>
-            <h3 className="text-xl font-bold font-heading text-white mb-2">No trips planned yet</h3>
-            <p className="text-dark-400 mb-8 max-w-sm px-4">
-              Ready for your next adventure? Let AI generate the perfect itinerary for you in seconds.
-            </p>
-            <Link to="/plan" className="btn-primary no-underline">
-              <Sparkles className="w-4 h-4" /> Start Planning
-            </Link>
-          </div>
         )}
+
+        {/* ── Empty State ── */}
+        {!isLoadingTrips && filtered.length === 0 && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.97 }}
+            animate={{ opacity: 1, scale: 1 }}
+            style={{
+              background: 'var(--color-secondary-dark)',
+              border: '1px solid var(--color-border-dark)',
+              borderRadius: 20,
+              display: 'flex', flexDirection: 'column',
+              alignItems: 'center', justifyContent: 'center',
+              padding: '80px 32px',
+              textAlign: 'center',
+            }}
+          >
+            <div style={{
+              width: 80, height: 80, borderRadius: '50%',
+              background: 'rgba(59,130,246,0.1)',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              marginBottom: 24,
+            }}>
+              <Plane style={{ width: 36, height: 36, color: '#60a5fa' }} />
+            </div>
+
+            <h3 style={{
+              fontSize: '1.35rem', fontWeight: 800,
+              fontFamily: 'var(--font-heading)',
+              color: 'white', marginBottom: 12,
+              letterSpacing: '-0.01em',
+            }}>
+              {filter === 'all' ? 'No trips planned yet' : `No ${filter} trips`}
+            </h3>
+
+            <p style={{
+              color: 'var(--color-text-secondary)',
+              fontSize: '0.95rem',
+              lineHeight: 1.6,
+              maxWidth: 380,
+              marginBottom: 32,
+            }}>
+              {filter === 'all'
+                ? 'Ready for your next adventure? Let AI generate the perfect itinerary for you in seconds.'
+                : `You don't have any ${filter} trips. Start planning your next journey!`}
+            </p>
+
+            <Link
+              to="/plan"
+              className="btn-primary"
+              style={{ textDecoration: 'none', padding: '14px 32px', fontSize: '0.95rem' }}
+            >
+              <Sparkles style={{ width: 16, height: 16 }} />
+              Start Planning
+            </Link>
+          </motion.div>
+        )}
+
       </div>
     </div>
   );

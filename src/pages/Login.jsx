@@ -1,85 +1,106 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Mail, Lock, Eye, EyeOff, LogIn, Plane, Sparkles } from 'lucide-react';
+import { Mail, Lock, Eye, EyeOff, LogIn, Plane, Sparkles, Shield, Zap, Globe } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { useAuth } from '../contexts/AuthContext';
 
-// Floating premium Boarding Pass Mock Component to wow users
+/* ── Floating Boarding Pass ── */
 function MockBoardingPass() {
   return (
     <motion.div
       animate={{ y: [0, -10, 0] }}
-      transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-      className="glass-card mt-8"
+      transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
       style={{
-        padding: '24px',
-        borderRadius: '20px',
-        border: '1px solid rgba(255, 255, 255, 0.08)',
-        background: 'rgba(26, 29, 39, 0.65)',
+        background: 'rgba(26,29,39,0.75)',
         backdropFilter: 'blur(20px)',
-        boxShadow: '0 20px 40px rgba(0, 0, 0, 0.3)',
-        maxWidth: '360px',
+        border: '1px solid rgba(255,255,255,0.1)',
+        borderRadius: 20,
+        padding: '24px 28px',
         width: '100%',
+        maxWidth: 340,
         position: 'relative',
         overflow: 'hidden',
-        textAlign: 'left'
+        boxShadow: '0 24px 48px rgba(0,0,0,0.4)',
       }}
     >
-      <div style={{ position: 'absolute', top: '-100px', right: '-100px', width: '200px', height: '200px', borderRadius: '50%', background: 'rgba(59, 130, 246, 0.15)', filter: 'blur(40px)', pointerEvents: 'none' }} />
-      
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <Plane style={{ width: '16px', height: '16px', color: 'var(--color-primary-400)' }} />
-          <span style={{ fontSize: '11px', fontWeight: '700', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--color-dark-400)' }}>AI Boarding Pass</span>
+      {/* Glow blob */}
+      <div style={{
+        position: 'absolute', top: -80, right: -80,
+        width: 180, height: 180, borderRadius: '50%',
+        background: 'rgba(59,130,246,0.18)', filter: 'blur(40px)',
+        pointerEvents: 'none',
+      }} />
+
+      {/* Header */}
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 20 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 7 }}>
+          <Plane style={{ width: 14, height: 14, color: '#60a5fa' }} />
+          <span style={{ fontSize: '0.65rem', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#94A3B8' }}>
+            AI Boarding Pass
+          </span>
         </div>
-        <span style={{ fontSize: '11px', color: 'var(--color-success-500)', background: 'rgba(16, 185, 129, 0.1)', padding: '4px 10px', borderRadius: '9999px', fontWeight: '600' }}>Confirmed</span>
+        <span style={{
+          fontSize: '0.65rem', color: '#10B981', fontWeight: 700,
+          background: 'rgba(16,185,129,0.12)', padding: '3px 10px', borderRadius: 999,
+          border: '1px solid rgba(16,185,129,0.2)',
+        }}>
+          Confirmed
+        </span>
       </div>
 
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
+      {/* Route */}
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 20 }}>
         <div>
-          <h4 style={{ fontSize: '32px', fontWeight: '800', color: 'white', margin: 0, lineHeight: 1 }}>JFK</h4>
-          <span style={{ fontSize: '11px', color: 'var(--color-dark-500)' }}>New York, US</span>
+          <p style={{ fontSize: '2rem', fontWeight: 800, color: 'white', lineHeight: 1, margin: 0 }}>JFK</p>
+          <p style={{ fontSize: '0.68rem', color: '#475569', marginTop: 3 }}>New York, US</p>
         </div>
-        <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative', padding: '0 16px' }}>
-          <div style={{ width: '100%', height: '1px', borderTop: '2px dashed rgba(255,255,255,0.1)' }} />
-          <Plane style={{ width: '14px', height: '14px', color: 'var(--color-primary-400)', position: 'absolute', transform: 'rotate(90deg)' }} />
+        <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '0 14px', position: 'relative' }}>
+          <div style={{ width: '100%', borderTop: '2px dashed rgba(255,255,255,0.1)' }} />
+          <Plane style={{ width: 14, height: 14, color: '#60a5fa', position: 'absolute', transform: 'rotate(90deg)' }} />
         </div>
         <div style={{ textAlign: 'right' }}>
-          <h4 style={{ fontSize: '32px', fontWeight: '800', color: 'white', margin: 0, lineHeight: 1 }}>HND</h4>
-          <span style={{ fontSize: '11px', color: 'var(--color-dark-500)' }}>Tokyo, JP</span>
+          <p style={{ fontSize: '2rem', fontWeight: 800, color: 'white', lineHeight: 1, margin: 0 }}>HND</p>
+          <p style={{ fontSize: '0.68rem', color: '#475569', marginTop: 3 }}>Tokyo, JP</p>
         </div>
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px', borderTop: '1px dashed rgba(255,255,255,0.08)', paddingTop: '16px' }}>
-        <div>
-          <span style={{ fontSize: '10px', color: 'var(--color-dark-500)', display: 'block', textTransform: 'uppercase' }}>Passenger</span>
-          <span style={{ fontSize: '13px', color: 'white', fontWeight: '600' }}>Umair Qadeer</span>
-        </div>
-        <div style={{ textAlign: 'right' }}>
-          <span style={{ fontSize: '10px', color: 'var(--color-dark-500)', display: 'block', textTransform: 'uppercase' }}>Cabin Class</span>
-          <span style={{ fontSize: '13px', color: 'var(--color-primary-400)', fontWeight: '600' }}>AI Business Class</span>
-        </div>
-        <div>
-          <span style={{ fontSize: '10px', color: 'var(--color-dark-500)', display: 'block', textTransform: 'uppercase' }}>Date</span>
-          <span style={{ fontSize: '13px', color: 'white', fontWeight: '600' }}>June 24, 2026</span>
-        </div>
-        <div style={{ textAlign: 'right' }}>
-          <span style={{ fontSize: '10px', color: 'var(--color-dark-500)', display: 'block', textTransform: 'uppercase' }}>Smart Seat</span>
-          <span style={{ fontSize: '13px', color: 'var(--color-accent-400)', fontWeight: '600' }}>Seat AI-08</span>
-        </div>
+      {/* Dashed divider */}
+      <div style={{ borderTop: '1px dashed rgba(255,255,255,0.08)', marginBottom: 16 }} />
+
+      {/* Details grid */}
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px 8px' }}>
+        {[
+          { label: 'Passenger',   value: 'Umair Qadeer',      align: 'left',  color: 'white' },
+          { label: 'Cabin Class', value: 'AI Business Class', align: 'right', color: '#60a5fa' },
+          { label: 'Date',        value: 'June 24, 2026',     align: 'left',  color: 'white' },
+          { label: 'Smart Seat',  value: 'Seat AI-08',        align: 'right', color: '#F59E0B' },
+        ].map(({ label, value, align, color }) => (
+          <div key={label} style={{ textAlign: align }}>
+            <p style={{ fontSize: '0.6rem', color: '#475569', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 3 }}>{label}</p>
+            <p style={{ fontSize: '0.8rem', fontWeight: 700, color }}>{value}</p>
+          </div>
+        ))}
       </div>
     </motion.div>
   );
 }
 
+/* ── Feature Pills ── */
+const features = [
+  { icon: Zap,    label: 'AI Itineraries in seconds' },
+  { icon: Globe,  label: '195 Countries supported' },
+  { icon: Shield, label: 'Secure & private' },
+];
+
+/* ── Main Login Page ── */
 export default function Login() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail]             = useState('');
+  const [password, setPassword]       = useState('');
   const [showPassword, setShowPassword] = useState(false);
-  const [error, setError] = useState('');
-  const { login, isLoading } = useAuth();
-  const navigate = useNavigate();
+  const [error, setError]             = useState('');
+  const { login, isLoading }          = useAuth();
+  const navigate                      = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -95,130 +116,261 @@ export default function Login() {
   };
 
   return (
-    <div className="auth-container page-transition">
-      {/* Left Side - 40% (Hidden on mobile) */}
-      <div className="auth-left-panel">
-        <div className="absolute inset-0">
-          <div className="glow-dot w-[600px] h-[600px] bg-primary-600 top-[-200px] left-[-200px]" />
-          <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-20" />
-        </div>
-        
-        <div className="relative z-10" style={{ display: 'flex', flexDirection: 'column', height: '100%', justifyContent: 'space-between', alignItems: 'flex-start', width: '100%' }}>
-          <div style={{ width: '100%' }}>
-            <Link to="/" className="flex items-center gap-3 no-underline inline-flex" style={{ marginBottom: '40px' }}>
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary-500 to-accent-500 flex items-center justify-center">
-                <Plane className="w-5 h-5 text-white" />
-              </div>
-              <span className="text-xl font-bold font-heading text-white tracking-tight">
-                Trip<span className="text-primary-400">Planner</span>
-              </span>
-            </Link>
+    <div style={{
+      display: 'flex',
+      minHeight: '100vh',
+      background: 'var(--color-dark-950)',
+    }}>
 
-            <h2 className="text-4xl font-bold font-heading text-white mb-4 leading-tight">
-              Plan your next <br /><span className="gradient-text">great adventure.</span>
+      {/* ══ LEFT PANEL (hidden on mobile) ══ */}
+      <div style={{
+        display: 'none',
+        flex: '0 0 44%',
+        position: 'relative',
+        overflow: 'hidden',
+        borderRight: '1px solid rgba(255,255,255,0.06)',
+        background: 'var(--color-dark-900)',
+      }}
+        className="login-left-panel"
+      >
+        {/* Background glows */}
+        <div style={{
+          position: 'absolute', top: -160, left: -160,
+          width: 480, height: 480, borderRadius: '50%',
+          background: 'rgba(59,130,246,0.12)', filter: 'blur(80px)', pointerEvents: 'none',
+        }} />
+        <div style={{
+          position: 'absolute', bottom: -100, right: -100,
+          width: 340, height: 340, borderRadius: '50%',
+          background: 'rgba(245,158,11,0.07)', filter: 'blur(60px)', pointerEvents: 'none',
+        }} />
+
+        {/* Content */}
+        <div style={{
+          position: 'relative', zIndex: 1,
+          height: '100%', padding: '48px 48px',
+          display: 'flex', flexDirection: 'column',
+          justifyContent: 'space-between',
+          paddingTop: '104px', /* 72px navbar + 32px breathing room */
+        }}>
+          {/* Top text */}
+          <div>
+            <h2 style={{
+              fontSize: 'clamp(1.8rem, 2.5vw, 2.4rem)',
+              fontWeight: 800,
+              fontFamily: 'var(--font-heading)',
+              color: 'white',
+              lineHeight: 1.2,
+              letterSpacing: '-0.02em',
+              marginBottom: 16,
+            }}>
+              Plan your next<br />
+              <span style={{ color: 'var(--color-brand-blue)' }}>great adventure.</span>
             </h2>
-            <p className="text-dark-400 text-base max-w-[400px] mb-8">
-              Join thousands of travelers using AI to generate perfectly tailored itineraries for any destination in the world.
+            <p style={{
+              color: 'var(--color-text-secondary)',
+              fontSize: '0.95rem', lineHeight: 1.7,
+              maxWidth: 340, marginBottom: 36,
+            }}>
+              Join thousands of travelers using AI to generate perfectly
+              tailored itineraries for any destination in the world.
             </p>
+
+            {/* Feature pills */}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+              {features.map(({ icon: Icon, label }) => (
+                <div key={label} style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+                  <div style={{
+                    width: 32, height: 32, borderRadius: 8, flexShrink: 0,
+                    background: 'rgba(59,130,246,0.12)',
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  }}>
+                    <Icon style={{ width: 15, height: 15, color: '#60a5fa' }} />
+                  </div>
+                  <span style={{ color: 'var(--color-text-secondary)', fontSize: '0.875rem' }}>{label}</span>
+                </div>
+              ))}
+            </div>
           </div>
 
+          {/* Boarding Pass card */}
           <MockBoardingPass />
         </div>
       </div>
 
-      {/* Right Side - 60% */}
-      <div className="auth-right-panel">
-        <div className="absolute inset-0 lg:hidden">
-          <div className="glow-dot w-[500px] h-[500px] bg-primary-600 top-[-200px] right-[-100px]" />
-          <div className="glow-dot w-[400px] h-[400px] bg-accent-600 bottom-[-100px] left-[-100px]" />
-        </div>
+      {/* ══ RIGHT PANEL ══ */}
+      <div style={{
+        flex: 1,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: '100px 24px 48px', /* top: 72px nav + 28px breathing room */
+        position: 'relative',
+        overflowY: 'auto',
+      }}>
+        {/* Background glows (visible on mobile) */}
+        <div style={{
+          position: 'absolute', top: -100, right: -80,
+          width: 400, height: 400, borderRadius: '50%',
+          background: 'rgba(59,130,246,0.08)', filter: 'blur(80px)',
+          pointerEvents: 'none',
+        }} />
 
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 28 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="relative z-10"
-          style={{ width: '100%', maxWidth: '448px' }}
+          transition={{ duration: 0.5 }}
+          style={{ width: '100%', maxWidth: 440, position: 'relative', zIndex: 1 }}
         >
-          {/* Card */}
-          <div className="glass-card p-6 sm:p-10">
-            {/* Logo Mobile */}
-            <div className="text-center mb-8 lg:hidden">
-              <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary-500 to-accent-500 flex items-center justify-center mx-auto mb-4">
-                <Plane className="w-7 h-7 text-white" />
-              </div>
+          {/* Mobile-only logo */}
+          <div style={{ textAlign: 'center', marginBottom: 28 }} className="login-mobile-logo">
+            <div style={{
+              width: 52, height: 52, borderRadius: 14,
+              background: 'linear-gradient(135deg, #3B82F6, #F59E0B)',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              margin: '0 auto 12px',
+            }}>
+              <Plane style={{ width: 24, height: 24, color: 'white' }} />
             </div>
+            <p style={{ color: 'var(--color-text-muted)', fontSize: '0.8rem' }}>Sign in to TripPlanner AI</p>
+          </div>
 
-            <div className="text-center mb-8">
-              <h1 className="text-3xl font-bold font-heading text-white tracking-tight">Welcome Back</h1>
-              <p className="text-dark-400 text-sm mt-2">Sign in to continue planning your trips</p>
+          {/* Form card */}
+          <div style={{
+            background: 'var(--color-secondary-dark)',
+            border: '1px solid var(--color-border-dark)',
+            borderRadius: 20,
+            padding: '36px 36px',
+            boxShadow: '0 20px 48px rgba(0,0,0,0.25)',
+          }}>
+            {/* Heading */}
+            <div style={{ textAlign: 'center', marginBottom: 28 }}>
+              <h1 style={{
+                fontSize: '1.6rem', fontWeight: 800,
+                fontFamily: 'var(--font-heading)',
+                color: 'white', marginBottom: 6,
+                letterSpacing: '-0.01em',
+              }}>
+                Welcome Back
+              </h1>
+              <p style={{ color: 'var(--color-text-secondary)', fontSize: '0.875rem' }}>
+                Sign in to continue planning your trips
+              </p>
             </div>
 
             {/* Error */}
             {error && (
-              <div className="mb-6 p-4 rounded-lg bg-error-500/10 border border-error-500/20 text-error-500 text-sm flex items-center gap-2">
-                <Sparkles className="w-4 h-4 shrink-0" />
+              <div style={{
+                marginBottom: 20, padding: '12px 16px', borderRadius: 10,
+                background: 'rgba(239,68,68,0.08)', border: '1px solid rgba(239,68,68,0.2)',
+                color: '#f87171', fontSize: '0.85rem', display: 'flex', alignItems: 'center', gap: 8,
+              }}>
+                <Sparkles style={{ width: 14, height: 14, flexShrink: 0 }} />
                 {error}
               </div>
             )}
 
             {/* Form */}
-            <form onSubmit={handleSubmit} className="space-y-5">
+            <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 18 }}>
+
+              {/* Email */}
               <div>
-                <label className="text-sm text-dark-300 font-medium mb-1.5 block">Email</label>
-                <div className="relative group">
-                  <Mail className="w-4 h-4 text-dark-500 absolute left-4 top-1/2 -translate-y-1/2 group-focus-within:text-primary-400 transition-colors" />
+                <label style={{
+                  display: 'block', fontSize: '0.8rem', fontWeight: 600,
+                  color: 'var(--color-text-secondary)', marginBottom: 8,
+                }}>
+                  Email
+                </label>
+                <div style={{ position: 'relative' }}>
+                  <Mail style={{
+                    position: 'absolute', left: 14, top: '50%', transform: 'translateY(-50%)',
+                    width: 16, height: 16, color: 'var(--color-text-muted)',
+                  }} />
                   <input
                     type="email"
                     value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    className="input-field !pl-11"
+                    onChange={e => setEmail(e.target.value)}
+                    className="input-field"
                     placeholder="you@example.com"
+                    style={{ paddingLeft: 42 }}
                   />
                 </div>
               </div>
 
+              {/* Password */}
               <div>
-                <label className="text-sm text-dark-300 font-medium mb-1.5 block">Password</label>
-                <div className="relative group">
-                  <Lock className="w-4 h-4 text-dark-500 absolute left-4 top-1/2 -translate-y-1/2 group-focus-within:text-primary-400 transition-colors" />
+                <label style={{
+                  display: 'block', fontSize: '0.8rem', fontWeight: 600,
+                  color: 'var(--color-text-secondary)', marginBottom: 8,
+                }}>
+                  Password
+                </label>
+                <div style={{ position: 'relative' }}>
+                  <Lock style={{
+                    position: 'absolute', left: 14, top: '50%', transform: 'translateY(-50%)',
+                    width: 16, height: 16, color: 'var(--color-text-muted)',
+                  }} />
                   <input
                     type={showPassword ? 'text' : 'password'}
                     value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    className="input-field !pl-11 !pr-11"
+                    onChange={e => setPassword(e.target.value)}
+                    className="input-field"
                     placeholder="••••••••"
+                    style={{ paddingLeft: 42, paddingRight: 42 }}
                   />
                   <button
                     type="button"
-                    onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-4 top-1/2 -translate-y-1/2 text-dark-500 hover:text-dark-300 transition-colors"
+                    onClick={() => setShowPassword(v => !v)}
+                    style={{
+                      position: 'absolute', right: 14, top: '50%', transform: 'translateY(-50%)',
+                      background: 'none', border: 'none', cursor: 'pointer',
+                      color: 'var(--color-text-muted)', padding: 0,
+                      display: 'flex', alignItems: 'center',
+                    }}
                   >
-                    {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                    {showPassword ? <EyeOff style={{ width: 16, height: 16 }} /> : <Eye style={{ width: 16, height: 16 }} />}
                   </button>
                 </div>
               </div>
 
-              <div className="flex items-center justify-between text-sm pt-1">
-                <label className="flex items-center gap-2 text-dark-400 cursor-pointer">
-                  <input type="checkbox" className="w-4 h-4 rounded border-dark-600 bg-dark-800 text-primary-500 focus:ring-primary-500 focus:ring-offset-dark-900" />
+              {/* Remember me + Forgot */}
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                <label style={{
+                  display: 'flex', alignItems: 'center', gap: 8,
+                  color: 'var(--color-text-secondary)', fontSize: '0.82rem', cursor: 'pointer',
+                }}>
+                  <input type="checkbox" style={{ width: 15, height: 15, accentColor: 'var(--color-brand-blue)', cursor: 'pointer' }} />
                   Remember me
                 </label>
-                <Link to="/forgot-password" className="text-primary-400 hover:text-primary-300 no-underline transition-colors font-medium">
+                <Link to="/forgot-password" style={{
+                  color: 'var(--color-brand-blue)', fontSize: '0.82rem',
+                  fontWeight: 600, textDecoration: 'none',
+                }}>
                   Forgot password?
                 </Link>
               </div>
 
+              {/* Submit */}
               <button
                 type="submit"
                 disabled={isLoading}
-                className="btn-primary w-full justify-center !py-3.5 disabled:opacity-50 mt-2"
+                className="btn-primary"
+                style={{
+                  width: '100%', justifyContent: 'center',
+                  padding: '14px', fontSize: '0.95rem',
+                  opacity: isLoading ? 0.6 : 1,
+                  cursor: isLoading ? 'not-allowed' : 'pointer',
+                  marginTop: 4,
+                }}
               >
                 {isLoading ? (
-                  <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                  <div style={{
+                    width: 18, height: 18, border: '2px solid rgba(255,255,255,0.3)',
+                    borderTopColor: 'white', borderRadius: '50%',
+                  }} className="animate-spin" />
                 ) : (
                   <>
-                    <LogIn className="w-4 h-4" />
+                    <LogIn style={{ width: 16, height: 16 }} />
                     Sign In
                   </>
                 )}
@@ -226,18 +378,34 @@ export default function Login() {
             </form>
 
             {/* Divider */}
-            <div className="relative my-6">
-              <div className="absolute inset-0 flex items-center">
-                <div className="w-full border-t border-white/[0.06]" />
-              </div>
-              <div className="relative flex justify-center">
-                <span className="px-4 bg-[var(--color-secondary-dark)] text-dark-500 text-sm font-medium">or continue with</span>
-              </div>
+            <div style={{ position: 'relative', margin: '22px 0' }}>
+              <div style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }} />
+              <span style={{
+                position: 'absolute', top: '50%', left: '50%',
+                transform: 'translate(-50%, -50%)',
+                background: 'var(--color-secondary-dark)',
+                padding: '0 12px',
+                color: 'var(--color-text-muted)', fontSize: '0.78rem',
+                whiteSpace: 'nowrap',
+              }}>
+                or continue with
+              </span>
             </div>
 
-            {/* Google OAuth */}
-            <button className="w-full py-3.5 rounded-lg bg-transparent border border-white/[0.12] text-white font-medium text-sm flex items-center justify-center gap-3 hover:bg-white/[0.04] transition-all cursor-pointer">
-              <svg width="18" height="18" viewBox="0 0 24 24">
+            {/* Google button */}
+            <button
+              style={{
+                width: '100%', padding: '12px', borderRadius: 10,
+                background: 'rgba(255,255,255,0.03)',
+                border: '1px solid rgba(255,255,255,0.1)',
+                color: 'white', fontWeight: 600, fontSize: '0.875rem',
+                display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10,
+                cursor: 'pointer', transition: 'all 0.2s',
+              }}
+              onMouseEnter={e => e.currentTarget.style.background = 'rgba(255,255,255,0.06)'}
+              onMouseLeave={e => e.currentTarget.style.background = 'rgba(255,255,255,0.03)'}
+            >
+              <svg width="17" height="17" viewBox="0 0 24 24">
                 <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" />
                 <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" />
                 <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" />
@@ -246,16 +414,32 @@ export default function Login() {
               Google
             </button>
 
-            {/* Register link */}
-            <p className="text-center text-dark-400 text-sm mt-8">
+            {/* Sign up link */}
+            <p style={{
+              textAlign: 'center', color: 'var(--color-text-secondary)',
+              fontSize: '0.85rem', marginTop: 22,
+            }}>
               Don't have an account?{' '}
-              <Link to="/register" className="text-primary-400 hover:text-primary-300 font-semibold no-underline transition-colors">
+              <Link to="/register" style={{
+                color: 'var(--color-brand-blue)', fontWeight: 700, textDecoration: 'none',
+              }}>
                 Sign up free
               </Link>
             </p>
           </div>
         </motion.div>
       </div>
+
+      {/* Responsive styles */}
+      <style>{`
+        @media (min-width: 1024px) {
+          .login-left-panel { display: flex !important; flex-direction: column; }
+          .login-mobile-logo { display: none !important; }
+        }
+        @media (max-width: 480px) {
+          .login-form-card { padding: 24px 20px !important; }
+        }
+      `}</style>
     </div>
   );
 }
