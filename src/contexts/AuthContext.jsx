@@ -121,6 +121,42 @@ export function AuthProvider({ children }) {
     }
   };
 
+  const googleLogin = async (credential) => {
+    setIsLoading(true);
+    try {
+      const res = await fetch(`${API_URL}/auth/google`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ credential }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.message || 'Google login failed');
+      }
+
+      localStorage.setItem('token', data.token);
+      setUser({
+        id: data._id,
+        name: data.name,
+        email: data.email,
+        homeCountry: data.homeCountry,
+        passportCountry: data.passportCountry,
+        defaultCurrency: data.defaultCurrency,
+        travelStyle: data.travelStyle,
+      });
+
+      return true;
+    } catch (error) {
+      throw error;
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   const logout = () => {
     localStorage.removeItem('token');
     setUser(null);
@@ -166,7 +202,7 @@ export function AuthProvider({ children }) {
   };
 
   return (
-    <AuthContext.Provider value={{ user, isLoading, login, register, logout, updateProfile }}>
+    <AuthContext.Provider value={{ user, isLoading, login, register, googleLogin, logout, updateProfile }}>
       {children}
     </AuthContext.Provider>
   );

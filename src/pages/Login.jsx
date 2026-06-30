@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { Mail, Lock, Eye, EyeOff, LogIn, Plane, Sparkles, Shield, Zap, Globe } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { useAuth } from '../contexts/AuthContext';
+import { useGoogleLogin } from '@react-oauth/google';
 
 /* ── Floating Boarding Pass ── */
 function MockBoardingPass() {
@@ -99,7 +100,7 @@ export default function Login() {
   const [password, setPassword]       = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError]             = useState('');
-  const { login, isLoading }          = useAuth();
+  const { login, googleLogin, isLoading }          = useAuth();
   const navigate                      = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -114,6 +115,50 @@ export default function Login() {
       setError(err.message || 'Login failed. Please try again.');
     }
   };
+
+  const handleGoogleLogin = useGoogleLogin({
+    flow: 'implicit',
+    onSuccess: async (tokenResponse) => {
+      try {
+        // Exchange the access token for user info, then send id_token to backend
+        // For implicit flow, we get an access_token. We need to use the credential flow instead.
+        // Let's use the Google userinfo endpoint to get user details
+        const userInfoRes = await fetch('https://www.googleapis.com/oauth2/v3/userinfo', {
+          headers: { Authorization: `Bearer ${tokenResponse.access_token}` },
+        });
+        const userInfo = await userInfoRes.json();
+        
+        // Send to our backend
+        const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+        const res = await fetch(`${API_URL}/auth/google`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            credential: tokenResponse.access_token,
+            googleUser: {
+              googleId: userInfo.sub,
+              email: userInfo.email,
+              name: userInfo.name,
+            },
+          }),
+        });
+
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.message || 'Google login failed');
+
+        localStorage.setItem('token', data.token);
+        toast.success('Welcome!');
+        navigate('/dashboard');
+        // Reload to update auth state
+        window.location.reload();
+      } catch (err) {
+        setError(err.message || 'Google login failed');
+      }
+    },
+    onError: () => {
+      setError('Google login failed. Please try again.');
+    },
+  });
 
   return (
     <div style={{
@@ -394,6 +439,7 @@ export default function Login() {
 
             {/* Google button */}
             <button
+              onClick={() => handleGoogleLogin()}
               style={{
                 width: '100%', padding: '12px', borderRadius: 10,
                 background: 'rgba(255,255,255,0.03)',

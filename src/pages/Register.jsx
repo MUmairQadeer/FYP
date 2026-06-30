@@ -7,6 +7,7 @@ import {
 } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { useAuth } from '../contexts/AuthContext';
+import { useGoogleLogin } from '@react-oauth/google';
 
 /* ── Password Strength ── */
 function PasswordStrength({ password }) {
@@ -160,6 +161,45 @@ export default function Register() {
       setError(err.message || 'Registration failed. Please try again.');
     }
   };
+
+  const handleGoogleLogin = useGoogleLogin({
+    flow: 'implicit',
+    onSuccess: async (tokenResponse) => {
+      try {
+        const userInfoRes = await fetch('https://www.googleapis.com/oauth2/v3/userinfo', {
+          headers: { Authorization: `Bearer ${tokenResponse.access_token}` },
+        });
+        const userInfo = await userInfoRes.json();
+
+        const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+        const res = await fetch(`${API_URL}/auth/google`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            credential: tokenResponse.access_token,
+            googleUser: {
+              googleId: userInfo.sub,
+              email: userInfo.email,
+              name: userInfo.name,
+            },
+          }),
+        });
+
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.message || 'Google sign-up failed');
+
+        localStorage.setItem('token', data.token);
+        toast.success('Account created successfully!');
+        navigate('/dashboard');
+        window.location.reload();
+      } catch (err) {
+        setError(err.message || 'Google sign-up failed');
+      }
+    },
+    onError: () => {
+      setError('Google sign-up failed. Please try again.');
+    },
+  });
 
   const inputIcon = (Icon) => ({
     position: 'absolute', left: 14, top: '50%', transform: 'translateY(-50%)',
@@ -430,6 +470,7 @@ export default function Register() {
 
             {/* Google */}
             <button
+              onClick={() => handleGoogleLogin()}
               style={{
                 width: '100%', padding: '12px', borderRadius: 10,
                 background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.1)',

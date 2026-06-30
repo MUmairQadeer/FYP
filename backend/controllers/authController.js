@@ -1,5 +1,8 @@
 import jwt from 'jsonwebtoken';
+import { OAuth2Client } from 'google-auth-library';
 import User from '../models/User.js';
+
+const googleClient = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 
 // Helper to generate JWT
 const generateToken = (id) => {
@@ -30,6 +33,7 @@ const registerUser = async (req, res) => {
     name,
     email,
     password,
+    authProvider: 'local',
   });
 
   if (user) {
@@ -62,6 +66,11 @@ const authUser = async (req, res) => {
 
   const user = await User.findOne({ email });
 
+  if (user && user.authProvider === 'google' && !user.password) {
+    res.status(400);
+    throw new Error('This account uses Google Sign-In. Please log in with Google.');
+  }
+
   if (user && (await user.matchPassword(password))) {
     res.json({
       _id: user._id,
@@ -76,6 +85,86 @@ const authUser = async (req, res) => {
   } else {
     res.status(401);
     throw new Error('Invalid email or password');
+  }
+};
+
+// @desc    Google OAuth login/register
+// @route   POST /api/auth/google
+// @access  Public
+const googleAuth = async (req, res) => {
+  const { credential, googleUser } = req.body;
+
+  if (!credential && !googleUser) {
+    res.status(400);
+    throw new Error('Google credential is required');
+  }
+
+  try {
+    let googleId, email, name;
+
+    if (googleUser && googleUser.email) {
+      // Implicit flow: frontend already fetched user info from Google
+      // Verify by calling Google's userinfo endpoint with the access token
+      const verifyRes = await fetch('https://www.googleapis.com/oauth2/v3/userinfo', {
+        headers: { Authorization: `Bearer ${credential}` },
+      });
+
+      if (!verifyRes.ok) {
+        res.status(401);
+        throw new Error('Invalid Google access token');
+      }
+
+      const verifiedInfo = await verifyRes.json();
+      googleId = verifiedInfo.sub;
+      email = verifiedInfo.email;
+      name = verifiedInfo.name;
+    } else {
+      // Credential flow: verify ID token directly
+      const ticket = await googleClient.verifyIdToken({
+        idToken: credential,
+        audience: process.env.GOOGLE_CLIENT_ID,
+      });
+
+      const payload = ticket.getPayload();
+      googleId = payload.sub;
+      email = payload.email;
+      name = payload.name;
+    }
+
+    // Check if user already exists
+    let user = await User.findOne({ email });
+
+    if (user) {
+      // If user exists but signed up with password, link Google account
+      if (!user.googleId) {
+        user.googleId = googleId;
+        user.authProvider = user.password ? user.authProvider : 'google';
+        await user.save();
+      }
+    } else {
+      // Create a new user with Google info (no password)
+      user = await User.create({
+        name,
+        email,
+        googleId,
+        authProvider: 'google',
+      });
+    }
+
+    res.json({
+      _id: user._id,
+      name: user.name,
+      email: user.email,
+      homeCountry: user.homeCountry,
+      passportCountry: user.passportCountry,
+      defaultCurrency: user.defaultCurrency,
+      travelStyle: user.travelStyle,
+      token: generateToken(user._id),
+    });
+  } catch (error) {
+    console.error('Google auth error:', error);
+    res.status(401);
+    throw new Error('Invalid Google token');
   }
 };
 
@@ -136,4 +225,5 @@ const updateUserProfile = async (req, res) => {
   }
 };
 
-export { registerUser, authUser, getUserProfile, updateUserProfile };
+export { registerUser, authUser, googleAuth, getUserProfile, updateUserProfile };
+
