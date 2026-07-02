@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { MapPin, Users, Heart, Share2, Loader2, Globe, Search, Compass, Star, Clock, Plane } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+const API_URL = import.meta.env.VITE_API_URL || '/api';
 
 /* ── Destination emoji helper ── */
 const getTripEmoji = (destination = '') => {
