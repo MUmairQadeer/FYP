@@ -26,7 +26,11 @@ const __dirname = path.dirname(__filename);
 
 // Middlewares
 app.use(cors({
-  origin: '*', // In production, replace with specific domain(s)
+  origin: [
+    'https://fyp.muhammadumair.dev',
+    'http://localhost:5173',
+    'http://localhost:5000'
+  ],
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
@@ -47,7 +51,12 @@ app.use('/api/tools', toolRoutes);
 const distPath = path.join(__dirname, '..', 'dist');
 app.use(express.static(distPath));
 
-// Any request that doesn't match an API route → serve React's index.html
+// API 404 handler — return JSON for unmatched API routes
+app.use('/api', (req, res) => {
+  res.status(404).json({ message: 'API endpoint not found' });
+});
+
+// Any non-API request that doesn't match a static file → serve React's index.html (SPA fallback)
 app.get('*', (req, res) => {
   res.sendFile(path.join(distPath, 'index.html'));
 });
