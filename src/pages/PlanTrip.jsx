@@ -16,6 +16,8 @@ export default function PlanTrip() {
   const navigate = useNavigate();
   const { generateItinerary, isGenerating } = useTrips();
 
+  const today = new Date().toISOString().split('T')[0];
+
   const [step, setStep] = useState(0);
   const [formData, setFormData] = useState({
     destination: searchParams.get('destination') || '',
@@ -314,8 +316,15 @@ export default function PlanTrip() {
                         </label>
                         <input
                           type="date"
+                          min={today}
                           value={formData.startDate}
-                          onChange={(e) => updateField('startDate', e.target.value)}
+                          onChange={(e) => {
+                            const newStart = e.target.value;
+                            updateField('startDate', newStart);
+                            if (formData.endDate && newStart > formData.endDate) {
+                              updateField('endDate', newStart);
+                            }
+                          }}
                           className="input-field"
                         />
                       </div>
@@ -328,6 +337,7 @@ export default function PlanTrip() {
                         </label>
                         <input
                           type="date"
+                          min={formData.startDate || today}
                           value={formData.endDate}
                           onChange={(e) => updateField('endDate', e.target.value)}
                           className="input-field"
