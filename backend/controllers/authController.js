@@ -198,6 +198,7 @@ const updateUserProfile = async (req, res) => {
 
   if (user) {
     user.name = req.body.name || user.name;
+    user.email = req.body.email || user.email;
     user.homeCountry = req.body.homeCountry || user.homeCountry;
     user.passportCountry = req.body.passportCountry || user.passportCountry;
     user.defaultCurrency = req.body.defaultCurrency || user.defaultCurrency;

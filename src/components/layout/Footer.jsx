@@ -7,6 +7,8 @@ import {
   FileText, PhoneCall, Route,
 } from 'lucide-react';
 
+import Logo from '../common/Logo';
+
 /* ── Product link with isolated hover state ── */
 function ProductLink({ label, path, Icon }) {
   const [hovered, setHovered] = useState(false);
@@ -146,18 +148,9 @@ export default function Footer() {
 
           {/* ── Brand ── */}
           <div>
-            <Link to="/" style={{ display: 'inline-flex', alignItems: 'center', gap: 10, textDecoration: 'none', marginBottom: 16 }}>
-              <div style={{
-                width: 40, height: 40, borderRadius: 12,
-                background: 'linear-gradient(135deg, #3B82F6, #F59E0B)',
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-              }}>
-                <Plane style={{ width: 20, height: 20, color: 'white' }} />
-              </div>
-              <span style={{ fontSize: '1.1rem', fontWeight: 800, fontFamily: 'var(--font-heading)', color: 'white' }}>
-                Trip<span style={{ color: '#60a5fa' }}>Planner</span>
-              </span>
-            </Link>
+            <div style={{ marginBottom: 16 }}>
+              <Logo size="md" />
+            </div>
 
             <p style={{
               color: 'var(--color-text-secondary)', fontSize: '0.875rem',

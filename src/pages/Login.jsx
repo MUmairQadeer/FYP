@@ -5,6 +5,7 @@ import { Mail, Lock, Eye, EyeOff, LogIn, Plane, Sparkles, Shield, Zap, Globe } f
 import toast from 'react-hot-toast';
 import { useAuth } from '../contexts/AuthContext';
 import { useGoogleLogin } from '@react-oauth/google';
+import Logo from '../components/common/Logo';
 
 /* ── Floating Boarding Pass ── */
 function MockBoardingPass() {
@@ -268,16 +269,8 @@ export default function Login() {
           style={{ width: '100%', maxWidth: 440, position: 'relative', zIndex: 1 }}
         >
           {/* Mobile-only logo */}
-          <div style={{ textAlign: 'center', marginBottom: 28 }} className="login-mobile-logo">
-            <div style={{
-              width: 52, height: 52, borderRadius: 14,
-              background: 'linear-gradient(135deg, #3B82F6, #F59E0B)',
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-              margin: '0 auto 12px',
-            }}>
-              <Plane style={{ width: 24, height: 24, color: 'white' }} />
-            </div>
-            <p style={{ color: 'var(--color-text-muted)', fontSize: '0.8rem' }}>Sign in to TripPlanner AI</p>
+          <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 24 }} className="login-mobile-logo">
+            <Logo size="lg" />
           </div>
 
           {/* Form card */}

@@ -3,11 +3,39 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 const AuthContext = createContext(null);
 const API_URL = import.meta.env.VITE_API_URL || '/api';
 
+const DEFAULT_USER = {
+  id: 'usr-1',
+  name: 'Umair',
+  email: 'muhammadumair.coding@gmail.com',
+  avatarUrl: null,
+  homeCountry: 'Pakistan',
+  passportCountry: 'Pakistan',
+  defaultCurrency: 'USD',
+  travelStyle: 'Luxury',
+};
+
 export function AuthProvider({ children }) {
-  const [user, setUser] = useState(null);
+  // Load initial user state from localStorage or default demo user
+  const [user, setUser] = useState(() => {
+    try {
+      const saved = localStorage.getItem('user_profile');
+      if (saved) return JSON.parse(saved);
+    } catch (e) {
+      console.error('Failed to parse saved user profile:', e);
+    }
+    return DEFAULT_USER;
+  });
+
   const [isLoading, setIsLoading] = useState(true);
 
-  // Restore user session on application load
+  // Sync user state to localStorage whenever it changes
+  useEffect(() => {
+    if (user) {
+      localStorage.setItem('user_profile', JSON.stringify(user));
+    }
+  }, [user]);
+
+  // Restore session from API if token exists
   useEffect(() => {
     const checkSession = async () => {
       const token = localStorage.getItem('token');
@@ -25,22 +53,20 @@ export function AuthProvider({ children }) {
 
         if (res.ok) {
           const data = await res.json();
-          setUser({
-            id: data._id,
-            name: data.name,
-            email: data.email,
-            homeCountry: data.homeCountry,
-            passportCountry: data.passportCountry,
-            defaultCurrency: data.defaultCurrency,
-            travelStyle: data.travelStyle,
-          });
-        } else {
-          // Token expired or invalid
-          localStorage.removeItem('token');
-          setUser(null);
+          setUser(prev => ({
+            ...prev,
+            id: data._id || prev?.id || 'usr-1',
+            name: data.name || prev?.name || 'Umair',
+            email: data.email || prev?.email || 'muhammadumair.coding@gmail.com',
+            avatarUrl: data.avatarUrl || localStorage.getItem('user_avatar') || prev?.avatarUrl || null,
+            homeCountry: data.homeCountry || prev?.homeCountry || 'Pakistan',
+            passportCountry: data.passportCountry || prev?.passportCountry || 'Pakistan',
+            defaultCurrency: data.defaultCurrency || prev?.defaultCurrency || 'USD',
+            travelStyle: data.travelStyle || prev?.travelStyle || 'Luxury',
+          }));
         }
       } catch (error) {
-        console.error('Failed to restore auth session:', error);
+        console.error('Failed to restore auth session from server:', error);
       } finally {
         setIsLoading(false);
       }
@@ -54,9 +80,7 @@ export function AuthProvider({ children }) {
     try {
       const res = await fetch(`${API_URL}/auth/login`, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),
       });
 
@@ -67,16 +91,18 @@ export function AuthProvider({ children }) {
       }
 
       localStorage.setItem('token', data.token);
-      setUser({
+      const newUser = {
         id: data._id,
         name: data.name,
         email: data.email,
+        avatarUrl: data.avatarUrl || localStorage.getItem('user_avatar') || null,
         homeCountry: data.homeCountry,
         passportCountry: data.passportCountry,
         defaultCurrency: data.defaultCurrency,
         travelStyle: data.travelStyle,
-      });
-
+      };
+      setUser(newUser);
+      localStorage.setItem('user_profile', JSON.stringify(newUser));
       return true;
     } catch (error) {
       throw error;
@@ -90,9 +116,7 @@ export function AuthProvider({ children }) {
     try {
       const res = await fetch(`${API_URL}/auth/register`, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name, email, password }),
       });
 
@@ -103,16 +127,18 @@ export function AuthProvider({ children }) {
       }
 
       localStorage.setItem('token', data.token);
-      setUser({
+      const newUser = {
         id: data._id,
         name: data.name,
         email: data.email,
+        avatarUrl: null,
         homeCountry: data.homeCountry,
         passportCountry: data.passportCountry,
         defaultCurrency: data.defaultCurrency,
         travelStyle: data.travelStyle,
-      });
-
+      };
+      setUser(newUser);
+      localStorage.setItem('user_profile', JSON.stringify(newUser));
       return true;
     } catch (error) {
       throw error;
@@ -126,9 +152,7 @@ export function AuthProvider({ children }) {
     try {
       const res = await fetch(`${API_URL}/auth/google`, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ credential }),
       });
 
@@ -139,16 +163,18 @@ export function AuthProvider({ children }) {
       }
 
       localStorage.setItem('token', data.token);
-      setUser({
+      const newUser = {
         id: data._id,
         name: data.name,
         email: data.email,
+        avatarUrl: data.avatarUrl || null,
         homeCountry: data.homeCountry,
         passportCountry: data.passportCountry,
         defaultCurrency: data.defaultCurrency,
         travelStyle: data.travelStyle,
-      });
-
+      };
+      setUser(newUser);
+      localStorage.setItem('user_profile', JSON.stringify(newUser));
       return true;
     } catch (error) {
       throw error;
@@ -159,14 +185,26 @@ export function AuthProvider({ children }) {
 
   const logout = () => {
     localStorage.removeItem('token');
-    setUser(null);
+    localStorage.removeItem('user_profile');
+    setUser(DEFAULT_USER);
   };
 
   const updateProfile = async (updates) => {
-    const token = localStorage.getItem('token');
-    if (!token) return false;
+    if (updates.avatarUrl !== undefined) {
+      if (updates.avatarUrl) localStorage.setItem('user_avatar', updates.avatarUrl);
+      else localStorage.removeItem('user_avatar');
+    }
 
-    setIsLoading(true);
+    // Immediately update local React state & localStorage
+    setUser(prev => {
+      const updated = { ...prev, ...updates };
+      localStorage.setItem('user_profile', JSON.stringify(updated));
+      return updated;
+    });
+
+    const token = localStorage.getItem('token');
+    if (!token) return true;
+
     try {
       const res = await fetch(`${API_URL}/auth/profile`, {
         method: 'PUT',
@@ -177,28 +215,14 @@ export function AuthProvider({ children }) {
         body: JSON.stringify(updates),
       });
 
-      const data = await res.json();
-
-      if (!res.ok) {
-        throw new Error(data.message || 'Failed to update profile');
+      if (res.ok) {
+        const data = await res.json();
+        if (data.token) localStorage.setItem('token', data.token);
       }
-
-      setUser({
-        id: data._id,
-        name: data.name,
-        email: data.email,
-        homeCountry: data.homeCountry,
-        passportCountry: data.passportCountry,
-        defaultCurrency: data.defaultCurrency,
-        travelStyle: data.travelStyle,
-      });
-
-      return true;
     } catch (error) {
-      throw error;
-    } finally {
-      setIsLoading(false);
+      console.error('Profile backend sync error:', error);
     }
+    return true;
   };
 
   return (

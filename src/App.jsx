@@ -22,6 +22,7 @@ import Itinerary from './pages/Itinerary';
 import BudgetTracker from './pages/BudgetTracker';
 import TravelTools from './pages/TravelTools';
 import Community from './pages/Community';
+import Profile from './pages/Profile';
 import NotFound from './pages/NotFound';
 
 function ScrollToTop() {
@@ -46,6 +47,7 @@ function AnimatedRoutes() {
         <Route path="/budget" element={<BudgetTracker />} />
         <Route path="/tools" element={<TravelTools />} />
         <Route path="/community" element={<Community />} />
+        <Route path="/profile" element={<Profile />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </AnimatePresence>

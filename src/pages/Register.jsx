@@ -8,6 +8,7 @@ import {
 import toast from 'react-hot-toast';
 import { useAuth } from '../contexts/AuthContext';
 import { useGoogleLogin } from '@react-oauth/google';
+import Logo from '../components/common/Logo';
 
 /* ── Password Strength ── */
 function PasswordStrength({ password }) {
