@@ -33,7 +33,7 @@ function AnimatedCounter({ value, suffix = '' }) {
 }
 
 const statusColors = {
-  upcoming: { bg: 'rgba(59, 130, 246, 0.12)', text: '#60A5FA', border: 'rgba(59, 130, 246, 0.25)', label: 'Upcoming' },
+  upcoming: { bg: 'rgba(79, 124, 255, 0.12)', text: '#6F9AFF', border: 'rgba(79, 124, 255, 0.25)', label: 'Upcoming' },
   ongoing:  { bg: 'rgba(16, 185, 129, 0.12)', text: '#10B981', border: 'rgba(16, 185, 129, 0.25)', label: 'Ongoing' },
   completed:{ bg: 'rgba(148, 163, 184, 0.12)', text: '#94A3B8', border: 'rgba(148, 163, 184, 0.25)', label: 'Completed' },
 };
@@ -53,19 +53,19 @@ function TripCard({ trip, index }) {
       style={{
         background: 'var(--color-secondary-dark)',
         border: '1px solid var(--color-border-dark)',
-        borderRadius: 20,
+        borderRadius: 18,
         overflow: 'hidden',
         boxShadow: '0 8px 24px rgba(0,0,0,0.2)',
         display: 'flex',
         flexDirection: 'column',
         position: 'relative',
       }}
-      className="group hover:!border-blue-500/40 hover:!shadow-[0_16px_36px_rgba(59,130,246,0.18)] transition-all duration-300"
+      className="group hover:!border-primary-500/40 hover:!shadow-[0_16px_36px_rgba(79,124,255,0.18)] transition-all duration-300"
     >
       {/* Top Gradient Accent Bar */}
       <div style={{
         height: 4,
-        background: 'linear-gradient(90deg, #3B82F6 0%, #F59E0B 50%, #8B5CF6 100%)',
+        background: 'linear-gradient(90deg, var(--color-primary-400) 0%, var(--color-primary-600) 100%)',
         flexShrink: 0,
       }} />
 
@@ -82,7 +82,7 @@ function TripCard({ trip, index }) {
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              fontSize: '1.8rem',
+              fontSize: '1.75rem',
               flexShrink: 0,
               boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
             }}>
@@ -91,8 +91,8 @@ function TripCard({ trip, index }) {
             <div style={{ minWidth: 0 }}>
               <h3 style={{
                 color: 'white',
-                fontWeight: 800,
-                fontSize: '1.15rem',
+                fontWeight: 700,
+                fontSize: '1.125rem',
                 fontFamily: 'var(--font-heading)',
                 whiteSpace: 'nowrap',
                 overflow: 'hidden',
@@ -102,7 +102,7 @@ function TripCard({ trip, index }) {
               }}>
                 {trip.destination}
               </h3>
-              <p style={{ color: 'var(--color-text-secondary)', fontSize: '0.8rem', fontWeight: 500 }} className="truncate">
+              <p style={{ color: 'var(--color-text-secondary)', fontSize: '0.875rem', fontWeight: 500 }} className="truncate">
                 {trip.country || 'International Destination'}
               </p>
             </div>
@@ -111,7 +111,7 @@ function TripCard({ trip, index }) {
           <span style={{
             padding: '5px 12px',
             borderRadius: 9999,
-            fontSize: '0.725rem',
+            fontSize: '0.75rem',
             fontWeight: 700,
             background: sc.bg,
             color: sc.text,
@@ -138,28 +138,28 @@ function TripCard({ trip, index }) {
         }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
             <Calendar style={{ width: 14, height: 14, color: 'var(--color-brand-blue)', flexShrink: 0 }} />
-            <span style={{ color: 'var(--color-text-secondary)', fontSize: '0.8rem', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', fontWeight: 500 }}>
+            <span style={{ color: 'var(--color-text-secondary)', fontSize: '0.875rem', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', fontWeight: 500 }}>
               {trip.startDate || 'Flex Dates'}
             </span>
           </div>
 
           <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-            <Clock style={{ width: 14, height: 14, color: 'var(--color-brand-gold)', flexShrink: 0 }} />
-            <span style={{ color: 'var(--color-text-secondary)', fontSize: '0.8rem', fontWeight: 500 }}>
+            <Clock style={{ width: 14, height: 14, color: 'var(--color-primary-400)', flexShrink: 0 }} />
+            <span style={{ color: 'var(--color-text-secondary)', fontSize: '0.875rem', fontWeight: 500 }}>
               {daysCount} day{daysCount !== 1 ? 's' : ''}
             </span>
           </div>
 
           <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-            <Users style={{ width: 14, height: 14, color: '#C084FC', flexShrink: 0 }} />
-            <span style={{ color: 'var(--color-text-secondary)', fontSize: '0.8rem', fontWeight: 500 }}>
+            <Users style={{ width: 14, height: 14, color: 'var(--color-primary-400)', flexShrink: 0 }} />
+            <span style={{ color: 'var(--color-text-secondary)', fontSize: '0.875rem', fontWeight: 500 }}>
               {trip.travelers} traveler{trip.travelers > 1 ? 's' : ''}
             </span>
           </div>
 
           <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-            <Wallet style={{ width: 14, height: 14, color: '#10B981', flexShrink: 0 }} />
-            <span style={{ color: 'var(--color-text-secondary)', fontSize: '0.8rem', fontWeight: 600, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+            <Wallet style={{ width: 14, height: 14, color: 'var(--color-primary-400)', flexShrink: 0 }} />
+            <span style={{ color: 'var(--color-text-secondary)', fontSize: '0.875rem', fontWeight: 600, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
               {trip.currency || 'USD'} {Number(trip.budget || 0).toLocaleString()}
             </span>
           </div>
@@ -174,7 +174,7 @@ function TripCard({ trip, index }) {
           borderTop: '1px solid rgba(255,255,255,0.06)',
           marginTop: 'auto',
         }}>
-          <span style={{ color: 'var(--color-text-muted)', fontSize: '0.78rem', fontWeight: 600 }}>
+          <span style={{ color: 'var(--color-text-muted)', fontSize: '0.875rem', fontWeight: 600 }}>
             {activitiesCount} planned activities
           </span>
 
@@ -185,7 +185,7 @@ function TripCard({ trip, index }) {
               alignItems: 'center',
               gap: 6,
               color: 'var(--color-brand-blue)',
-              fontSize: '0.85rem',
+              fontSize: '0.875rem',
               fontWeight: 700,
               textDecoration: 'none',
               transition: 'all 0.2s ease',
@@ -228,37 +228,37 @@ export default function Dashboard() {
       icon: Globe,
       label: 'COUNTRIES VISITED',
       value: uniqueCountries.size,
-      color: '#60A5FA',
-      bg: 'rgba(59, 130, 246, 0.12)',
-      border: 'rgba(59, 130, 246, 0.25)',
-      accent: '#3B82F6',
+      color: '#93B3FF',
+      bg: 'rgba(79, 124, 255, 0.12)',
+      border: 'rgba(79, 124, 255, 0.25)',
+      accent: '#4F7CFF',
     },
     {
       icon: Plane,
       label: 'TOTAL TRIPS',
       value: trips.length,
-      color: '#FBBF24',
-      bg: 'rgba(245, 158, 11, 0.12)',
-      border: 'rgba(245, 158, 11, 0.25)',
-      accent: '#F59E0B',
+      color: '#6F9AFF',
+      bg: 'rgba(79, 124, 255, 0.12)',
+      border: 'rgba(79, 124, 255, 0.25)',
+      accent: '#4F7CFF',
     },
     {
       icon: Calendar,
       label: 'DAYS PLANNED',
       value: totalDaysPlanned,
-      color: '#34D399',
-      bg: 'rgba(16, 185, 129, 0.12)',
-      border: 'rgba(16, 185, 129, 0.25)',
-      accent: '#10B981',
+      color: '#4F7CFF',
+      bg: 'rgba(79, 124, 255, 0.12)',
+      border: 'rgba(79, 124, 255, 0.25)',
+      accent: '#4F7CFF',
     },
     {
       icon: Users,
       label: 'TRIPS SHARED',
       value: sharedTrips,
-      color: '#C084FC',
-      bg: 'rgba(139, 92, 246, 0.12)',
-      border: 'rgba(139, 92, 246, 0.25)',
-      accent: '#8B5CF6',
+      color: '#2E5CFF',
+      bg: 'rgba(79, 124, 255, 0.12)',
+      border: 'rgba(79, 124, 255, 0.25)',
+      accent: '#4F7CFF',
     },
   ];
 
@@ -276,7 +276,7 @@ export default function Dashboard() {
           transition={{ duration: 0.5 }}
           style={{
             position: 'relative',
-            borderRadius: 28,
+            borderRadius: 24,
             overflow: 'hidden',
             marginBottom: 36,
             background: 'var(--color-secondary-dark)',
@@ -286,8 +286,8 @@ export default function Dashboard() {
           }}
         >
           {/* Ambient Glow Backdrop Orbs */}
-          <div style={{ position: 'absolute', top: -100, right: -100, width: 450, height: 450, borderRadius: '50%', background: 'rgba(59, 130, 246, 0.12)', filter: 'blur(100px)', pointerEvents: 'none' }} />
-          <div style={{ position: 'absolute', bottom: -100, left: -100, width: 400, height: 400, borderRadius: '50%', background: 'rgba(245, 158, 11, 0.08)', filter: 'blur(100px)', pointerEvents: 'none' }} />
+          <div style={{ position: 'absolute', top: -100, right: -100, width: 450, height: 450, borderRadius: '50%', background: 'rgba(79, 124, 255, 0.12)', filter: 'blur(100px)', pointerEvents: 'none' }} />
+          <div style={{ position: 'absolute', bottom: -100, left: -100, width: 400, height: 400, borderRadius: '50%', background: 'rgba(79, 124, 255, 0.08)', filter: 'blur(100px)', pointerEvents: 'none' }} />
 
           <div style={{ position: 'relative', zIndex: 10, display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 24, flexWrap: 'wrap' }}>
             <div>
@@ -296,13 +296,13 @@ export default function Dashboard() {
                   width: 40,
                   height: 40,
                   borderRadius: 14,
-                  background: 'rgba(59, 130, 246, 0.15)',
-                  border: '1px solid rgba(59, 130, 246, 0.3)',
+                  background: 'rgba(79, 124, 255, 0.15)',
+                  border: '1px solid rgba(79, 124, 255, 0.3)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
                   color: 'var(--color-brand-blue)',
-                  boxShadow: '0 0 20px rgba(59, 130, 246, 0.2)',
+                  boxShadow: '0 0 20px rgba(79, 124, 255, 0.2)',
                 }}>
                   <LayoutDashboard style={{ width: 20, height: 20 }} />
                 </div>
@@ -322,8 +322,8 @@ export default function Dashboard() {
               </div>
 
               <h1 style={{
-                fontSize: 'clamp(1.8rem, 4vw, 2.75rem)',
-                fontWeight: 800,
+                fontSize: 'clamp(1.75rem, 4vw, 2.75rem)',
+                fontWeight: 700,
                 fontFamily: 'var(--font-heading)',
                 color: 'white',
                 letterSpacing: '-0.02em',
@@ -334,16 +334,9 @@ export default function Dashboard() {
                 gap: 12,
               }}>
                 <span>Welcome back{user ? `, ${user.name.split(' ')[0]}` : ''}</span>
-                <motion.span
-                  animate={{ rotate: [0, 20, -10, 20, 0] }}
-                  transition={{ duration: 1.5, repeat: Infinity, repeatDelay: 3 }}
-                  style={{ display: 'inline-block' }}
-                >
-                  👋
-                </motion.span>
               </h1>
 
-              <p style={{ color: 'var(--color-text-secondary)', fontSize: '1.05rem', maxWidth: 620, lineHeight: 1.6 }}>
+              <p style={{ color: 'var(--color-text-secondary)', fontSize: '1.125rem', maxWidth: 620, lineHeight: 1.6 }}>
                 Here is an overview of your curated AI travel itineraries, upcoming adventures, and saved destinations.
               </p>
             </div>
@@ -356,8 +349,8 @@ export default function Dashboard() {
                 flexShrink: 0,
                 padding: '14px 28px',
                 borderRadius: 14,
-                fontSize: '0.95rem',
-                boxShadow: '0 6px 20px rgba(59, 130, 246, 0.35)',
+                fontSize: '0.9375rem',
+                boxShadow: '0 6px 20px rgba(79, 124, 255, 0.35)',
               }}
             >
               <Plus style={{ width: 18, height: 18 }} />
@@ -383,7 +376,7 @@ export default function Dashboard() {
               style={{
                 background: 'var(--color-secondary-dark)',
                 border: '1px solid var(--color-border-dark)',
-                borderRadius: 20,
+                borderRadius: 18,
                 padding: '24px 26px',
                 position: 'relative',
                 overflow: 'hidden',
@@ -405,7 +398,7 @@ export default function Dashboard() {
               />
 
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 14, marginBottom: 14 }}>
-                <span style={{ color: 'var(--color-text-muted)', fontSize: '0.725rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+                <span style={{ color: 'var(--color-text-muted)', fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em' }}>
                   {stat.label}
                 </span>
                 <div style={{
@@ -424,7 +417,7 @@ export default function Dashboard() {
                 </div>
               </div>
 
-              <div style={{ color: 'white', fontSize: '2rem', fontWeight: 800, fontFamily: 'var(--font-heading)', lineHeight: 1 }}>
+              <div style={{ color: 'white', fontSize: '2rem', fontWeight: 700, fontFamily: 'var(--font-heading)', lineHeight: 1 }}>
                 <AnimatedCounter value={stat.value} />
               </div>
             </motion.div>
@@ -448,7 +441,7 @@ export default function Dashboard() {
             padding: '4px',
             background: 'rgba(15, 17, 23, 0.8)',
             border: '1px solid var(--color-border-dark)',
-            borderRadius: 16,
+            borderRadius: 18,
             backdropFilter: 'blur(16px)',
           }} className="hide-scrollbar">
             {FILTERS.map(f => {
@@ -479,9 +472,9 @@ export default function Dashboard() {
                       style={{
                         position: 'absolute',
                         inset: 0,
-                        background: 'linear-gradient(135deg, #3B82F6 0%, #1D4ED8 100%)',
+                        background: 'linear-gradient(135deg, var(--color-primary-500) 0%, var(--color-primary-700) 100%)',
                         borderRadius: 12,
-                        boxShadow: '0 4px 16px rgba(59, 130, 246, 0.4)',
+                        boxShadow: '0 4px 16px rgba(79, 124, 255, 0.4)',
                         zIndex: -1,
                       }}
                       transition={{ type: 'spring', bounce: 0.2, duration: 0.4 }}
@@ -495,7 +488,7 @@ export default function Dashboard() {
 
           {/* Trip Count Pill */}
           <div style={{
-            fontSize: '0.825rem',
+            fontSize: '0.875rem',
             fontWeight: 600,
             color: 'var(--color-text-secondary)',
             background: 'rgba(255, 255, 255, 0.04)',
@@ -524,12 +517,12 @@ export default function Dashboard() {
             <div style={{
               width: 54,
               height: 54,
-              border: '4px solid rgba(59,130,246,0.15)',
+              border: '4px solid rgba(79,124,255,0.15)',
               borderTopColor: 'var(--color-brand-blue)',
               borderRadius: '50%',
               marginBottom: 20,
             }} className="animate-spin" />
-            <h3 style={{ fontSize: '1.2rem', fontWeight: 700, color: 'white', marginBottom: 6, fontFamily: 'var(--font-heading)' }}>Loading your itineraries...</h3>
+            <h3 style={{ fontSize: '1.25rem', fontWeight: 700, color: 'white', marginBottom: 6, fontFamily: 'var(--font-heading)' }}>Loading your itineraries...</h3>
             <p style={{ color: 'var(--color-text-secondary)', fontSize: '0.875rem' }}>Gathering destination coordinates and activity schedules</p>
           </div>
         )}
@@ -556,21 +549,21 @@ export default function Dashboard() {
                 minHeight: 250,
                 background: 'rgba(255,255,255,0.015)',
                 border: '2px dashed rgba(255,255,255,0.1)',
-                borderRadius: 20,
+                borderRadius: 18,
                 textDecoration: 'none',
                 transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
                 cursor: 'pointer',
                 padding: '32px',
               }}
-              className="group hover:!border-blue-500/50 hover:!bg-blue-500/[0.04] hover:!shadow-[0_12px_32px_rgba(59,130,246,0.15)]"
+              className="group hover:!border-primary-500/50 hover:!bg-primary-500/[0.04] hover:!shadow-[0_12px_32px_rgba(79,124,255,0.15)]"
             >
               <div style={{ textAlign: 'center' }}>
                 <div style={{
                   width: 58,
                   height: 58,
                   borderRadius: 18,
-                  background: 'rgba(59, 130, 246, 0.1)',
-                  border: '1px solid rgba(59, 130, 246, 0.25)',
+                  background: 'rgba(79, 124, 255, 0.1)',
+                  border: '1px solid rgba(79, 124, 255, 0.25)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
@@ -580,10 +573,10 @@ export default function Dashboard() {
                 }} className="group-hover:scale-110">
                   <Plus style={{ width: 26, height: 26 }} />
                 </div>
-                <p style={{ color: 'white', fontSize: '1.05rem', fontWeight: 800, fontFamily: 'var(--font-heading)', marginBottom: 6 }}>
+                <p style={{ color: 'white', fontSize: '1.125rem', fontWeight: 700, fontFamily: 'var(--font-heading)', marginBottom: 6 }}>
                   Plan New Trip
                 </p>
-                <p style={{ color: 'var(--color-text-secondary)', fontSize: '0.8rem', maxWidth: 220 }}>
+                <p style={{ color: 'var(--color-text-secondary)', fontSize: '0.875rem', maxWidth: 220 }}>
                   Generate an AI travel plan for any destination in seconds
                 </p>
               </div>
@@ -614,21 +607,21 @@ export default function Dashboard() {
               width: 84,
               height: 84,
               borderRadius: '50%',
-              background: 'rgba(59, 130, 246, 0.12)',
-              border: '1px solid rgba(59, 130, 246, 0.25)',
+              background: 'rgba(79, 124, 255, 0.12)',
+              border: '1px solid rgba(79, 124, 255, 0.25)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
               marginBottom: 24,
               color: 'var(--color-brand-blue)',
-              boxShadow: '0 0 30px rgba(59, 130, 246, 0.2)',
+              boxShadow: '0 0 30px rgba(79, 124, 255, 0.2)',
             }}>
               <Compass style={{ width: 40, height: 40 }} />
             </div>
 
             <h3 style={{
               fontSize: '1.5rem',
-              fontWeight: 800,
+              fontWeight: 700,
               fontFamily: 'var(--font-heading)',
               color: 'white',
               marginBottom: 12,
@@ -639,7 +632,7 @@ export default function Dashboard() {
 
             <p style={{
               color: 'var(--color-text-secondary)',
-              fontSize: '0.95rem',
+              fontSize: '0.9375rem',
               lineHeight: 1.65,
               maxWidth: 420,
               marginBottom: 32,
@@ -652,7 +645,7 @@ export default function Dashboard() {
             <Link
               to="/plan"
               className="btn-primary"
-              style={{ textDecoration: 'none', padding: '14px 32px', fontSize: '0.95rem', borderRadius: 14 }}
+              style={{ textDecoration: 'none', padding: '14px 32px', fontSize: '0.9375rem', borderRadius: 14 }}
             >
               <Sparkles style={{ width: 18, height: 18 }} />
               <span>Start Planning</span>

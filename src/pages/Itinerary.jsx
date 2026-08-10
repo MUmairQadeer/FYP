@@ -26,7 +26,7 @@ L.Icon.Default.mergeOptions({
 });
 
 // Custom coloured marker factory with sleek pin styling
-const makeIcon = (color = '#3B82F6') => L.divIcon({
+const makeIcon = (color = '#4F7CFF') => L.divIcon({
   className: '',
   html: `<div style="
     width:36px;height:36px;border-radius:50% 50% 50% 0;
@@ -133,7 +133,7 @@ function DayNavigation({ days, activeDay, setActiveDay }) {
         top: 88,
         zIndex: 40,
         marginBottom: 36,
-        borderRadius: 20,
+        borderRadius: 18,
         padding: '10px 16px',
         background: 'rgba(15, 17, 23, 0.94)',
         border: '1px solid var(--color-border-dark)',
@@ -210,17 +210,17 @@ function DayNavigation({ days, activeDay, setActiveDay }) {
                     transition: 'all 0.25s cubic-bezier(0.16, 1, 0.3, 1)',
                     cursor: 'pointer',
                     border: isActive
-                      ? '1px solid rgba(147, 197, 253, 0.4)'
+                      ? '1px solid rgba(79, 124, 255, 0.4)'
                       : '1px solid rgba(255, 255, 255, 0.08)',
                     background: isActive
-                      ? 'linear-gradient(135deg, #3B82F6 0%, #1D4ED8 100%)'
+                      ? 'linear-gradient(135deg, var(--color-primary-500) 0%, var(--color-primary-700) 100%)'
                       : 'rgba(255, 255, 255, 0.03)',
                     color: isActive ? '#FFFFFF' : 'var(--color-text-secondary)',
                     display: 'flex',
                     alignItems: 'center',
                     gap: 10,
                     flexShrink: 0,
-                    boxShadow: isActive ? '0 6px 24px rgba(59, 130, 246, 0.45)' : 'none',
+                    boxShadow: isActive ? '0 6px 24px rgba(79, 124, 255, 0.45)' : 'none',
                     transform: isActive ? 'scale(1.02)' : 'scale(1)',
                   }}
                   className={!isActive ? 'hover:!bg-white/[0.07] hover:!border-white/20 hover:!text-white' : ''}
@@ -228,7 +228,7 @@ function DayNavigation({ days, activeDay, setActiveDay }) {
                   <span style={{ letterSpacing: '-0.01em' }}>Day {i + 1}</span>
                   <span style={{
                     fontSize: '0.75rem',
-                    fontWeight: 800,
+                    fontWeight: 700,
                     minWidth: 22,
                     height: 22,
                     padding: '0 7px',
@@ -290,12 +290,12 @@ function DayNavigation({ days, activeDay, setActiveDay }) {
             className="btn-secondary"
             style={{
               padding: '10px 18px',
-              fontSize: '0.825rem',
+              fontSize: '0.875rem',
               borderRadius: 14,
               gap: 8,
-              color: '#93C5FD',
-              borderColor: 'rgba(59, 130, 246, 0.3)',
-              background: 'rgba(59, 130, 246, 0.08)',
+              color: 'var(--color-primary-400)',
+              borderColor: 'rgba(79, 124, 255, 0.3)',
+              background: 'rgba(79, 124, 255, 0.08)',
             }}
           >
             <RefreshCw style={{ width: 14, height: 14, color: 'var(--color-brand-blue)' }} />
@@ -351,13 +351,13 @@ function ActivityCard({ activity, index, currency }) {
           style={{
             width: 48,
             height: 48,
-            borderRadius: 16,
+            borderRadius: 18,
             background: period.bg,
             border: `1px solid ${period.border}`,
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            fontSize: '1.35rem',
+            fontSize: '1.5rem',
             boxShadow: `0 6px 20px ${period.accent}25`,
             backdropFilter: 'blur(8px)',
             transition: 'transform 0.3s ease',
@@ -379,8 +379,8 @@ function ActivityCard({ activity, index, currency }) {
             cursor: 'pointer',
             transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
             background: expanded ? 'var(--color-secondary-dark)' : 'rgba(26, 29, 39, 0.75)',
-            border: expanded ? '1px solid rgba(59, 130, 246, 0.4)' : '1px solid var(--color-border-dark)',
-            boxShadow: expanded ? '0 14px 36px rgba(59, 130, 246, 0.18)' : '0 6px 20px rgba(0,0,0,0.15)',
+            border: expanded ? '1px solid rgba(79, 124, 255, 0.4)' : '1px solid var(--color-border-dark)',
+            boxShadow: expanded ? '0 14px 36px rgba(79, 124, 255, 0.18)' : '0 6px 20px rgba(0,0,0,0.15)',
             backdropFilter: 'blur(12px)',
           }}
         >
@@ -403,7 +403,7 @@ function ActivityCard({ activity, index, currency }) {
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 14, marginBottom: 16, flexWrap: 'wrap' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 12, flexWrap: 'wrap' }}>
                 <span style={{
-                  fontSize: '0.725rem',
+                  fontSize: '0.75rem',
                   fontWeight: 700,
                   padding: '5px 14px',
                   borderRadius: 9999,
@@ -420,7 +420,7 @@ function ActivityCard({ activity, index, currency }) {
                   display: 'flex',
                   alignItems: 'center',
                   gap: 6,
-                  fontSize: '0.78rem',
+                  fontSize: '0.875rem',
                   fontWeight: 600,
                   color: 'var(--color-text-secondary)',
                   background: 'rgba(255,255,255,0.04)',
@@ -439,9 +439,9 @@ function ActivityCard({ activity, index, currency }) {
                   display: 'flex',
                   alignItems: 'center',
                   gap: 6,
-                  fontSize: '0.78rem',
+                  fontSize: '0.875rem',
                   fontWeight: 700,
-                  color: 'var(--color-brand-gold)',
+                  color: 'var(--color-primary-400)',
                   background: 'rgba(245, 158, 11, 0.12)',
                   padding: '5px 12px',
                   borderRadius: 9999,
@@ -459,7 +459,7 @@ function ActivityCard({ activity, index, currency }) {
                 <h4 style={{
                   color: 'white',
                   fontWeight: 700,
-                  fontSize: '1.2rem',
+                  fontSize: '1.25rem',
                   lineHeight: 1.35,
                   marginBottom: 14,
                   fontFamily: 'var(--font-heading)',
@@ -469,7 +469,7 @@ function ActivityCard({ activity, index, currency }) {
                 </h4>
 
                 {/* Quick Info Badges */}
-                <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 12, fontSize: '0.825rem', color: 'var(--color-text-secondary)' }}>
+                <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 12, fontSize: '0.875rem', color: 'var(--color-text-secondary)' }}>
                   <div style={{
                     display: 'flex',
                     alignItems: 'center',
@@ -508,9 +508,9 @@ function ActivityCard({ activity, index, currency }) {
                 justifyContent: 'center',
                 flexShrink: 0,
                 transition: 'all 0.3s ease',
-                background: expanded ? 'rgba(59, 130, 246, 0.2)' : 'rgba(255,255,255,0.05)',
+                background: expanded ? 'rgba(79, 124, 255, 0.2)' : 'rgba(255,255,255,0.05)',
                 color: expanded ? 'var(--color-brand-blue)' : 'var(--color-text-secondary)',
-                border: expanded ? '1px solid rgba(59, 130, 246, 0.4)' : '1px solid rgba(255,255,255,0.1)',
+                border: expanded ? '1px solid rgba(79, 124, 255, 0.4)' : '1px solid rgba(255,255,255,0.1)',
                 transform: expanded ? 'rotate(180deg)' : 'rotate(0deg)',
               }}>
                 <ChevronDown style={{ width: 18, height: 18 }} />
@@ -531,8 +531,8 @@ function ActivityCard({ activity, index, currency }) {
                     {/* Description Box */}
                     {activity.description && (
                       <div style={{
-                        background: 'rgba(59, 130, 246, 0.05)',
-                        border: '1px solid rgba(59, 130, 246, 0.18)',
+                        background: 'rgba(79, 124, 255, 0.05)',
+                        border: '1px solid rgba(79, 124, 255, 0.18)',
                         borderRadius: 14,
                         padding: '16px 18px',
                         display: 'flex',
@@ -557,14 +557,14 @@ function ActivityCard({ activity, index, currency }) {
                           className="btn-secondary"
                           style={{
                             padding: '10px 18px',
-                            fontSize: '0.825rem',
+                            fontSize: '0.875rem',
                             borderRadius: 12,
                             display: 'inline-flex',
                             alignItems: 'center',
                             gap: 8,
-                            borderColor: 'rgba(59, 130, 246, 0.3)',
-                            color: '#93C5FD',
-                            background: 'rgba(59, 130, 246, 0.1)',
+                            borderColor: 'rgba(79, 124, 255, 0.3)',
+                            color: 'var(--color-primary-400)',
+                            background: 'rgba(79, 124, 255, 0.1)',
                           }}
                         >
                           <Navigation style={{ width: 14, height: 14, color: 'var(--color-brand-blue)' }} />
@@ -578,7 +578,7 @@ function ActivityCard({ activity, index, currency }) {
                         className="btn-secondary"
                         style={{
                           padding: '10px 18px',
-                          fontSize: '0.825rem',
+                          fontSize: '0.875rem',
                           borderRadius: 12,
                           display: 'inline-flex',
                           alignItems: 'center',
@@ -647,7 +647,7 @@ async function exportPDF(itinerary) {
 
   itinerary.days?.forEach((day) => {
     checkPage(25);
-    doc.setFillColor(59, 130, 246);
+    doc.setFillColor(79, 124, 255);
     doc.roundedRect(margin, y, contentW, 12, 2, 2, 'F');
     doc.setFont('helvetica', 'bold');
     doc.setFontSize(11);
@@ -756,7 +756,7 @@ export default function Itinerary() {
       <div className="glass-card" style={{ textAlign: 'center', maxWidth: 380, padding: 40 }}>
         <Loader2 style={{ width: 44, height: 44, color: 'var(--color-brand-blue)', margin: '0 auto 16px' }} className="animate-spin" />
         <h2 style={{ fontSize: '1.25rem', fontWeight: 700, color: 'white', marginBottom: 8, fontFamily: 'var(--font-heading)' }}>Curating Itinerary...</h2>
-        <p style={{ color: 'var(--color-text-secondary)', fontSize: '0.85rem' }}>Fetching your personalized travel plan</p>
+        <p style={{ color: 'var(--color-text-secondary)', fontSize: '0.875rem' }}>Fetching your personalized travel plan</p>
       </div>
     </div>
   );
@@ -766,7 +766,7 @@ export default function Itinerary() {
       <div className="glass-card" style={{ textAlign: 'center', maxWidth: 380, padding: 40 }}>
         <Compass style={{ width: 44, height: 44, color: 'var(--color-error)', margin: '0 auto 16px' }} />
         <h2 style={{ fontSize: '1.25rem', fontWeight: 700, color: 'white', marginBottom: 8, fontFamily: 'var(--font-heading)' }}>Error Loading Trip</h2>
-        <p style={{ color: 'var(--color-text-secondary)', fontSize: '0.85rem', marginBottom: 24 }}>{error}</p>
+        <p style={{ color: 'var(--color-text-secondary)', fontSize: '0.875rem', marginBottom: 24 }}>{error}</p>
         <Link to="/dashboard" className="btn-primary" style={{ width: '100%', justifyContent: 'center', borderRadius: 12 }}>
           Return to Dashboard
         </Link>
@@ -779,7 +779,7 @@ export default function Itinerary() {
       <div className="glass-card" style={{ textAlign: 'center', maxWidth: 380, padding: 40 }}>
         <Compass style={{ width: 44, height: 44, color: 'var(--color-text-muted)', margin: '0 auto 16px' }} />
         <h2 style={{ fontSize: '1.25rem', fontWeight: 700, color: 'white', marginBottom: 8, fontFamily: 'var(--font-heading)' }}>No Itinerary Found</h2>
-        <p style={{ color: 'var(--color-text-secondary)', fontSize: '0.85rem', marginBottom: 24 }}>We couldn't locate the requested trip details.</p>
+        <p style={{ color: 'var(--color-text-secondary)', fontSize: '0.875rem', marginBottom: 24 }}>We couldn't locate the requested trip details.</p>
         <Link to="/plan" className="btn-primary" style={{ width: '100%', justifyContent: 'center', borderRadius: 12 }}>
           <Sparkles style={{ width: 16, height: 16 }} /> Create New Trip
         </Link>
@@ -828,7 +828,7 @@ export default function Itinerary() {
 
         {/* ── Breadcrumb Navigation ── */}
         <div style={{ display: 'flex', alignItems: 'center', gap: 10, fontSize: '0.875rem', color: 'var(--color-text-secondary)', marginBottom: 28 }}>
-          <Link to="/" style={{ color: 'var(--color-text-secondary)', textDecoration: 'none', transition: 'color 0.2s' }} className="hover:text-blue-400">
+          <Link to="/" style={{ color: 'var(--color-text-secondary)', textDecoration: 'none', transition: 'color 0.2s' }} className="hover:text-primary-400">
             Home
           </Link>
           <ChevronRight style={{ width: 14, height: 14, color: 'var(--color-dark-500)' }} />
@@ -846,7 +846,7 @@ export default function Itinerary() {
           transition={{ duration: 0.5 }}
           style={{
             position: 'relative',
-            borderRadius: 28,
+            borderRadius: 24,
             overflow: 'hidden',
             marginBottom: 36,
             background: 'var(--color-secondary-dark)',
@@ -855,8 +855,8 @@ export default function Itinerary() {
           }}
         >
           {/* Ambient Glow Orbs */}
-          <div style={{ position: 'absolute', top: -120, right: -120, width: 480, height: 480, borderRadius: '50%', background: 'rgba(59, 130, 246, 0.14)', filter: 'blur(110px)', pointerEvents: 'none' }} />
-          <div style={{ position: 'absolute', bottom: -120, left: -120, width: 440, height: 440, borderRadius: '50%', background: 'rgba(245, 158, 11, 0.09)', filter: 'blur(110px)', pointerEvents: 'none' }} />
+          <div style={{ position: 'absolute', top: -120, right: -120, width: 480, height: 480, borderRadius: '50%', background: 'rgba(79, 124, 255, 0.14)', filter: 'blur(110px)', pointerEvents: 'none' }} />
+          <div style={{ position: 'absolute', bottom: -120, left: -120, width: 440, height: 440, borderRadius: '50%', background: 'rgba(79, 124, 255, 0.09)', filter: 'blur(110px)', pointerEvents: 'none' }} />
 
           {/* Banner Inner Layout */}
           <div style={{ position: 'relative', zIndex: 10, padding: '40px 48px' }} className="sm:!p-10 lg:!p-12">
@@ -868,10 +868,10 @@ export default function Itinerary() {
                 gap: 8,
                 padding: '8px 18px',
                 borderRadius: 9999,
-                background: 'rgba(59, 130, 246, 0.12)',
-                border: '1px solid rgba(59, 130, 246, 0.25)',
-                color: '#60A5FA',
-                fontSize: '0.78rem',
+                background: 'rgba(79, 124, 255, 0.12)',
+                border: '1px solid rgba(79, 124, 255, 0.25)',
+                color: 'var(--color-primary-400)',
+                fontSize: '0.875rem',
                 fontWeight: 700,
                 letterSpacing: '0.06em',
                 textTransform: 'uppercase',
@@ -918,8 +918,8 @@ export default function Itinerary() {
                   <span style={{ fontSize: '2.75rem', lineHeight: 1 }}>{currentItinerary.emoji}</span>
                 )}
                 <h1 style={{
-                  fontSize: 'clamp(2.2rem, 5vw, 3.5rem)',
-                  fontWeight: 800,
+                  fontSize: 'clamp(2rem, 5vw, 3.5rem)',
+                  fontWeight: 700,
                   fontFamily: 'var(--font-heading)',
                   color: 'white',
                   letterSpacing: '-0.02em',
@@ -931,7 +931,7 @@ export default function Itinerary() {
 
               <p style={{
                 color: 'var(--color-text-secondary)',
-                fontSize: '1.1rem',
+                fontSize: '1.125rem',
                 lineHeight: 1.7,
                 maxWidth: 720,
                 marginBottom: 32,
@@ -947,18 +947,18 @@ export default function Itinerary() {
                 </div>
 
                 <div style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '9px 18px', borderRadius: 14, background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.08)', color: 'var(--color-dark-200)' }}>
-                  <Users style={{ width: 16, height: 16, color: 'var(--color-brand-gold)' }} />
+                  <Users style={{ width: 16, height: 16, color: 'var(--color-primary-400)' }} />
                   <span>{currentItinerary.travelers || 1} {currentItinerary.travelers === 1 ? 'Traveler' : 'Travelers'}</span>
                 </div>
 
                 <div style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '9px 18px', borderRadius: 14, background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.08)', color: 'var(--color-dark-200)' }}>
-                  <Wallet style={{ width: 16, height: 16, color: '#10B981' }} />
+                  <Wallet style={{ width: 16, height: 16, color: 'var(--color-primary-400)' }} />
                   <span>{tripCurrency} {Number(currentItinerary.budget || 0).toLocaleString()} Budget</span>
                 </div>
 
                 {currentItinerary.travelStyle && (
                   <div style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '9px 18px', borderRadius: 14, background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.08)', color: 'var(--color-dark-200)', textTransform: 'capitalize' }}>
-                    <Layers style={{ width: 16, height: 16, color: '#8B5CF6' }} />
+                    <Layers style={{ width: 16, height: 16, color: 'var(--color-primary-400)' }} />
                     <span>{currentItinerary.travelStyle} Style</span>
                   </div>
                 )}
@@ -975,10 +975,10 @@ export default function Itinerary() {
               label: 'TOTAL DURATION',
               value: `${currentItinerary.days?.length || 0} Days`,
               subtext: 'Complete Itinerary',
-              color: '#60A5FA',
-              bg: 'rgba(59, 130, 246, 0.12)',
-              border: 'rgba(59, 130, 246, 0.2)',
-              accent: '#3B82F6'
+              color: '#7DA3FF',
+              bg: 'rgba(79, 124, 255, 0.12)',
+              border: 'rgba(79, 124, 255, 0.2)',
+              accent: '#4F7CFF'
             },
             {
               icon: Compass,
@@ -1037,17 +1037,17 @@ export default function Itinerary() {
                 }}
               />
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 14, marginBottom: 14 }}>
-                <span style={{ color: 'var(--color-text-muted)', fontSize: '0.725rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+                <span style={{ color: 'var(--color-text-muted)', fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em' }}>
                   {stat.label}
                 </span>
                 <div style={{ width: 38, height: 38, borderRadius: 12, background: stat.bg, border: `1px solid ${stat.border}`, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                   <stat.icon style={{ width: 18, height: 18, color: stat.color }} />
                 </div>
               </div>
-              <div style={{ color: 'white', fontSize: '1.5rem', fontWeight: 800, fontFamily: 'var(--font-heading)', marginBottom: 4 }}>
+              <div style={{ color: 'white', fontSize: '1.5rem', fontWeight: 700, fontFamily: 'var(--font-heading)', marginBottom: 4 }}>
                 {stat.value}
               </div>
-              <div style={{ color: 'var(--color-text-secondary)', fontSize: '0.8rem' }}>
+              <div style={{ color: 'var(--color-text-secondary)', fontSize: '0.875rem' }}>
                 {stat.subtext}
               </div>
             </motion.div>
@@ -1078,7 +1078,7 @@ export default function Itinerary() {
                 <div style={{
                   background: 'var(--color-secondary-dark)',
                   border: '1px solid var(--color-border-dark)',
-                  borderRadius: 20,
+                  borderRadius: 18,
                   padding: '28px 32px',
                   marginBottom: 36,
                   boxShadow: '0 6px 24px rgba(0,0,0,0.18)',
@@ -1087,32 +1087,32 @@ export default function Itinerary() {
                     <div>
                       <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 10 }}>
                         <span style={{
-                          fontSize: '0.725rem',
+                          fontSize: '0.75rem',
                           fontWeight: 700,
                           padding: '5px 14px',
                           borderRadius: 9999,
-                          background: 'rgba(59, 130, 246, 0.12)',
-                          color: '#60A5FA',
-                          border: '1px solid rgba(59, 130, 246, 0.25)',
+                          background: 'rgba(79, 124, 255, 0.12)',
+                          color: 'var(--color-primary-400)',
+                          border: '1px solid rgba(79, 124, 255, 0.25)',
                           textTransform: 'uppercase',
                           letterSpacing: '0.06em',
                         }}>
                           Day {dayData.dayNumber} Overview
                         </span>
                         {dayData.date && (
-                          <span style={{ fontSize: '0.78rem', color: 'var(--color-text-secondary)', background: 'rgba(255,255,255,0.04)', padding: '5px 14px', borderRadius: 9999, border: '1px solid rgba(255,255,255,0.08)' }}>
+                          <span style={{ fontSize: '0.875rem', color: 'var(--color-text-secondary)', background: 'rgba(255,255,255,0.04)', padding: '5px 14px', borderRadius: 9999, border: '1px solid rgba(255,255,255,0.08)' }}>
                             {dayData.date}
                           </span>
                         )}
                       </div>
-                      <h2 style={{ fontSize: '1.75rem', fontWeight: 800, color: 'white', fontFamily: 'var(--font-heading)', letterSpacing: '-0.01em', lineHeight: 1.3 }}>
+                      <h2 style={{ fontSize: '1.75rem', fontWeight: 700, color: 'white', fontFamily: 'var(--font-heading)', letterSpacing: '-0.01em', lineHeight: 1.3 }}>
                         {dayData.title}
                       </h2>
                     </div>
 
                     <div style={{ textAlign: 'right', flexShrink: 0 }}>
-                      <div style={{ fontSize: '0.78rem', color: 'var(--color-text-muted)', marginBottom: 4 }}>Day Total</div>
-                      <div style={{ color: '#10B981', fontSize: '1.45rem', fontWeight: 800, fontFamily: 'var(--font-heading)' }}>
+                      <div style={{ fontSize: '0.875rem', color: 'var(--color-text-muted)', marginBottom: 4 }}>Day Total</div>
+                      <div style={{ color: '#10B981', fontSize: '1.5rem', fontWeight: 700, fontFamily: 'var(--font-heading)' }}>
                         {tripCurrency} {totalCost.toLocaleString()}
                       </div>
                     </div>
@@ -1142,7 +1142,7 @@ export default function Itinerary() {
                           background: period.bg,
                           color: period.text,
                           border: `1px solid ${period.border}`,
-                          fontSize: '0.78rem',
+                          fontSize: '0.875rem',
                           fontWeight: 700,
                           textTransform: 'uppercase',
                           letterSpacing: '0.06em',
@@ -1182,7 +1182,7 @@ export default function Itinerary() {
               style={{
                 background: 'var(--color-secondary-dark)',
                 border: '1px solid var(--color-border-dark)',
-                borderRadius: 22,
+                borderRadius: 24,
                 padding: '14px',
                 boxShadow: '0 6px 24px rgba(0,0,0,0.18)',
                 overflow: 'hidden',
@@ -1193,13 +1193,13 @@ export default function Itinerary() {
                   <MapPin style={{ width: 18, height: 18, color: 'var(--color-brand-blue)' }} />
                   <h3 style={{ fontSize: '1rem', fontWeight: 700, color: 'white', fontFamily: 'var(--font-heading)' }}>Interactive Map</h3>
                 </div>
-                <span style={{ fontSize: '0.78rem', color: 'var(--color-text-muted)' }}>
+                <span style={{ fontSize: '0.875rem', color: 'var(--color-text-muted)' }}>
                   {mappableActivities.length} Pinned Spots
                 </span>
               </div>
 
               {/* Map Canvas with Dark Voyager Tiles */}
-              <div style={{ height: 320, width: '100%', borderRadius: 16, overflow: 'hidden', position: 'relative', border: '1px solid rgba(255,255,255,0.06)' }}>
+              <div style={{ height: 320, width: '100%', borderRadius: 18, overflow: 'hidden', position: 'relative', border: '1px solid rgba(255,255,255,0.06)' }}>
                 {mapCenter ? (
                   <MapContainer
                     center={mapCenter}
@@ -1217,12 +1217,12 @@ export default function Itinerary() {
                       <Marker
                         key={act.id || i}
                         position={[act.location.lat, act.location.lng]}
-                        icon={makeIcon(markerColors[act.type] || '#3B82F6')}
+                        icon={makeIcon(markerColors[act.type] || '#4F7CFF')}
                       >
                         <Popup>
                           <div style={{ padding: 6, minWidth: 160 }}>
                             <p style={{ fontWeight: 700, color: '#0F1117', fontSize: '0.875rem', marginBottom: 4, margin: 0 }}>{act.title}</p>
-                            <p style={{ color: '#475569', fontSize: '0.78rem', margin: '3px 0' }}>{act.time} • {act.duration}</p>
+                            <p style={{ color: '#475569', fontSize: '0.875rem', margin: '3px 0' }}>{act.time} • {act.duration}</p>
                             <p style={{ color: '#10B981', fontWeight: 700, fontSize: '0.875rem', margin: '6px 0 0' }}>
                               {tripCurrency} {act.cost}
                             </p>
@@ -1233,14 +1233,14 @@ export default function Itinerary() {
                   </MapContainer>
                 ) : (
                   <div style={{ width: '100%', height: '100%', background: 'var(--color-dark-900)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 10, padding: 28, textAlign: 'center' }}>
-                    <Compass style={{ width: 40, height: 40, color: 'rgba(59, 130, 246, 0.4)' }} />
+                    <Compass style={{ width: 40, height: 40, color: 'rgba(79, 124, 255, 0.4)' }} />
                     <p style={{ fontSize: '0.875rem', color: 'var(--color-text-secondary)' }}>Map coordinates loading...</p>
                   </div>
                 )}
               </div>
 
               {/* Marker Legend */}
-              <div style={{ padding: '12px 16px', background: 'rgba(0,0,0,0.2)', borderRadius: 14, marginTop: 12, display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: 10, fontSize: '0.78rem', color: 'var(--color-text-secondary)' }}>
+              <div style={{ padding: '12px 16px', background: 'rgba(0,0,0,0.2)', borderRadius: 14, marginTop: 12, display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: 10, fontSize: '0.875rem', color: 'var(--color-text-secondary)' }}>
                 {Object.entries(markerColors).map(([type, color]) => (
                   <div key={type} style={{ display: 'flex', alignItems: 'center', gap: 6, textTransform: 'capitalize', fontWeight: 600 }}>
                     <span style={{ width: 10, height: 10, borderRadius: '50%', background: color }} />
@@ -1258,7 +1258,7 @@ export default function Itinerary() {
               style={{
                 background: 'var(--color-secondary-dark)',
                 border: '1px solid var(--color-border-dark)',
-                borderRadius: 22,
+                borderRadius: 24,
                 padding: '28px',
                 boxShadow: '0 6px 24px rgba(0,0,0,0.18)',
               }}
@@ -1270,11 +1270,11 @@ export default function Itinerary() {
                   </div>
                   <div>
                     <h3 style={{ fontSize: '1rem', fontWeight: 700, color: 'white', fontFamily: 'var(--font-heading)' }}>Day {dayData.dayNumber} Budget</h3>
-                    <p style={{ fontSize: '0.78rem', color: 'var(--color-text-muted)' }}>Category breakdown</p>
+                    <p style={{ fontSize: '0.875rem', color: 'var(--color-text-muted)' }}>Category breakdown</p>
                   </div>
                 </div>
 
-                <span style={{ color: '#10B981', fontSize: '1.25rem', fontWeight: 800, fontFamily: 'var(--font-heading)' }}>
+                <span style={{ color: '#10B981', fontSize: '1.25rem', fontWeight: 700, fontFamily: 'var(--font-heading)' }}>
                   {tripCurrency} {totalCost.toLocaleString()}
                 </span>
               </div>
@@ -1289,13 +1289,13 @@ export default function Itinerary() {
 
                   return (
                     <div key={cat} style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-                      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: '0.85rem' }}>
+                      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: '0.875rem' }}>
                         <div style={{ display: 'flex', alignItems: 'center', gap: 8, color: 'var(--color-dark-200)', fontWeight: 600, textTransform: 'capitalize' }}>
                           <CatIcon style={{ width: 15, height: 15, color: 'var(--color-text-secondary)' }} />
                           <span>{catInfo.label}</span>
                         </div>
                         <div style={{ display: 'flex', alignItems: 'center', gap: 10, fontWeight: 700 }}>
-                          <span style={{ color: 'var(--color-text-muted)', fontSize: '0.78rem' }}>{pct}%</span>
+                          <span style={{ color: 'var(--color-text-muted)', fontSize: '0.875rem' }}>{pct}%</span>
                           <span style={{ color: 'white' }}>{tripCurrency} {amount.toLocaleString()}</span>
                         </div>
                       </div>
@@ -1315,7 +1315,7 @@ export default function Itinerary() {
               </div>
 
               {/* Total Summary Footer */}
-              <div style={{ marginTop: 24, paddingTop: 18, borderTop: '1px solid var(--color-border-dark)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: '0.825rem' }}>
+              <div style={{ marginTop: 24, paddingTop: 18, borderTop: '1px solid var(--color-border-dark)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: '0.875rem' }}>
                 <span style={{ color: 'var(--color-text-secondary)', fontWeight: 500 }}>Day Spending Status</span>
                 <span>
                   {totalCost <= Number(currentItinerary.budget || 0) ? (
@@ -1323,7 +1323,7 @@ export default function Itinerary() {
                       <ShieldCheck style={{ width: 16, height: 16 }} /> Within Planned Budget
                     </span>
                   ) : (
-                    <span style={{ color: 'var(--color-brand-gold)', fontWeight: 700 }}>
+                    <span style={{ color: 'var(--color-primary-400)', fontWeight: 700 }}>
                       Above Average
                     </span>
                   )}
@@ -1339,17 +1339,17 @@ export default function Itinerary() {
               style={{
                 position: 'relative',
                 overflow: 'hidden',
-                borderRadius: 22,
+                borderRadius: 24,
                 padding: '28px',
-                border: '1px solid rgba(59, 130, 246, 0.3)',
-                background: 'linear-gradient(135deg, rgba(30, 58, 95, 0.4) 0%, var(--color-secondary-dark) 60%, rgba(120, 53, 15, 0.2) 100%)',
+                border: '1px solid rgba(79, 124, 255, 0.3)',
+                background: 'linear-gradient(135deg, rgba(30, 58, 95, 0.4) 0%, var(--color-secondary-dark) 60%, rgba(45, 63, 135, 0.25) 100%)',
                 boxShadow: '0 6px 24px rgba(0,0,0,0.18)',
               }}
             >
-              <div style={{ position: 'absolute', top: -50, right: -50, width: 140, height: 140, background: 'rgba(59, 130, 246, 0.15)', borderRadius: '50%', filter: 'blur(35px)', pointerEvents: 'none' }} />
+              <div style={{ position: 'absolute', top: -50, right: -50, width: 140, height: 140, background: 'rgba(79, 124, 255, 0.15)', borderRadius: '50%', filter: 'blur(35px)', pointerEvents: 'none' }} />
 
               <div style={{ display: 'flex', alignItems: 'flex-start', gap: 16, position: 'relative', zIndex: 10 }}>
-                <div style={{ width: 42, height: 42, borderRadius: 14, background: 'rgba(59, 130, 246, 0.2)', border: '1px solid rgba(59, 130, 246, 0.35)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, color: 'var(--color-brand-blue)', boxShadow: '0 0 20px rgba(59, 130, 246, 0.25)' }}>
+                <div style={{ width: 42, height: 42, borderRadius: 14, background: 'rgba(79, 124, 255, 0.2)', border: '1px solid rgba(79, 124, 255, 0.35)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, color: 'var(--color-primary-400)', boxShadow: '0 0 20px rgba(79, 124, 255, 0.25)' }}>
                   <Sparkles style={{ width: 20, height: 20 }} />
                 </div>
                 <div>

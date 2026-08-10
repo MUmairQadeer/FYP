@@ -110,7 +110,7 @@ export default function Profile() {
         style: {
           background: 'rgba(15, 17, 23, 0.95)',
           color: '#fff',
-          border: '1px solid rgba(59, 130, 246, 0.4)',
+          border: '1px solid rgba(79, 124, 255, 0.4)',
           backdropFilter: 'blur(16px)',
         },
         icon: '👤'
@@ -170,7 +170,7 @@ export default function Profile() {
         style: {
           background: 'rgba(15, 17, 23, 0.95)',
           color: '#fff',
-          border: '1px solid rgba(59, 130, 246, 0.4)',
+          border: '1px solid rgba(79, 124, 255, 0.4)',
           backdropFilter: 'blur(16px)',
         },
         icon: '✨'
@@ -254,7 +254,7 @@ export default function Profile() {
           transition={{ duration: 0.5 }}
           style={{
             position: 'relative',
-            borderRadius: 28,
+            borderRadius: 24,
             overflow: 'hidden',
             marginBottom: 36,
             background: 'var(--color-secondary-dark)',
@@ -264,8 +264,8 @@ export default function Profile() {
           }}
         >
           {/* Ambient Glow Backdrop Orbs */}
-          <div style={{ position: 'absolute', top: -100, right: -100, width: 450, height: 450, borderRadius: '50%', background: 'rgba(59, 130, 246, 0.12)', filter: 'blur(100px)', pointerEvents: 'none' }} />
-          <div style={{ position: 'absolute', bottom: -100, left: -100, width: 400, height: 400, borderRadius: '50%', background: 'rgba(245, 158, 11, 0.08)', filter: 'blur(100px)', pointerEvents: 'none' }} />
+          <div style={{ position: 'absolute', top: -100, right: -100, width: 450, height: 450, borderRadius: '50%', background: 'rgba(79, 124, 255, 0.12)', filter: 'blur(100px)', pointerEvents: 'none' }} />
+          <div style={{ position: 'absolute', bottom: -100, left: -100, width: 400, height: 400, borderRadius: '50%', background: 'rgba(79, 124, 255, 0.08)', filter: 'blur(100px)', pointerEvents: 'none' }} />
 
           <div style={{ position: 'relative', zIndex: 10, display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 28, flexWrap: 'wrap' }}>
             
@@ -278,8 +278,8 @@ export default function Profile() {
                   height: 92,
                   borderRadius: '50%',
                   padding: 3,
-                  background: 'linear-gradient(135deg, #3B82F6 0%, #F59E0B 50%, #8B5CF6 100%)',
-                  boxShadow: '0 8px 24px rgba(59,130,246,0.35)',
+                  background: 'linear-gradient(135deg, var(--color-primary-400) 0%, var(--color-primary-600) 100%)',
+                  boxShadow: '0 8px 24px rgba(79,124,255,0.35)',
                   overflow: 'hidden',
                 }}>
                   <div style={{
@@ -291,7 +291,7 @@ export default function Profile() {
                     alignItems: 'center',
                     justifyContent: 'center',
                     color: 'white',
-                    fontWeight: 800,
+                    fontWeight: 700,
                     fontSize: '2.25rem',
                     fontFamily: 'var(--font-heading)',
                     overflow: 'hidden',
@@ -334,8 +334,8 @@ export default function Profile() {
               <div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 6 }}>
                   <h1 style={{
-                    fontSize: 'clamp(1.6rem, 3.5vw, 2.2rem)',
-                    fontWeight: 800,
+                    fontSize: 'clamp(1.5rem, 3.5vw, 2.25rem)',
+                    fontWeight: 700,
                     fontFamily: 'var(--font-heading)',
                     color: 'white',
                     letterSpacing: '-0.02em',
@@ -350,11 +350,11 @@ export default function Profile() {
                     gap: 5,
                     padding: '4px 12px',
                     borderRadius: 9999,
-                    background: 'rgba(245, 158, 11, 0.12)',
-                    border: '1px solid rgba(245, 158, 11, 0.25)',
-                    color: '#F59E0B',
-                    fontSize: '0.725rem',
-                    fontWeight: 800,
+                    background: 'rgba(79, 124, 255, 0.12)',
+                    border: '1px solid rgba(79, 124, 255, 0.25)',
+                    color: 'var(--color-primary-400)',
+                    fontSize: '0.75rem',
+                    fontWeight: 700,
                     textTransform: 'uppercase',
                     letterSpacing: '0.05em',
                   }}>
@@ -363,17 +363,17 @@ export default function Profile() {
                   </span>
                 </div>
 
-                <p style={{ color: 'var(--color-text-secondary)', fontSize: '0.9rem', marginBottom: 12 }}>
+                <p style={{ color: 'var(--color-text-secondary)', fontSize: '0.9375rem', marginBottom: 12 }}>
                   {user?.email || email}
                 </p>
 
                 {/* Account Badges */}
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10, fontSize: '0.78rem', color: 'var(--color-text-muted)' }}>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10, fontSize: '0.875rem', color: 'var(--color-text-muted)' }}>
                   <span style={{ display: 'flex', alignItems: 'center', gap: 5, background: 'rgba(255,255,255,0.04)', padding: '4px 12px', borderRadius: 8, border: '1px solid rgba(255,255,255,0.06)' }}>
                     <Shield style={{ width: 13, height: 13, color: '#10B981' }} /> Verified Account
                   </span>
                   <span style={{ display: 'flex', alignItems: 'center', gap: 5, background: 'rgba(255,255,255,0.04)', padding: '4px 12px', borderRadius: 8, border: '1px solid rgba(255,255,255,0.06)' }}>
-                    <Zap style={{ width: 13, height: 13, color: '#60A5FA' }} /> GPT-4o Engine Active
+                    <Zap style={{ width: 13, height: 13, color: 'var(--color-primary-400)' }} /> GPT-4o Engine Active
                   </span>
                 </div>
               </div>
@@ -386,17 +386,17 @@ export default function Profile() {
               gap: 24,
               padding: '16px 28px',
               background: 'rgba(255,255,255,0.025)',
-              borderRadius: 20,
+              borderRadius: 18,
               border: '1px solid rgba(255,255,255,0.06)',
             }}>
               <div style={{ textAlign: 'center' }}>
-                <div style={{ color: 'white', fontWeight: 800, fontSize: '1.4rem', fontFamily: 'var(--font-heading)' }}>14</div>
-                <div style={{ color: 'var(--color-text-muted)', fontSize: '0.725rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em', marginTop: 2 }}>Trips Saved</div>
+                <div style={{ color: 'white', fontWeight: 700, fontSize: '1.5rem', fontFamily: 'var(--font-heading)' }}>14</div>
+                <div style={{ color: 'var(--color-text-muted)', fontSize: '0.75rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em', marginTop: 2 }}>Trips Saved</div>
               </div>
               <div style={{ width: 1, height: 32, background: 'rgba(255,255,255,0.08)' }} />
               <div style={{ textAlign: 'center' }}>
-                <div style={{ color: '#60A5FA', fontWeight: 800, fontSize: '1.4rem', fontFamily: 'var(--font-heading)' }}>8</div>
-                <div style={{ color: 'var(--color-text-muted)', fontSize: '0.725rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em', marginTop: 2 }}>Countries</div>
+                <div style={{ color: 'var(--color-primary-400)', fontWeight: 700, fontSize: '1.5rem', fontFamily: 'var(--font-heading)' }}>8</div>
+                <div style={{ color: 'var(--color-text-muted)', fontSize: '0.75rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em', marginTop: 2 }}>Countries</div>
               </div>
             </div>
 
@@ -411,7 +411,7 @@ export default function Profile() {
             <div style={{
               background: 'var(--color-secondary-dark)',
               border: '1px solid var(--color-border-dark)',
-              borderRadius: 22,
+              borderRadius: 24,
               padding: '16px',
               boxShadow: '0 6px 24px rgba(0,0,0,0.18)',
               display: 'flex',
@@ -430,9 +430,9 @@ export default function Profile() {
                       alignItems: 'center',
                       gap: 14,
                       padding: '14px 18px',
-                      borderRadius: 16,
-                      border: isActive ? '1px solid rgba(59, 130, 246, 0.4)' : '1px solid transparent',
-                      background: isActive ? 'linear-gradient(135deg, rgba(59, 130, 246, 0.15) 0%, rgba(29, 78, 216, 0.1) 100%)' : 'transparent',
+                      borderRadius: 18,
+                      border: isActive ? '1px solid rgba(79, 124, 255, 0.4)' : '1px solid transparent',
+                      background: isActive ? 'linear-gradient(135deg, rgba(79, 124, 255, 0.15) 0%, rgba(45, 92, 230, 0.1) 100%)' : 'transparent',
                       cursor: 'pointer',
                       textAlign: 'left',
                       transition: 'all 0.25s ease',
@@ -451,13 +451,13 @@ export default function Profile() {
                       justifyContent: 'center',
                       color: isActive ? 'white' : 'var(--color-text-secondary)',
                       flexShrink: 0,
-                      boxShadow: isActive ? '0 4px 16px rgba(59, 130, 246, 0.4)' : 'none',
+                      boxShadow: isActive ? '0 4px 16px rgba(79, 124, 255, 0.4)' : 'none',
                     }}>
                       <TabIcon style={{ width: 18, height: 18 }} />
                     </div>
 
                     <div style={{ flex: 1, minWidth: 0 }}>
-                      <div style={{ color: isActive ? 'white' : 'var(--color-dark-200)', fontWeight: 700, fontSize: '0.9rem', fontFamily: 'var(--font-heading)' }}>
+                      <div style={{ color: isActive ? 'white' : 'var(--color-dark-200)', fontWeight: 700, fontSize: '0.9375rem', fontFamily: 'var(--font-heading)' }}>
                         {tab.label}
                       </div>
                       <div style={{ color: 'var(--color-text-muted)', fontSize: '0.75rem', marginTop: 1 }} className="truncate">
@@ -504,12 +504,12 @@ export default function Profile() {
                       padding: '24px',
                       background: 'rgba(255, 255, 255, 0.02)',
                       border: '1px solid rgba(255, 255, 255, 0.06)',
-                      borderRadius: 20,
+                      borderRadius: 18,
                     }}>
-                      <h4 style={{ fontSize: '1.05rem', fontWeight: 700, color: 'white', fontFamily: 'var(--font-heading)', marginBottom: 6, display: 'flex', alignItems: 'center', gap: 8 }}>
-                        <Camera style={{ width: 18, height: 18, color: '#60A5FA' }} /> Profile Picture
+                      <h4 style={{ fontSize: '1.125rem', fontWeight: 700, color: 'white', fontFamily: 'var(--font-heading)', marginBottom: 6, display: 'flex', alignItems: 'center', gap: 8 }}>
+                        <Camera style={{ width: 18, height: 18, color: 'var(--color-primary-400)' }} /> Profile Picture
                       </h4>
-                      <p style={{ color: 'var(--color-text-secondary)', fontSize: '0.85rem', marginBottom: 20 }}>
+                      <p style={{ color: 'var(--color-text-secondary)', fontSize: '0.875rem', marginBottom: 20 }}>
                         Upload a custom portrait photo or choose from our luxury travel avatars
                       </p>
 
@@ -519,7 +519,7 @@ export default function Profile() {
                           type="button"
                           onClick={() => fileInputRef.current?.click()}
                           className="btn-primary"
-                          style={{ padding: '10px 20px', borderRadius: 12, fontSize: '0.85rem' }}
+                          style={{ padding: '10px 20px', borderRadius: 12, fontSize: '0.875rem' }}
                         >
                           <Upload style={{ width: 15, height: 15 }} />
                           <span>Upload Custom Photo</span>
@@ -538,7 +538,7 @@ export default function Profile() {
                               background: 'rgba(239, 68, 68, 0.1)',
                               border: '1px solid rgba(239, 68, 68, 0.25)',
                               color: '#F87171',
-                              fontSize: '0.85rem',
+                              fontSize: '0.875rem',
                               fontWeight: 600,
                               cursor: 'pointer',
                               transition: 'all 0.2s',
@@ -552,7 +552,7 @@ export default function Profile() {
 
                       {/* Preset Luxury Avatars */}
                       <div>
-                        <div style={{ fontSize: '0.78rem', color: 'var(--color-text-muted)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 12 }}>
+                        <div style={{ fontSize: '0.875rem', color: 'var(--color-text-muted)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 12 }}>
                           Or choose a luxury travel avatar
                         </div>
                         <div style={{ display: 'flex', alignItems: 'center', gap: 14, flexWrap: 'wrap' }}>
@@ -569,7 +569,7 @@ export default function Profile() {
                                   height: 52,
                                   borderRadius: '50%',
                                   padding: 2,
-                                  background: isSelected ? 'linear-gradient(135deg, #3B82F6, #F59E0B)' : 'rgba(255,255,255,0.08)',
+                                  background: isSelected ? 'linear-gradient(135deg, var(--color-primary-400), var(--color-primary-600))' : 'rgba(255,255,255,0.08)',
                                   border: 'none',
                                   cursor: 'pointer',
                                   transition: 'transform 0.2s',
@@ -612,7 +612,7 @@ export default function Profile() {
                     {/* Sub-section 1: REAL NAME & EMAIL EDIT (SUPPORT SEPARATE & TOGETHER UPDATES) */}
                     <div>
                       <div style={{ marginBottom: 20 }}>
-                        <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color: 'white', fontFamily: 'var(--font-heading)', marginBottom: 6 }}>
+                        <h3 style={{ fontSize: '1.25rem', fontWeight: 700, color: 'white', fontFamily: 'var(--font-heading)', marginBottom: 6 }}>
                           Personal Profile Details
                         </h3>
                         <p style={{ color: 'var(--color-text-secondary)', fontSize: '0.875rem' }}>
@@ -626,22 +626,22 @@ export default function Profile() {
                         <div style={{
                           padding: '24px',
                           background: 'rgba(255,255,255,0.025)',
-                          borderRadius: 20,
+                          borderRadius: 18,
                           border: '1px solid rgba(255,255,255,0.07)',
                           display: 'flex',
                           flexDirection: 'column',
                           gap: 16,
                         }}>
                           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 16, flexWrap: 'wrap' }}>
-                            <label style={{ color: 'white', fontSize: '0.95rem', fontWeight: 700, fontFamily: 'var(--font-heading)', display: 'flex', alignItems: 'center', gap: 8 }}>
-                              <User style={{ width: 18, height: 18, color: '#60A5FA' }} /> Full Name
+                            <label style={{ color: 'white', fontSize: '0.9375rem', fontWeight: 700, fontFamily: 'var(--font-heading)', display: 'flex', alignItems: 'center', gap: 8 }}>
+                              <User style={{ width: 18, height: 18, color: 'var(--color-primary-400)' }} /> Full Name
                             </label>
                             <button
                               type="button"
                               onClick={handleSaveName}
                               disabled={savingName}
                               className="btn-primary"
-                              style={{ padding: '8px 18px', borderRadius: 12, fontSize: '0.825rem' }}
+                              style={{ padding: '8px 18px', borderRadius: 12, fontSize: '0.875rem' }}
                             >
                               <Save style={{ width: 14, height: 14 }} />
                               <span>{savingName ? 'Saving...' : 'Update Name Only'}</span>
@@ -665,15 +665,15 @@ export default function Profile() {
                         <div style={{
                           padding: '24px',
                           background: 'rgba(255,255,255,0.025)',
-                          borderRadius: 20,
+                          borderRadius: 18,
                           border: '1px solid rgba(255,255,255,0.07)',
                           display: 'flex',
                           flexDirection: 'column',
                           gap: 16,
                         }}>
                           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 16, flexWrap: 'wrap' }}>
-                            <label style={{ color: 'white', fontSize: '0.95rem', fontWeight: 700, fontFamily: 'var(--font-heading)', display: 'flex', alignItems: 'center', gap: 8 }}>
-                              <Mail style={{ width: 18, height: 18, color: '#10B981' }} /> Email Address
+                            <label style={{ color: 'white', fontSize: '0.9375rem', fontWeight: 700, fontFamily: 'var(--font-heading)', display: 'flex', alignItems: 'center', gap: 8 }}>
+                              <Mail style={{ width: 18, height: 18, color: 'var(--color-primary-400)' }} /> Email Address
                             </label>
                             <button
                               type="button"
@@ -685,15 +685,15 @@ export default function Profile() {
                                 gap: 6,
                                 padding: '8px 18px',
                                 borderRadius: 12,
-                                background: 'rgba(16,185,129,0.15)',
-                                border: '1px solid rgba(16,185,129,0.3)',
-                                color: '#10B981',
-                                fontSize: '0.825rem',
+                                background: 'var(--color-primary-500)',
+                                border: '1px solid var(--color-primary-400)',
+                                color: 'white',
+                                fontSize: '0.875rem',
                                 fontWeight: 700,
                                 cursor: 'pointer',
                                 transition: 'all 0.2s',
                               }}
-                              className="hover:!bg-emerald-500/20"
+                              className="hover:!brightness-110"
                             >
                               <Save style={{ width: 14, height: 14 }} />
                               <span>{savingEmail ? 'Saving...' : 'Update Email Only'}</span>
@@ -720,7 +720,7 @@ export default function Profile() {
                             onClick={handleSaveBoth}
                             disabled={savingBoth}
                             className="btn-primary"
-                            style={{ padding: '14px 32px', borderRadius: 14, fontSize: '0.925rem', boxShadow: '0 6px 20px rgba(59, 130, 246, 0.35)' }}
+                            style={{ padding: '14px 32px', borderRadius: 14, fontSize: '0.9375rem', boxShadow: '0 6px 20px rgba(79, 124, 255, 0.35)' }}
                           >
                             <Save style={{ width: 18, height: 18 }} />
                             <span>{savingBoth ? 'Saving Profile...' : 'Save Both Name & Email'}</span>
@@ -735,17 +735,17 @@ export default function Profile() {
                     {/* Sub-section 2: Password Update Form */}
                     <form onSubmit={handleSavePassword} style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
                       <div>
-                        <h4 style={{ fontSize: '1.1rem', fontWeight: 700, color: 'white', fontFamily: 'var(--font-heading)', marginBottom: 6, display: 'flex', alignItems: 'center', gap: 10 }}>
+                        <h4 style={{ fontSize: '1.125rem', fontWeight: 700, color: 'white', fontFamily: 'var(--font-heading)', marginBottom: 6, display: 'flex', alignItems: 'center', gap: 10 }}>
                           <Key style={{ width: 18, height: 18, color: 'var(--color-brand-blue)' }} /> Change Security Password
                         </h4>
-                        <p style={{ color: 'var(--color-text-secondary)', fontSize: '0.85rem' }}>
+                        <p style={{ color: 'var(--color-text-secondary)', fontSize: '0.875rem' }}>
                           Ensure your account stays secure by using a strong password
                         </p>
                       </div>
 
                       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 20 }}>
                         <div>
-                          <label style={{ display: 'block', color: 'var(--color-text-secondary)', fontSize: '0.8rem', fontWeight: 600, marginBottom: 6 }}>Current Password</label>
+                          <label style={{ display: 'block', color: 'var(--color-text-secondary)', fontSize: '0.875rem', fontWeight: 600, marginBottom: 6 }}>Current Password</label>
                           <input
                             type="password"
                             placeholder="••••••••"
@@ -756,7 +756,7 @@ export default function Profile() {
                         </div>
 
                         <div>
-                          <label style={{ display: 'block', color: 'var(--color-text-secondary)', fontSize: '0.8rem', fontWeight: 600, marginBottom: 6 }}>New Password</label>
+                          <label style={{ display: 'block', color: 'var(--color-text-secondary)', fontSize: '0.875rem', fontWeight: 600, marginBottom: 6 }}>New Password</label>
                           <input
                             type="password"
                             placeholder="••••••••"
@@ -767,7 +767,7 @@ export default function Profile() {
                         </div>
 
                         <div>
-                          <label style={{ display: 'block', color: 'var(--color-text-secondary)', fontSize: '0.8rem', fontWeight: 600, marginBottom: 6 }}>Confirm New Password</label>
+                          <label style={{ display: 'block', color: 'var(--color-text-secondary)', fontSize: '0.875rem', fontWeight: 600, marginBottom: 6 }}>Confirm New Password</label>
                           <input
                             type="password"
                             placeholder="••••••••"
@@ -797,7 +797,7 @@ export default function Profile() {
                 {activeTab === 'preferences' && (
                   <form onSubmit={handleSavePreferences} style={{ display: 'flex', flexDirection: 'column', gap: 28 }}>
                     <div>
-                      <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color: 'white', fontFamily: 'var(--font-heading)', marginBottom: 6 }}>
+                      <h3 style={{ fontSize: '1.25rem', fontWeight: 700, color: 'white', fontFamily: 'var(--font-heading)', marginBottom: 6 }}>
                         AI Generation Preferences
                       </h3>
                       <p style={{ color: 'var(--color-text-secondary)', fontSize: '0.875rem' }}>
@@ -807,7 +807,7 @@ export default function Profile() {
 
                     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: 24 }}>
                       <div>
-                        <label style={{ display: 'block', color: 'var(--color-dark-200)', fontSize: '0.85rem', fontWeight: 600, marginBottom: 8 }}>
+                        <label style={{ display: 'block', color: 'var(--color-dark-200)', fontSize: '0.875rem', fontWeight: 600, marginBottom: 8 }}>
                           Preferred Currency
                         </label>
                         <select
@@ -825,7 +825,7 @@ export default function Profile() {
                       </div>
 
                       <div>
-                        <label style={{ display: 'block', color: 'var(--color-dark-200)', fontSize: '0.85rem', fontWeight: 600, marginBottom: 8 }}>
+                        <label style={{ display: 'block', color: 'var(--color-dark-200)', fontSize: '0.875rem', fontWeight: 600, marginBottom: 8 }}>
                           Default Travel Style
                         </label>
                         <select
@@ -842,7 +842,7 @@ export default function Profile() {
                       </div>
 
                       <div>
-                        <label style={{ display: 'block', color: 'var(--color-dark-200)', fontSize: '0.85rem', fontWeight: 600, marginBottom: 8 }}>
+                        <label style={{ display: 'block', color: 'var(--color-dark-200)', fontSize: '0.875rem', fontWeight: 600, marginBottom: 8 }}>
                           Dietary Requirements
                         </label>
                         <select
@@ -858,7 +858,7 @@ export default function Profile() {
                       </div>
 
                       <div>
-                        <label style={{ display: 'block', color: 'var(--color-dark-200)', fontSize: '0.85rem', fontWeight: 600, marginBottom: 8 }}>
+                        <label style={{ display: 'block', color: 'var(--color-dark-200)', fontSize: '0.875rem', fontWeight: 600, marginBottom: 8 }}>
                           Itinerary Pace
                         </label>
                         <select
@@ -877,7 +877,7 @@ export default function Profile() {
                       <button
                         type="submit"
                         className="btn-primary"
-                        style={{ padding: '12px 28px', borderRadius: 14, fontSize: '0.9rem' }}
+                        style={{ padding: '12px 28px', borderRadius: 14, fontSize: '0.9375rem' }}
                       >
                         <Save style={{ width: 16, height: 16 }} />
                         <span>Save Preferences</span>
@@ -890,7 +890,7 @@ export default function Profile() {
                 {activeTab === 'notifications' && (
                   <form onSubmit={handleSavePreferences} style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
                     <div>
-                      <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color: 'white', fontFamily: 'var(--font-heading)', marginBottom: 6 }}>
+                      <h3 style={{ fontSize: '1.25rem', fontWeight: 700, color: 'white', fontFamily: 'var(--font-heading)', marginBottom: 6 }}>
                         AI Assistant & Notifications
                       </h3>
                       <p style={{ color: 'var(--color-text-secondary)', fontSize: '0.875rem' }}>
@@ -905,21 +905,21 @@ export default function Profile() {
                           title: 'Auto-Optimize Itinerary Timings',
                           desc: 'Allow AI to automatically adjust activity schedules based on local transit & peak hours',
                           icon: Sparkles,
-                          color: '#3B82F6',
+                          color: 'var(--color-primary-400)',
                         },
                         {
                           key: 'aiSuggestions',
                           title: 'Smart Recommendation Cards',
                           desc: 'Display personalized local dining & hidden gem recommendations on trip pages',
                           icon: Zap,
-                          color: '#F59E0B',
+                          color: 'var(--color-primary-400)',
                         },
                         {
                           key: 'emailAlerts',
                           title: 'Email Trip Summaries & PDF Exports',
                           desc: 'Receive confirmation emails and PDF downloads directly in your inbox',
                           icon: Mail,
-                          color: '#10B981',
+                          color: 'var(--color-primary-400)',
                         },
                       ].map((item) => (
                         <div
@@ -951,10 +951,10 @@ export default function Profile() {
                               <item.icon style={{ width: 18, height: 18 }} />
                             </div>
                             <div>
-                              <div style={{ color: 'white', fontWeight: 700, fontSize: '0.95rem', fontFamily: 'var(--font-heading)', marginBottom: 2 }}>
+                              <div style={{ color: 'white', fontWeight: 700, fontSize: '0.9375rem', fontFamily: 'var(--font-heading)', marginBottom: 2 }}>
                                 {item.title}
                               </div>
-                              <div style={{ color: 'var(--color-text-secondary)', fontSize: '0.8rem' }}>
+                              <div style={{ color: 'var(--color-text-secondary)', fontSize: '0.875rem' }}>
                                 {item.desc}
                               </div>
                             </div>
@@ -976,7 +976,7 @@ export default function Profile() {
                               display: 'flex',
                               alignItems: 'center',
                               justifyContent: toggles[item.key] ? 'flex-end' : 'flex-start',
-                              boxShadow: toggles[item.key] ? '0 0 16px rgba(59, 130, 246, 0.4)' : 'none',
+                              boxShadow: toggles[item.key] ? '0 0 16px rgba(79, 124, 255, 0.4)' : 'none',
                               flexShrink: 0,
                             }}
                           >
@@ -1000,7 +1000,7 @@ export default function Profile() {
                       <button
                         type="submit"
                         className="btn-primary"
-                        style={{ padding: '12px 28px', borderRadius: 14, fontSize: '0.9rem' }}
+                        style={{ padding: '12px 28px', borderRadius: 14, fontSize: '0.9375rem' }}
                       >
                         <Save style={{ width: 16, height: 16 }} />
                         <span>Save Settings</span>
@@ -1015,10 +1015,10 @@ export default function Profile() {
                     <div style={{
                       position: 'relative',
                       overflow: 'hidden',
-                      borderRadius: 22,
+                      borderRadius: 24,
                       padding: '32px',
-                      background: 'linear-gradient(135deg, rgba(59, 130, 246, 0.2) 0%, var(--color-secondary-dark) 50%, rgba(245, 158, 11, 0.15) 100%)',
-                      border: '1px solid rgba(59, 130, 246, 0.35)',
+                      background: 'linear-gradient(135deg, rgba(79, 124, 255, 0.2) 0%, var(--color-secondary-dark) 50%, rgba(79, 124, 255, 0.12) 100%)',
+                      border: '1px solid rgba(79, 124, 255, 0.35)',
                       boxShadow: '0 10px 30px rgba(0,0,0,0.25)',
                     }}>
                       <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 20, flexWrap: 'wrap', marginBottom: 20 }}>
@@ -1029,11 +1029,11 @@ export default function Profile() {
                             gap: 6,
                             padding: '4px 12px',
                             borderRadius: 9999,
-                            background: 'rgba(245, 158, 11, 0.15)',
-                            border: '1px solid rgba(245, 158, 11, 0.3)',
-                            color: '#F59E0B',
+                            background: 'rgba(79, 124, 255, 0.15)',
+                            border: '1px solid rgba(79, 124, 255, 0.3)',
+                            color: 'var(--color-primary-400)',
                             fontSize: '0.75rem',
-                            fontWeight: 800,
+                            fontWeight: 700,
                             textTransform: 'uppercase',
                             letterSpacing: '0.05em',
                             marginBottom: 10,
@@ -1041,14 +1041,14 @@ export default function Profile() {
                             <Sparkles style={{ width: 13, height: 13 }} /> Active Membership
                           </div>
 
-                          <h3 style={{ fontSize: '1.6rem', fontWeight: 800, color: 'white', fontFamily: 'var(--font-heading)', margin: 0 }}>
+                          <h3 style={{ fontSize: '1.75rem', fontWeight: 700, color: 'white', fontFamily: 'var(--font-heading)', margin: 0 }}>
                             PRO Explorer Plan
                           </h3>
                         </div>
 
                         <div style={{ textAlign: 'right' }}>
-                          <div style={{ fontSize: '1.6rem', fontWeight: 800, color: '#60A5FA', fontFamily: 'var(--font-heading)' }}>
-                            $19 <span style={{ fontSize: '0.85rem', color: 'var(--color-text-secondary)' }}>/ month</span>
+                          <div style={{ fontSize: '1.75rem', fontWeight: 700, color: 'var(--color-primary-400)', fontFamily: 'var(--font-heading)' }}>
+                            $19 <span style={{ fontSize: '0.875rem', color: 'var(--color-text-secondary)' }}>/ month</span>
                           </div>
                           <span style={{ fontSize: '0.75rem', color: '#10B981', fontWeight: 700 }}>Renews Aug 28, 2026</span>
                         </div>
@@ -1062,7 +1062,7 @@ export default function Profile() {
                           'PDF Export & Route Customization',
                           '24/7 AI Travel Concierge Assistant',
                         ].map((feature, idx) => (
-                          <div key={idx} style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: '0.85rem', color: 'var(--color-dark-200)' }}>
+                          <div key={idx} style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: '0.875rem', color: 'var(--color-dark-200)' }}>
                             <CheckCircle2 style={{ width: 16, height: 16, color: '#10B981', flexShrink: 0 }} />
                             <span>{feature}</span>
                           </div>
@@ -1078,7 +1078,7 @@ export default function Profile() {
                       gap: 20,
                       padding: '24px',
                       background: 'rgba(255,255,255,0.025)',
-                      borderRadius: 20,
+                      borderRadius: 18,
                       border: '1px solid rgba(255,255,255,0.06)',
                       flexWrap: 'wrap',
                     }}>
@@ -1087,21 +1087,21 @@ export default function Profile() {
                           width: 44,
                           height: 44,
                           borderRadius: 14,
-                          background: 'rgba(59, 130, 246, 0.12)',
-                          border: '1px solid rgba(59, 130, 246, 0.25)',
+                          background: 'rgba(79, 124, 255, 0.12)',
+                          border: '1px solid rgba(79, 124, 255, 0.25)',
                           display: 'flex',
                           alignItems: 'center',
                           justifyContent: 'center',
-                          color: '#60A5FA',
+                          color: 'var(--color-primary-400)',
                           flexShrink: 0,
                         }}>
                           <CreditCard style={{ width: 22, height: 22 }} />
                         </div>
                         <div>
-                          <div style={{ color: 'white', fontWeight: 700, fontSize: '0.95rem', fontFamily: 'var(--font-heading)' }}>
+                          <div style={{ color: 'white', fontWeight: 700, fontSize: '0.9375rem', fontFamily: 'var(--font-heading)' }}>
                             Payment Method
                           </div>
-                          <div style={{ color: 'var(--color-text-secondary)', fontSize: '0.8rem', marginTop: 2 }}>
+                          <div style={{ color: 'var(--color-text-secondary)', fontSize: '0.875rem', marginTop: 2 }}>
                             Visa ending in •••• 4242 (Expires 12/28)
                           </div>
                         </div>
@@ -1111,7 +1111,7 @@ export default function Profile() {
                         type="button"
                         onClick={() => toast.success('Subscription portal opened!')}
                         className="btn-secondary"
-                        style={{ borderRadius: 12, padding: '10px 20px', fontSize: '0.85rem' }}
+                        style={{ borderRadius: 12, padding: '10px 20px', fontSize: '0.875rem' }}
                       >
                         Manage Billing
                       </button>

@@ -79,27 +79,35 @@ export default function Home() {
         <motion.div
           animate={{ y: [0, -20, 0] }}
           transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
-          style={{ position: 'absolute', top: '20%', left: '10%', fontSize: '2rem', opacity: 0.2, display: 'none' }}
+          style={{ position: 'absolute', top: '20%', left: '10%', opacity: 0.25, display: 'none' }}
           className="md:!block"
-        >✈️</motion.div>
+        >
+          <Plane style={{ width: 40, height: 40, color: 'var(--color-primary-500)' }} />
+        </motion.div>
         <motion.div
           animate={{ y: [0, 15, 0] }}
           transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
-          style={{ position: 'absolute', top: '30%', right: '15%', fontSize: '1.75rem', opacity: 0.2, display: 'none' }}
+          style={{ position: 'absolute', top: '30%', right: '12%', opacity: 0.18, display: 'none' }}
           className="md:!block"
-        >🌍</motion.div>
+        >
+          <Globe style={{ width: 44, height: 44, color: 'var(--color-primary-400)' }} />
+        </motion.div>
         <motion.div
           animate={{ y: [0, -12, 0] }}
           transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut', delay: 2 }}
-          style={{ position: 'absolute', bottom: '25%', left: '20%', fontSize: '1.75rem', opacity: 0.15, display: 'none' }}
+          style={{ position: 'absolute', bottom: '28%', left: '16%', opacity: 0.18, display: 'none' }}
           className="md:!block"
-        >🗺️</motion.div>
+        >
+          <Map style={{ width: 36, height: 36, color: 'var(--color-primary-300)' }} />
+        </motion.div>
         <motion.div
           animate={{ y: [0, 18, 0] }}
           transition={{ duration: 5.5, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
-          style={{ position: 'absolute', top: '60%', right: '10%', fontSize: '1.75rem', opacity: 0.15, display: 'none' }}
+          style={{ position: 'absolute', top: '58%', right: '8%', opacity: 0.15, display: 'none' }}
           className="md:!block"
-        >🧳</motion.div>
+        >
+          <MapPin style={{ width: 36, height: 36, color: 'var(--color-primary-600)' }} />
+        </motion.div>
 
         <div style={{ width: '100%', maxWidth: 1280, margin: '0 auto', padding: '96px 24px 0', position: 'relative', zIndex: 10 }}>
           <div style={{ maxWidth: 896, margin: '0 auto', textAlign: 'center' }}>
@@ -121,7 +129,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.15 }}
-              style={{ fontSize: 'clamp(2.5rem, 6vw, 4.5rem)', fontWeight: 800, lineHeight: 1.1, marginBottom: 24, letterSpacing: '-0.02em', fontFamily: 'var(--font-heading)', color: 'white' }}
+              style={{ fontSize: 'clamp(2.5rem, 6vw, 4.25rem)', fontWeight: 700, lineHeight: 1.1, marginBottom: 24, letterSpacing: '-0.02em', fontFamily: 'var(--font-heading)', color: 'white' }}
             >
               Plan Anywhere.{' '}
               <span style={{ color: 'var(--color-brand-blue)' }}>Travel Everywhere.</span>
@@ -132,7 +140,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.3 }}
-              style={{ fontSize: 'clamp(1rem, 2vw, 1.25rem)', color: 'var(--color-dark-400)', maxWidth: 640, margin: '0 auto 40px', lineHeight: 1.7 }}
+              style={{ fontSize: 'clamp(1rem, 2vw, 1.125rem)', color: 'var(--color-dark-400)', maxWidth: 640, margin: '0 auto 40px', lineHeight: 1.7 }}
             >
               Generate personalized day-by-day travel itineraries for{' '}
               <strong style={{ color: 'var(--color-dark-200)' }}>195 countries</strong> in seconds.
@@ -147,7 +155,7 @@ export default function Home() {
               onSubmit={handleSearch}
               style={{ maxWidth: 580, margin: '0 auto 24px' }}
             >
-              <div className="glass" style={{ borderRadius: 16, padding: 6, display: 'flex', alignItems: 'center', border: '1px solid var(--color-border-dark)', transition: 'border-color 0.3s' }}>
+              <div className="glass" style={{ borderRadius: 18, padding: 6, display: 'flex', alignItems: 'center', border: '1px solid var(--color-border-dark)', transition: 'border-color 0.3s' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '0 16px', flex: 1, minWidth: 0 }}>
                   <Search style={{ width: 20, height: 20, color: 'var(--color-dark-400)', flexShrink: 0 }} />
                   <input
@@ -160,7 +168,7 @@ export default function Home() {
                 </div>
                 <button type="submit" className="btn-primary" style={{ borderRadius: 12, padding: '12px 20px', flexShrink: 0 }}>
                   <Sparkles style={{ width: 16, height: 16 }} />
-                  <span className="sm:inline" style={{ display: 'none' }}>Plan with AI</span>
+                  <span className="hidden sm:inline">Plan with AI</span>
                 </button>
               </div>
             </motion.form>
@@ -178,7 +186,7 @@ export default function Home() {
                   key={city}
                   onClick={() => { setSearchQuery(city); navigate(`/plan?destination=${city}`); }}
                   style={{ padding: '4px 12px', borderRadius: 8, background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.06)', color: 'var(--color-dark-300)', cursor: 'pointer', transition: 'all 0.2s', fontFamily: 'var(--font-body)', fontSize: '0.875rem' }}
-                  onMouseEnter={(e) => { e.target.style.color = 'white'; e.target.style.borderColor = 'rgba(59,130,246,0.3)'; }}
+                  onMouseEnter={(e) => { e.target.style.color = 'white'; e.target.style.borderColor = 'rgba(79,124,255,0.35)'; }}
                   onMouseLeave={(e) => { e.target.style.color = 'var(--color-dark-300)'; e.target.style.borderColor = 'rgba(255,255,255,0.06)'; }}
                 >
                   {city}
@@ -208,10 +216,10 @@ export default function Home() {
       {/* ===== STATS BAR ===== */}
       <section style={{ position: 'relative', padding: '48px 0', borderTop: '1px solid rgba(255,255,255,0.06)', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
         <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 24px' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 32 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: 32 }}>
             {APP_STATS.map((stat) => (
               <div key={stat.label} style={{ textAlign: 'center' }}>
-                <div style={{ fontSize: 'clamp(1.75rem, 3vw, 2.5rem)', fontWeight: 800, fontFamily: 'var(--font-heading)', color: 'white', marginBottom: 4, whiteSpace: 'nowrap' }}>
+                <div style={{ fontSize: 'clamp(1.75rem, 3.5vw, 2.5rem)', fontWeight: 700, fontFamily: 'var(--font-heading)', color: 'white', marginBottom: 4, whiteSpace: 'nowrap' }}>
                   <Counter value={stat.value} suffix={stat.suffix} />
                 </div>
                 <div style={{ color: 'var(--color-dark-400)', fontSize: '0.875rem' }}>{stat.label}</div>
@@ -225,8 +233,8 @@ export default function Home() {
       <Section>
         <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 24px' }}>
           <div style={{ textAlign: 'center', marginBottom: 64 }}>
-            <span style={{ display: 'inline-block', padding: '6px 16px', borderRadius: 9999, background: 'rgba(59,130,246,0.1)', color: 'var(--color-primary-400)', fontSize: '0.75rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 16 }}>Features</span>
-            <h2 style={{ fontSize: 'clamp(1.75rem, 4vw, 3rem)', fontWeight: 800, fontFamily: 'var(--font-heading)', color: 'white', marginBottom: 16, letterSpacing: '-0.02em' }}>
+            <span style={{ display: 'inline-block', padding: '6px 16px', borderRadius: 9999, background: 'rgba(79,124,255,0.1)', color: 'var(--color-primary-400)', fontSize: '0.75rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 16 }}>Features</span>
+            <h2 style={{ fontSize: 'clamp(1.75rem, 4vw, 3rem)', fontWeight: 700, fontFamily: 'var(--font-heading)', color: 'white', marginBottom: 16, letterSpacing: '-0.02em' }}>
               Everything You Need to{' '}
               <span style={{ color: 'var(--color-brand-blue)' }}>Travel Smart</span>
             </h2>
@@ -249,9 +257,10 @@ export default function Home() {
                   style={{ padding: 32 }}
                 >
                   <div
-                    style={{ width: 56, height: 56, borderRadius: 16, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 20, background: `${feature.color}15`, transition: 'transform 0.3s' }}
+                    style={{ width: 56, height: 56, borderRadius: 18, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 20, background: 'rgba(79,124,255,0.1)', border: '1px solid rgba(79,124,255,0.2)', transition: 'transform 0.3s' }}
+                    className="group-hover:scale-105"
                   >
-                    <Icon style={{ width: 28, height: 28, color: feature.color }} />
+                    <Icon style={{ width: 28, height: 28, color: 'var(--color-primary-400)' }} />
                   </div>
                   <h3 style={{ fontSize: '1.125rem', fontWeight: 600, color: 'white', marginBottom: 8, fontFamily: 'var(--font-heading)' }}>{feature.title}</h3>
                   <p style={{ color: 'var(--color-dark-400)', fontSize: '0.875rem', lineHeight: 1.7 }}>{feature.description}</p>
@@ -267,8 +276,8 @@ export default function Home() {
         <div className="glow-dot" style={{ width: 500, height: 500, background: 'var(--color-primary-600)', position: 'absolute', top: 0, left: '30%' }} />
         <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 24px', position: 'relative', zIndex: 10 }}>
           <div style={{ textAlign: 'center', marginBottom: 64 }}>
-            <span style={{ display: 'inline-block', padding: '6px 16px', borderRadius: 9999, background: 'rgba(245,158,11,0.1)', color: 'var(--color-accent-400)', fontSize: '0.75rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 16 }}>How It Works</span>
-            <h2 style={{ fontSize: 'clamp(1.75rem, 4vw, 3rem)', fontWeight: 800, fontFamily: 'var(--font-heading)', color: 'white', marginBottom: 16, letterSpacing: '-0.02em' }}>
+            <span style={{ display: 'inline-block', padding: '6px 16px', borderRadius: 9999, background: 'rgba(79,124,255,0.1)', color: 'var(--color-primary-400)', fontSize: '0.75rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 16 }}>How It Works</span>
+            <h2 style={{ fontSize: 'clamp(1.75rem, 4vw, 3rem)', fontWeight: 700, fontFamily: 'var(--font-heading)', color: 'white', marginBottom: 16, letterSpacing: '-0.02em' }}>
               Plan Your Dream Trip in{' '}
               <span style={{ color: 'var(--color-brand-blue)' }}>3 Simple Steps</span>
             </h2>
@@ -288,7 +297,7 @@ export default function Home() {
                   <div style={{ width: 100, height: 100, borderRadius: 24, background: 'var(--color-dark-800)', border: '1px solid rgba(255,255,255,0.08)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '2.5rem', position: 'relative', zIndex: 10 }}>
                     {step.icon}
                   </div>
-                  <div style={{ position: 'absolute', top: -8, right: -8, width: 32, height: 32, borderRadius: '50%', background: 'linear-gradient(135deg, var(--color-primary-500), var(--color-accent-500))', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontSize: '0.875rem', fontWeight: 700, zIndex: 20 }}>
+                  <div style={{ position: 'absolute', top: -8, right: -8, width: 32, height: 32, borderRadius: '50%', background: 'var(--color-primary-500)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontSize: '0.875rem', fontWeight: 700, zIndex: 20, boxShadow: '0 4px 12px rgba(79,124,255,0.4)' }}>
                     {step.step}
                   </div>
                 </div>
@@ -312,8 +321,8 @@ export default function Home() {
       <Section>
         <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 24px' }}>
           <div style={{ textAlign: 'center', marginBottom: 64 }}>
-            <span style={{ display: 'inline-block', padding: '6px 16px', borderRadius: 9999, background: 'rgba(16,185,129,0.1)', color: 'var(--color-success-500)', fontSize: '0.75rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 16 }}>Destinations</span>
-            <h2 style={{ fontSize: 'clamp(1.75rem, 4vw, 3rem)', fontWeight: 800, fontFamily: 'var(--font-heading)', color: 'white', marginBottom: 16, letterSpacing: '-0.02em' }}>
+            <span style={{ display: 'inline-block', padding: '6px 16px', borderRadius: 9999, background: 'rgba(79,124,255,0.1)', color: 'var(--color-primary-400)', fontSize: '0.75rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 16 }}>Destinations</span>
+            <h2 style={{ fontSize: 'clamp(1.75rem, 4vw, 3rem)', fontWeight: 700, fontFamily: 'var(--font-heading)', color: 'white', marginBottom: 16, letterSpacing: '-0.02em' }}>
               Explore the <span style={{ color: 'var(--color-brand-blue)' }}>World</span>
             </h2>
             <p style={{ color: 'var(--color-dark-400)', maxWidth: 560, margin: '0 auto', lineHeight: 1.7 }}>
@@ -336,7 +345,7 @@ export default function Home() {
                   className="glass-card"
                   style={{ display: 'block', padding: 20, textDecoration: 'none', position: 'relative', overflow: 'hidden' }}
                 >
-                  <div style={{ position: 'absolute', top: 0, right: 0, width: 96, height: 96, borderRadius: '50%', opacity: 0.07, transform: 'translate(32px, -32px)', background: dest.color }} />
+                  <div style={{ position: 'absolute', top: 0, right: 0, width: 96, height: 96, borderRadius: '50%', opacity: 0.07, transform: 'translate(32px, -32px)', background: 'var(--color-primary-500)' }} />
                   <span style={{ fontSize: '1.75rem', marginBottom: 12, display: 'block' }}>{dest.emoji}</span>
                   <h3 style={{ color: 'white', fontWeight: 600, fontSize: '1rem', marginBottom: 2 }}>{dest.city}</h3>
                   <p style={{ color: 'var(--color-dark-400)', fontSize: '0.75rem' }}>{dest.country}</p>
@@ -353,7 +362,7 @@ export default function Home() {
                 key={region.id}
                 to={`/community?region=${region.id}`}
                 style={{ padding: '8px 16px', borderRadius: 12, background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.06)', fontSize: '0.875rem', color: 'var(--color-dark-300)', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 8, transition: 'all 0.2s' }}
-                onMouseEnter={(e) => { e.currentTarget.style.color = 'white'; e.currentTarget.style.borderColor = 'rgba(59,130,246,0.3)'; }}
+                onMouseEnter={(e) => { e.currentTarget.style.color = 'white'; e.currentTarget.style.borderColor = 'rgba(79,124,255,0.35)'; }}
                 onMouseLeave={(e) => { e.currentTarget.style.color = 'var(--color-dark-300)'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.06)'; }}
               >
                 <span>{region.icon}</span>
@@ -369,8 +378,8 @@ export default function Home() {
         <div className="glow-dot" style={{ width: 400, height: 400, background: 'var(--color-accent-600)', position: 'absolute', bottom: 0, right: '20%' }} />
         <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 24px', position: 'relative', zIndex: 10 }}>
           <div style={{ textAlign: 'center', marginBottom: 64 }}>
-            <span style={{ display: 'inline-block', padding: '6px 16px', borderRadius: 9999, background: 'rgba(245,158,11,0.1)', color: 'var(--color-warning-500)', fontSize: '0.75rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 16 }}>Testimonials</span>
-            <h2 style={{ fontSize: 'clamp(1.75rem, 4vw, 3rem)', fontWeight: 800, fontFamily: 'var(--font-heading)', color: 'white', marginBottom: 16, letterSpacing: '-0.02em' }}>
+            <span style={{ display: 'inline-block', padding: '6px 16px', borderRadius: 9999, background: 'rgba(79,124,255,0.1)', color: 'var(--color-primary-400)', fontSize: '0.75rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 16 }}>Testimonials</span>
+            <h2 style={{ fontSize: 'clamp(1.75rem, 4vw, 3rem)', fontWeight: 700, fontFamily: 'var(--font-heading)', color: 'white', marginBottom: 16, letterSpacing: '-0.02em' }}>
               Loved by <span style={{ color: 'var(--color-brand-blue)' }}>Travelers</span>
             </h2>
           </div>
@@ -412,15 +421,15 @@ export default function Home() {
       <Section>
         <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 24px' }}>
           <div className="glass-card" style={{ position: 'relative', borderRadius: 24, overflow: 'hidden', background: 'linear-gradient(135deg, rgba(15,17,23,0.9), rgba(26,29,39,0.9))', padding: 'clamp(48px, 6vw, 64px)', textAlign: 'center' }}>
-            <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(135deg, rgba(59,130,246,0.1), rgba(245,158,11,0.1), rgba(59,130,246,0.1))' }} />
-            <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: 1, background: 'linear-gradient(90deg, transparent, rgba(59,130,246,0.5), transparent)' }} />
+            <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(135deg, rgba(79,124,255,0.08), transparent 45%, rgba(79,124,255,0.06))' }} />
+            <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: 1, background: 'linear-gradient(90deg, transparent, rgba(79,124,255,0.5), transparent)' }} />
             <div style={{ position: 'relative', zIndex: 10 }}>
               <motion.div
                 animate={{ rotate: 360 }}
                 transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
                 style={{ display: 'inline-block', marginBottom: 24, fontSize: '3rem' }}
               >🌍</motion.div>
-              <h2 style={{ fontSize: 'clamp(1.75rem, 4vw, 3rem)', fontWeight: 800, fontFamily: 'var(--font-heading)', color: 'white', marginBottom: 16, letterSpacing: '-0.02em' }}>
+              <h2 style={{ fontSize: 'clamp(1.75rem, 4vw, 3rem)', fontWeight: 700, fontFamily: 'var(--font-heading)', color: 'white', marginBottom: 16, letterSpacing: '-0.02em' }}>
                 Ready to Explore the World?
               </h2>
               <p style={{ color: 'var(--color-dark-400)', maxWidth: 480, margin: '0 auto 32px', fontSize: '1.125rem', lineHeight: 1.7 }}>

@@ -2,8 +2,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
-  Menu, X, Plane, LogIn, UserPlus, LogOut, LayoutDashboard, User,
-  ChevronDown, Sparkles, Heart, Compass, ShieldCheck, Settings, ArrowRight
+  Menu, X, LogIn, UserPlus, LogOut, LayoutDashboard, User,
+  ChevronDown, Sparkles, ShieldCheck, ArrowRight
 } from 'lucide-react';
 import { NAV_LINKS } from '../../utils/constants';
 import { useAuth } from '../../contexts/AuthContext';
@@ -29,7 +29,6 @@ export default function Navbar() {
     setShowProfileMenu(false);
   }, [location]);
 
-  // Click outside to close profile menu
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (profileMenuRef.current && !profileMenuRef.current.contains(event.target)) {
@@ -42,33 +41,28 @@ export default function Navbar() {
 
   return (
     <motion.nav
-      initial={{ y: -100 }}
+      initial={{ y: -80 }}
       animate={{ y: 0 }}
-      transition={{ duration: 0.6, ease: 'easeOut' }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled
-          ? 'glass shadow-2xl shadow-black/50 border-b border-white/[0.08]'
-          : 'bg-transparent'
+      transition={{ duration: 0.5, ease: 'easeOut' }}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled || isOpen ? 'glass shadow-2xl shadow-black/50' : 'bg-transparent'
       }`}
     >
-      <div style={{ maxWidth: 1360, margin: '0 auto', padding: '0 28px' }}>
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: 76 }}>
-          
-          {/* Brand Logo */}
+      <div className="container-custom">
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: 72 }}>
           <Logo size="md" />
 
-          {/* Desktop Navigation Links Dock */}
-          <div className="hidden lg:flex items-center justify-center flex-1" style={{ margin: '0 32px' }}>
+          {/* Desktop Navigation */}
+          <div className="hidden lg:flex items-center justify-center flex-1" style={{ margin: '0 24px' }}>
             <div style={{
               display: 'flex',
               alignItems: 'center',
-              gap: '6px',
-              padding: '6px 8px',
-              background: 'rgba(15, 17, 23, 0.75)',
+              gap: 4,
+              padding: '5px 6px',
+              background: 'rgba(14, 16, 24, 0.6)',
               border: '1px solid rgba(255, 255, 255, 0.08)',
-              borderRadius: '9999px',
+              borderRadius: 9999,
               backdropFilter: 'blur(20px)',
-              boxShadow: '0 8px 32px rgba(0,0,0,0.3)',
             }}>
               {NAV_LINKS.map((link) => {
                 const isActive = location.pathname === link.path;
@@ -78,18 +72,18 @@ export default function Navbar() {
                     to={link.path}
                     style={{
                       position: 'relative',
-                      padding: '9px 22px',
-                      borderRadius: '9999px',
+                      padding: '9px 20px',
+                      borderRadius: 9999,
                       fontSize: '0.875rem',
-                      fontWeight: isActive ? 700 : 600,
+                      fontWeight: isActive ? 700 : 500,
                       textDecoration: 'none',
-                      color: isActive ? '#FFFFFF' : 'var(--color-text-secondary)',
-                      transition: 'all 0.25s ease',
+                      color: isActive ? '#fff' : 'var(--color-dark-400)',
+                      transition: 'color 0.2s ease',
                       display: 'inline-flex',
                       alignItems: 'center',
-                      gap: 8,
+                      zIndex: 1,
                     }}
-                    className={!isActive ? 'hover:!text-white' : ''}
+                    className={!isActive ? 'hover:text-white' : ''}
                   >
                     {isActive && (
                       <motion.div
@@ -97,79 +91,49 @@ export default function Navbar() {
                         style={{
                           position: 'absolute',
                           inset: 0,
-                          borderRadius: '9999px',
-                          background: 'linear-gradient(135deg, rgba(59, 130, 246, 0.25) 0%, rgba(29, 78, 216, 0.18) 100%)',
-                          border: '1px solid rgba(59, 130, 246, 0.45)',
-                          boxShadow: '0 4px 16px rgba(59, 130, 246, 0.25)',
-                          zIndex: 0,
+                          borderRadius: 9999,
+                          background: 'var(--color-primary-500)',
+                          boxShadow: '0 4px 16px rgba(79, 124, 255, 0.35)',
                         }}
-                        transition={{ type: 'spring', bounce: 0.2, duration: 0.45 }}
+                        transition={{ type: 'spring', bounce: 0.2, duration: 0.4 }}
                       />
                     )}
-
-                    {isActive && (
-                      <span style={{
-                        width: 6,
-                        height: 6,
-                        borderRadius: '50%',
-                        background: 'var(--color-brand-blue)',
-                        boxShadow: '0 0 10px #3B82F6',
-                        position: 'relative',
-                        zIndex: 10,
-                      }} />
-                    )}
-
-                    <span style={{ position: 'relative', zIndex: 10 }}>{link.label}</span>
+                    <span style={{ position: 'relative', zIndex: 2 }}>{link.label}</span>
                   </Link>
                 );
               })}
             </div>
           </div>
 
-          {/* Desktop User Profile Button & Dropdown */}
-          <div className="hidden lg:flex items-center gap-4">
+          {/* Desktop Auth / Profile */}
+          <div className="hidden lg:flex items-center gap-3">
             {user ? (
               <div className="relative" ref={profileMenuRef}>
-                {/* Trigger Button */}
                 <button
                   onClick={() => setShowProfileMenu(!showProfileMenu)}
                   style={{
                     display: 'flex',
                     alignItems: 'center',
-                    gap: 12,
-                    padding: '6px 16px 6px 8px',
+                    gap: 10,
+                    padding: '4px 12px 4px 5px',
                     borderRadius: 9999,
-                    transition: 'all 0.3s ease',
+                    transition: 'all 0.25s ease',
                     cursor: 'pointer',
-                    background: showProfileMenu ? 'rgba(255, 255, 255, 0.1)' : 'rgba(255, 255, 255, 0.04)',
-                    border: showProfileMenu ? '1px solid rgba(59, 130, 246, 0.5)' : '1px solid rgba(255, 255, 255, 0.1)',
-                    boxShadow: showProfileMenu ? '0 0 24px rgba(59, 130, 246, 0.25)' : 'none',
+                    background: showProfileMenu ? 'rgba(255,255,255,0.08)' : 'rgba(255,255,255,0.03)',
+                    border: '1px solid rgba(255,255,255,0.1)',
                   }}
-                  className="hover:!bg-white/[0.08] hover:!border-white/20"
+                  className="hover:!bg-white/[0.08]"
                 >
-                  {/* Avatar Ring */}
                   <div style={{ position: 'relative', flexShrink: 0 }}>
                     <div style={{
-                      width: 40,
-                      height: 40,
-                      borderRadius: '50%',
-                      padding: 2,
-                      background: 'linear-gradient(135deg, #3B82F6 0%, #F59E0B 50%, #8B5CF6 100%)',
-                      boxShadow: '0 4px 12px rgba(0,0,0,0.3)',
+                      width: 38, height: 38, borderRadius: '50%', padding: 2,
+                      background: 'linear-gradient(135deg, var(--color-primary-400), var(--color-primary-600))',
                     }}>
                       <div style={{
-                        width: '100%',
-                        height: '100%',
-                        borderRadius: '50%',
-                        background: '#0F1117',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        color: 'white',
-                        fontWeight: 800,
-                        fontSize: '1rem',
-                        fontFamily: 'var(--font-heading)',
-                        overflow: 'hidden',
+                        width: '100%', height: '100%', borderRadius: '50%',
+                        background: '#0E1018', display: 'flex', alignItems: 'center',
+                        justifyContent: 'center', color: '#fff', fontWeight: 700,
+                        fontSize: '0.9375rem', fontFamily: 'var(--font-heading)', overflow: 'hidden',
                       }}>
                         {user.avatarUrl ? (
                           <img src={user.avatarUrl} alt={user.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
@@ -178,105 +142,52 @@ export default function Navbar() {
                         )}
                       </div>
                     </div>
-                    {/* Status Dot */}
                     <span style={{
-                      position: 'absolute',
-                      bottom: 0,
-                      right: 0,
-                      width: 11,
-                      height: 11,
-                      borderRadius: '50%',
-                      background: '#10B981',
-                      border: '2px solid #090B10',
+                      position: 'absolute', bottom: 0, right: 0, width: 10, height: 10,
+                      borderRadius: '50%', background: 'var(--color-success-500)',
+                      border: '2px solid #0A0C12',
                     }} />
                   </div>
-
-                  {/* Name & Role Text */}
-                  <div style={{ textAlign: 'left', minWidth: 0 }}>
-                    <div style={{ color: 'white', fontWeight: 700, fontSize: '0.875rem', fontFamily: 'var(--font-heading)', lineHeight: 1.2 }} className="truncate">
-                      {user.name ? user.name.split(' ')[0] : 'User'}
-                    </div>
-                    <div style={{ color: '#60A5FA', fontSize: '0.7rem', fontWeight: 600, marginTop: 2 }} className="truncate">
-                      PRO Traveler
-                    </div>
-                  </div>
-
-                  {/* Chevron Arrow */}
                   <ChevronDown
                     style={{
-                      width: 16,
-                      height: 16,
-                      color: showProfileMenu ? '#60A5FA' : 'var(--color-text-secondary)',
-                      transition: 'transform 0.3s ease',
+                      width: 15, height: 15, color: 'var(--color-dark-400)',
+                      transition: 'transform 0.25s ease',
                       transform: showProfileMenu ? 'rotate(180deg)' : 'rotate(0deg)',
-                      flexShrink: 0,
-                      marginLeft: 4,
                     }}
                   />
                 </button>
 
-                {/* Luxury Profile Dropdown Menu */}
                 <AnimatePresence>
                   {showProfileMenu && (
                     <motion.div
-                      initial={{ opacity: 0, y: 14, scale: 0.95 }}
+                      initial={{ opacity: 0, y: 12, scale: 0.97 }}
                       animate={{ opacity: 1, y: 0, scale: 1 }}
-                      exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                      transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
+                      exit={{ opacity: 0, y: 8, scale: 0.97 }}
+                      transition={{ duration: 0.2, ease: 'easeOut' }}
                       style={{
-                        position: 'absolute',
-                        right: 0,
-                        top: 'calc(100% + 12px)',
-                        width: '320px',
-                        background: 'rgba(15, 17, 23, 0.96)',
-                        border: '1px solid var(--color-border-dark)',
-                        borderRadius: '24px',
-                        backdropFilter: 'blur(28px)',
-                        boxShadow: '0 24px 60px rgba(0,0,0,0.6), 0 0 36px rgba(59,130,246,0.15)',
-                        padding: '20px',
-                        zIndex: 100,
-                        overflow: 'hidden',
+                        position: 'absolute', right: 0, top: 'calc(100% + 10px)',
+                        width: 300, background: 'rgba(14, 16, 24, 0.97)',
+                        border: '1px solid var(--color-border-dark)', borderRadius: 18,
+                        backdropFilter: 'blur(24px)', boxShadow: '0 24px 60px rgba(0,0,0,0.6)',
+                        padding: '12px', zIndex: 100,
                       }}
                     >
-                      {/* Ambient Backdrop Glow Orbs */}
-                      <div style={{ position: 'absolute', top: -50, right: -50, width: 140, height: 140, background: 'rgba(59, 130, 246, 0.15)', borderRadius: '50%', filter: 'blur(35px)', pointerEvents: 'none' }} />
-                      <div style={{ position: 'absolute', bottom: -50, left: -50, width: 120, height: 120, background: 'rgba(245, 158, 11, 0.1)', borderRadius: '50%', filter: 'blur(30px)', pointerEvents: 'none' }} />
-
-                      {/* Header User Card */}
                       <div style={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: 14,
-                        padding: '16px',
-                        borderRadius: 18,
-                        background: 'rgba(255, 255, 255, 0.04)',
-                        border: '1px solid rgba(255, 255, 255, 0.07)',
-                        marginBottom: 16,
-                        position: 'relative',
-                        zIndex: 10,
+                        display: 'flex', alignItems: 'center', gap: 12,
+                        padding: '12px 14px', borderRadius: 14,
+                        background: 'rgba(255,255,255,0.04)',
+                        border: '1px solid rgba(255,255,255,0.07)', marginBottom: 8,
                       }}>
                         <div style={{
-                          width: 48,
-                          height: 48,
-                          borderRadius: 16,
-                          padding: 2,
-                          background: 'linear-gradient(135deg, #3B82F6 0%, #F59E0B 50%, #8B5CF6 100%)',
-                          flexShrink: 0,
+                          width: 42, height: 42, borderRadius: '50%', padding: 2, flexShrink: 0,
+                          background: 'linear-gradient(135deg, var(--color-primary-400), var(--color-primary-600))',
                           overflow: 'hidden',
                         }}>
                           <div style={{
-                            width: '100%',
-                            height: '100%',
-                            borderRadius: 14,
-                            background: '#0F1117',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            color: 'white',
-                            fontWeight: 800,
-                            fontSize: '1.25rem',
-                            fontFamily: 'var(--font-heading)',
-                            overflow: 'hidden',
+                            width: '100%', height: '100%', borderRadius: '50%', background: '#0E1018',
+                            display: 'flex', alignItems: 'center', justifyContent: 'center',
+                            color: '#fff', fontWeight: 700, fontSize: '1.125rem',
+                            fontFamily: 'var(--font-heading)', overflow: 'hidden',
                           }}>
                             {user.avatarUrl ? (
                               <img src={user.avatarUrl} alt={user.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
@@ -285,160 +196,54 @@ export default function Navbar() {
                             )}
                           </div>
                         </div>
-
                         <div style={{ minWidth: 0, flex: 1 }}>
-                          <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 2 }}>
-                            <h4 style={{ color: 'white', fontWeight: 800, fontSize: '0.95rem', fontFamily: 'var(--font-heading)', lineHeight: 1.2, margin: 0 }} className="truncate">
-                              {user.name}
-                            </h4>
-                            <Sparkles style={{ width: 14, height: 14, color: '#F59E0B', flexShrink: 0 }} />
+                          <div style={{ color: '#fff', fontWeight: 700, fontSize: '0.9375rem', fontFamily: 'var(--font-heading)', lineHeight: 1.2 }} className="truncate">
+                            {user.name}
                           </div>
-
-                          <p style={{ color: 'var(--color-text-secondary)', fontSize: '0.78rem', margin: '0 0 6px 0', lineHeight: 1.3 }} className="truncate">
+                          <div style={{ color: 'var(--color-dark-400)', fontSize: '0.75rem' }} className="truncate">
                             {user.email}
-                          </p>
-
+                          </div>
                           <div style={{
-                            display: 'inline-flex',
-                            alignItems: 'center',
-                            gap: 5,
-                            padding: '3px 10px',
-                            borderRadius: 9999,
-                            background: 'rgba(16, 185, 129, 0.12)',
-                            border: '1px solid rgba(16, 185, 129, 0.25)',
-                            color: '#10B981',
-                            fontSize: '0.65rem',
-                            fontWeight: 800,
-                            letterSpacing: '0.05em',
-                            textTransform: 'uppercase',
+                            display: 'inline-flex', alignItems: 'center', gap: 5, marginTop: 6,
+                            padding: '2px 8px', borderRadius: 9999, background: 'rgba(79,124,255,0.12)',
+                            border: '1px solid rgba(79,124,255,0.25)', color: 'var(--color-primary-400)',
+                            fontSize: '0.6875rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em',
                           }}>
-                            <ShieldCheck style={{ width: 11, height: 11 }} />
-                            <span>Pro Member</span>
+                            <ShieldCheck style={{ width: 10, height: 10 }} /> Pro Member
                           </div>
                         </div>
                       </div>
 
-                      {/* Menu Item Actions */}
-                      <div style={{ display: 'flex', flexDirection: 'column', gap: 6, position: 'relative', zIndex: 10 }}>
-                        <Link
-                          to="/dashboard"
-                          style={{
-                            display: 'flex',
-                            alignItems: 'center',
-                            gap: 14,
-                            padding: '12px 14px',
-                            borderRadius: 14,
-                            textDecoration: 'none',
-                            transition: 'all 0.2s ease',
-                          }}
-                          className="hover:!bg-white/[0.06] group"
-                        >
-                          <div style={{
-                            width: 38,
-                            height: 38,
-                            borderRadius: 12,
-                            background: 'rgba(59, 130, 246, 0.12)',
-                            border: '1px solid rgba(59, 130, 246, 0.25)',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            color: '#60A5FA',
-                            flexShrink: 0,
-                          }}>
-                            <LayoutDashboard style={{ width: 18, height: 18 }} />
-                          </div>
-                          <div style={{ flex: 1, minWidth: 0 }}>
-                            <div style={{ color: 'white', fontWeight: 700, fontSize: '0.875rem', fontFamily: 'var(--font-heading)' }}>
-                              Dashboard
-                            </div>
-                            <div style={{ color: 'var(--color-text-muted)', fontSize: '0.75rem', marginTop: 1 }}>
-                              Manage trips & itineraries
-                            </div>
-                          </div>
-                          <ArrowRight style={{ width: 14, height: 14, color: 'var(--color-dark-500)' }} className="group-hover:!text-blue-400 group-hover:translate-x-0.5 transition-all" />
-                        </Link>
+                      <Link to="/dashboard" style={{
+                        display: 'flex', alignItems: 'center', gap: 12, padding: '11px 14px',
+                        borderRadius: 12, textDecoration: 'none', color: 'var(--color-dark-200)',
+                        fontWeight: 600, fontSize: '0.875rem', transition: 'background 0.2s',
+                      }} className="hover:!bg-white/[0.06] group">
+                        <LayoutDashboard style={{ width: 17, height: 17, color: 'var(--color-primary-400)', flexShrink: 0 }} />
+                        Dashboard
+                        <ArrowRight style={{ width: 13, height: 13, marginLeft: 'auto', color: 'var(--color-dark-500)' }} className="group-hover:translate-x-0.5 transition-transform" />
+                      </Link>
+                      <Link to="/profile" style={{
+                        display: 'flex', alignItems: 'center', gap: 12, padding: '11px 14px',
+                        borderRadius: 12, textDecoration: 'none', color: 'var(--color-dark-200)',
+                        fontWeight: 600, fontSize: '0.875rem', transition: 'background 0.2s',
+                      }} className="hover:!bg-white/[0.06] group">
+                        <User style={{ width: 17, height: 17, color: 'var(--color-primary-400)', flexShrink: 0 }} />
+                        Profile Settings
+                        <ArrowRight style={{ width: 13, height: 13, marginLeft: 'auto', color: 'var(--color-dark-500)' }} className="group-hover:translate-x-0.5 transition-transform" />
+                      </Link>
 
-                        <Link
-                          to="/profile"
-                          style={{
-                            display: 'flex',
-                            alignItems: 'center',
-                            gap: 14,
-                            padding: '12px 14px',
-                            borderRadius: 14,
-                            textDecoration: 'none',
-                            transition: 'all 0.2s ease',
-                          }}
-                          className="hover:!bg-white/[0.06] group"
-                        >
-                          <div style={{
-                            width: 38,
-                            height: 38,
-                            borderRadius: 12,
-                            background: 'rgba(139, 92, 246, 0.12)',
-                            border: '1px solid rgba(139, 92, 246, 0.25)',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            color: '#C084FC',
-                            flexShrink: 0,
-                          }}>
-                            <User style={{ width: 18, height: 18 }} />
-                          </div>
-                          <div style={{ flex: 1, minWidth: 0 }}>
-                            <div style={{ color: 'white', fontWeight: 700, fontSize: '0.875rem', fontFamily: 'var(--font-heading)' }}>
-                              Profile Settings
-                            </div>
-                            <div style={{ color: 'var(--color-text-muted)', fontSize: '0.75rem', marginTop: 1 }}>
-                              Account & preferences
-                            </div>
-                          </div>
-                          <ArrowRight style={{ width: 14, height: 14, color: 'var(--color-dark-500)' }} className="group-hover:!text-purple-400 group-hover:translate-x-0.5 transition-all" />
-                        </Link>
-                      </div>
+                      <div style={{ height: 1, background: 'rgba(255,255,255,0.08)', margin: '8px 0' }} />
 
-                      {/* Divider */}
-                      <div style={{ height: 1, background: 'rgba(255, 255, 255, 0.08)', margin: '14px 0', position: 'relative', zIndex: 10 }} />
-
-                      {/* Log Out Action */}
-                      <button
-                        onClick={logout}
-                        style={{
-                          width: '100%',
-                          display: 'flex',
-                          alignItems: 'center',
-                          gap: 14,
-                          padding: '12px 14px',
-                          borderRadius: 14,
-                          border: '1px solid transparent',
-                          background: 'transparent',
-                          cursor: 'pointer',
-                          transition: 'all 0.2s ease',
-                        }}
-                        className="hover:!bg-rose-500/10 hover:!border-rose-500/25 group"
-                      >
-                        <div style={{
-                          width: 38,
-                          height: 38,
-                          borderRadius: 12,
-                          background: 'rgba(244, 63, 94, 0.12)',
-                          border: '1px solid rgba(244, 63, 94, 0.25)',
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          color: '#FB7185',
-                          flexShrink: 0,
-                        }}>
-                          <LogOut style={{ width: 18, height: 18 }} />
-                        </div>
-                        <div style={{ flex: 1, minWidth: 0, textAlign: 'left' }}>
-                          <div style={{ color: '#FB7185', fontWeight: 700, fontSize: '0.875rem', fontFamily: 'var(--font-heading)' }}>
-                            Log Out
-                          </div>
-                          <div style={{ color: 'rgba(251, 113, 133, 0.7)', fontSize: '0.75rem', marginTop: 1 }}>
-                            Sign out of session
-                          </div>
-                        </div>
+                      <button onClick={logout} style={{
+                        width: '100%', display: 'flex', alignItems: 'center', gap: 12,
+                        padding: '11px 14px', borderRadius: 12, background: 'transparent',
+                        border: 'none', cursor: 'pointer', color: 'var(--color-error-400)',
+                        fontWeight: 600, fontSize: '0.875rem', transition: 'background 0.2s',
+                        textAlign: 'left',
+                      }} className="hover:!bg-error-500/10">
+                        <LogOut style={{ width: 17, height: 17, flexShrink: 0 }} />
+                        Log Out
                       </button>
                     </motion.div>
                   )}
@@ -446,11 +251,11 @@ export default function Navbar() {
               </div>
             ) : (
               <>
-                <Link to="/login" className="btn-secondary !py-2.5 !px-5 !text-sm no-underline !rounded-xl">
+                <Link to="/login" className="btn-secondary !py-2.5 !px-5 !text-sm no-underline !rounded-full">
                   <LogIn className="w-4 h-4" />
                   Log In
                 </Link>
-                <Link to="/register" className="btn-primary !py-2.5 !px-5 !text-sm no-underline !rounded-xl">
+                <Link to="/register" className="btn-primary !py-2.5 !px-5 !text-sm no-underline !rounded-full">
                   <UserPlus className="w-4 h-4" />
                   Sign Up
                 </Link>
@@ -458,40 +263,42 @@ export default function Navbar() {
             )}
           </div>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile menu button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden p-2 rounded-xl text-slate-300 hover:text-white hover:bg-white/[0.06] border border-transparent hover:border-white/10 transition-all cursor-pointer"
+            className="lg:hidden p-2 rounded-xl text-dark-300 hover:text-white hover:bg-white/[0.06] border border-transparent hover:border-white/10 transition-all cursor-pointer"
             aria-label="Toggle menu"
+            aria-expanded={isOpen}
           >
             {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
       </div>
 
-      {/* Mobile Menu Dropdown */}
+      {/* Mobile menu */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
+            transition={{ duration: 0.28 }}
             className="lg:hidden glass border-t border-white/[0.08] overflow-hidden"
           >
-            <div className="px-6 py-5 space-y-2">
+            <div className="px-5 py-5 space-y-2">
               {NAV_LINKS.map((link) => {
                 const isActive = location.pathname === link.path;
                 return (
                   <Link
                     key={link.path}
                     to={link.path}
-                    className={`block px-4 py-3 rounded-xl text-sm font-semibold transition-all no-underline ${
+                    className={`flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-semibold transition-all no-underline ${
                       isActive
-                        ? 'bg-white/[0.08] text-white border border-white/10'
-                        : 'text-slate-400 hover:text-white hover:bg-white/[0.04]'
+                        ? 'bg-primary-500/15 text-white border border-primary-500/30'
+                        : 'text-dark-400 hover:text-white hover:bg-white/[0.04] border border-transparent'
                     }`}
                   >
+                    {isActive && <span className="w-1.5 h-1.5 rounded-full bg-primary-400" />}
                     {link.label}
                   </Link>
                 );
@@ -500,37 +307,26 @@ export default function Navbar() {
               {user ? (
                 <div className="pt-4 border-t border-white/[0.08] space-y-3">
                   <div className="flex items-center gap-3.5 p-4 rounded-2xl bg-white/[0.04] border border-white/[0.06]">
-                    <div className="w-11 h-11 rounded-xl p-[2px] bg-gradient-to-tr from-blue-500 via-amber-400 to-indigo-500 shrink-0">
-                      <div className="w-full h-full rounded-[8px] bg-slate-900 flex items-center justify-center text-white font-extrabold text-base font-heading">
+                    <div className="w-11 h-11 rounded-xl p-[2px] bg-gradient-to-tr from-primary-400 to-primary-600 shrink-0">
+                      <div className="w-full h-full rounded-[8px] bg-slate-900 flex items-center justify-center text-white font-bold text-base font-heading">
                         {user.name ? user.name.charAt(0).toUpperCase() : 'U'}
                       </div>
                     </div>
                     <div className="min-w-0 flex-1">
                       <p className="text-sm font-bold text-white truncate font-heading">{user.name}</p>
-                      <p className="text-xs text-slate-400 truncate">{user.email}</p>
+                      <p className="text-xs text-dark-400 truncate">{user.email}</p>
                     </div>
                   </div>
 
-                  <Link
-                    to="/dashboard"
-                    className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-semibold text-slate-300 hover:text-white hover:bg-white/[0.06] transition-colors no-underline"
-                  >
-                    <LayoutDashboard className="w-4 h-4 text-blue-400" />
+                  <Link to="/dashboard" className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-semibold text-dark-300 hover:text-white hover:bg-white/[0.06] transition-colors no-underline">
+                    <LayoutDashboard className="w-4 h-4 text-primary-400" />
                     Dashboard
                   </Link>
-
-                  <Link
-                    to="/profile"
-                    className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-semibold text-slate-300 hover:text-white hover:bg-white/[0.06] transition-colors no-underline"
-                  >
-                    <User className="w-4 h-4 text-purple-400" />
+                  <Link to="/profile" className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-semibold text-dark-300 hover:text-white hover:bg-white/[0.06] transition-colors no-underline">
+                    <User className="w-4 h-4 text-primary-400" />
                     Profile Settings
                   </Link>
-
-                  <button
-                    onClick={logout}
-                    className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-semibold text-rose-400 hover:bg-rose-500/10 border border-rose-500/20 transition-colors text-left cursor-pointer"
-                  >
+                  <button onClick={logout} className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-semibold text-error-400 hover:bg-error-500/10 border border-error-500/20 transition-colors text-left cursor-pointer">
                     <LogOut className="w-4 h-4" />
                     Log out
                   </button>

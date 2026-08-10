@@ -146,14 +146,14 @@ export default function TravelTools() {
               whileHover={{ y: -4 }}
               onClick={() => setActiveTool(activeTool === tool.id ? null : tool.id)}
               className={`glass-card cursor-pointer group transition-all ${activeTool === tool.id ? 'glass-card-glow border-primary-500' : ''}`}
-              style={{ display: 'flex', alignItems: 'flex-start', gap: '16px', padding: '24px', borderRadius: '12px' }}
+              style={{ display: 'flex', alignItems: 'flex-start', gap: '16px', padding: '24px', borderRadius: 12 }}
             >
               <div 
                 className={`${tool.bg}`} 
                 style={{ 
                   width: '48px', 
                   height: '48px', 
-                  borderRadius: '12px', 
+                  borderRadius: 12, 
                   display: 'flex', 
                   alignItems: 'center', 
                   justifyContent: 'center', 
@@ -184,7 +184,7 @@ export default function TravelTools() {
               exit={{ opacity: 0, y: 15 }}
               transition={{ duration: 0.3 }}
               className="glass-card"
-              style={{ padding: '32px', borderRadius: '16px', border: '1px solid var(--color-border-dark)', width: '100%' }}
+              style={{ padding: '32px', borderRadius: 18, border: '1px solid var(--color-border-dark)', width: '100%' }}
             >
               {/* 1. VISA CHECKER */}
               {activeTool === 'visa' && (

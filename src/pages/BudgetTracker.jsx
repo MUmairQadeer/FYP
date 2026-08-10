@@ -18,7 +18,7 @@ export default function BudgetTracker() {
       addExpense({
         ...newExpense,
         amount: Number(newExpense.amount),
-        color: '#6366f1' // Default color for new items in this mock
+        color: '#4F7CFF' // Default color for new items in this mock
       });
       setNewExpense({ label: '', amount: '', category: 'food' });
     }
@@ -119,7 +119,7 @@ export default function BudgetTracker() {
                       ))}
                     </Pie>
                     <Tooltip 
-                      contentStyle={{ backgroundColor: '#1e293b', border: 'none', borderRadius: '8px', color: '#fff' }}
+                      contentStyle={{ backgroundColor: '#1e293b', border: 'none', borderRadius: 8, color: '#fff' }}
                       itemStyle={{ color: '#fff' }}
                     />
                   </PieChart>

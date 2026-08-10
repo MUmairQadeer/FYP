@@ -75,7 +75,7 @@ export default function PlanTrip() {
             animate={{ opacity: 1, y: 0 }}
             style={{
               fontSize: 'clamp(1.75rem, 4vw, 2.5rem)',
-              fontWeight: 800,
+              fontWeight: 700,
               fontFamily: 'var(--font-heading)',
               color: 'white',
               marginBottom: '10px',
@@ -141,7 +141,7 @@ export default function PlanTrip() {
                         justifyContent: 'center',
                         fontSize: '0.875rem',
                         fontWeight: 700,
-                        boxShadow: i === step ? '0 0 16px rgba(59,130,246,0.35)' : 'none',
+                        boxShadow: i === step ? '0 0 16px rgba(79,124,255,0.35)' : 'none',
                         transform: i === step ? 'scale(1.1)' : 'scale(1)',
                         transition: 'all 0.3s',
                       }}
@@ -150,7 +150,7 @@ export default function PlanTrip() {
                     </div>
                     <span
                       style={{
-                        fontSize: '0.65rem',
+                        fontSize: '0.6875rem',
                         fontWeight: i === step ? 600 : 400,
                         color: i === step ? 'white' : 'var(--color-text-muted)',
                         whiteSpace: 'nowrap',
@@ -189,14 +189,14 @@ export default function PlanTrip() {
                   <div>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '14px', marginBottom: '24px' }}>
                       <div style={{
-                        width: 48, height: 48, borderRadius: '14px',
-                        background: 'rgba(59,130,246,0.12)',
+                        width: 48, height: 48, borderRadius: 14,
+                        background: 'rgba(79,124,255,0.12)',
                         display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
                       }}>
                         <MapPin className="w-6 h-6 text-primary-400" />
                       </div>
                       <div>
-                        <h2 style={{ fontSize: '1.2rem', fontWeight: 700, color: 'white', marginBottom: '4px' }}>
+                        <h2 style={{ fontSize: '1.25rem', fontWeight: 700, color: 'white', marginBottom: '4px' }}>
                           Where are you going?
                         </h2>
                         <p style={{ fontSize: '0.875rem', color: 'var(--color-text-secondary)' }}>
@@ -215,14 +215,14 @@ export default function PlanTrip() {
                         value={formData.destination}
                         onChange={(e) => updateField('destination', e.target.value)}
                         className="input-field"
-                        style={{ paddingLeft: 46, paddingTop: 16, paddingBottom: 16, fontSize: '1.05rem' }}
+                        style={{ paddingLeft: 46, paddingTop: 16, paddingBottom: 16, fontSize: '1.125rem' }}
                         placeholder="e.g. Paris, Tokyo, Dubai, Lahore..."
                         autoFocus
                       />
                     </div>
 
                     <h3 style={{
-                      fontSize: '0.7rem',
+                      fontSize: '0.75rem',
                       fontWeight: 600,
                       color: 'var(--color-text-muted)',
                       textTransform: 'uppercase',
@@ -243,14 +243,14 @@ export default function PlanTrip() {
                           onClick={() => updateField('destination', `${d.city}, ${d.country}`)}
                           style={{
                             padding: '14px',
-                            borderRadius: '12px',
+                            borderRadius: 12,
                             textAlign: 'left',
                             cursor: 'pointer',
                             border: formData.destination.includes(d.city)
-                              ? '1px solid rgba(59,130,246,0.5)'
+                              ? '1px solid rgba(79,124,255,0.5)'
                               : '1px solid rgba(255,255,255,0.06)',
                             background: formData.destination.includes(d.city)
-                              ? 'rgba(59,130,246,0.12)'
+                              ? 'rgba(79,124,255,0.12)'
                               : 'rgba(255,255,255,0.03)',
                             transition: 'all 0.2s',
                           }}
@@ -285,14 +285,14 @@ export default function PlanTrip() {
                   <div>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '14px', marginBottom: '28px' }}>
                       <div style={{
-                        width: 48, height: 48, borderRadius: '14px',
+                        width: 48, height: 48, borderRadius: 14,
                         background: 'rgba(245,158,11,0.12)',
                         display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
                       }}>
                         <Calendar className="w-6 h-6 text-accent-400" />
                       </div>
                       <div>
-                        <h2 style={{ fontSize: '1.2rem', fontWeight: 700, color: 'white', marginBottom: '4px' }}>
+                        <h2 style={{ fontSize: '1.25rem', fontWeight: 700, color: 'white', marginBottom: '4px' }}>
                           When & Who?
                         </h2>
                         <p style={{ fontSize: '0.875rem', color: 'var(--color-text-secondary)' }}>
@@ -309,7 +309,7 @@ export default function PlanTrip() {
                     }}>
                       <div>
                         <label style={{
-                          display: 'block', fontSize: '0.8rem', fontWeight: 600,
+                          display: 'block', fontSize: '0.875rem', fontWeight: 600,
                           color: 'var(--color-text-secondary)', marginBottom: '8px',
                         }}>
                           Start Date
@@ -330,7 +330,7 @@ export default function PlanTrip() {
                       </div>
                       <div>
                         <label style={{
-                          display: 'block', fontSize: '0.8rem', fontWeight: 600,
+                          display: 'block', fontSize: '0.875rem', fontWeight: 600,
                           color: 'var(--color-text-secondary)', marginBottom: '8px',
                         }}>
                           End Date
@@ -347,7 +347,7 @@ export default function PlanTrip() {
 
                     <div>
                       <label style={{
-                        display: 'block', fontSize: '0.8rem', fontWeight: 600,
+                        display: 'block', fontSize: '0.875rem', fontWeight: 600,
                         color: 'var(--color-text-secondary)', marginBottom: '16px',
                       }}>
                         Number of Travelers
@@ -356,10 +356,10 @@ export default function PlanTrip() {
                         <button
                           onClick={() => updateField('travelers', Math.max(1, formData.travelers - 1))}
                           style={{
-                            width: 48, height: 48, borderRadius: '12px',
+                            width: 48, height: 48, borderRadius: 12,
                             background: 'rgba(255,255,255,0.04)',
                             border: '1px solid rgba(255,255,255,0.08)',
-                            color: 'white', fontSize: '1.4rem',
+                            color: 'white', fontSize: '1.5rem',
                             display: 'flex', alignItems: 'center', justifyContent: 'center',
                             cursor: 'pointer', transition: 'all 0.2s', flexShrink: 0,
                           }}
@@ -367,7 +367,7 @@ export default function PlanTrip() {
                           −
                         </button>
                         <div style={{ textAlign: 'center', minWidth: 80 }}>
-                          <span style={{ fontSize: '2.5rem', fontWeight: 800, color: 'white', fontFamily: 'var(--font-heading)' }}>
+                          <span style={{ fontSize: '2.5rem', fontWeight: 700, color: 'white', fontFamily: 'var(--font-heading)' }}>
                             {formData.travelers}
                           </span>
                           <p style={{ fontSize: '0.75rem', color: 'var(--color-text-muted)', marginTop: '2px' }}>
@@ -377,10 +377,10 @@ export default function PlanTrip() {
                         <button
                           onClick={() => updateField('travelers', Math.min(20, formData.travelers + 1))}
                           style={{
-                            width: 48, height: 48, borderRadius: '12px',
+                            width: 48, height: 48, borderRadius: 12,
                             background: 'rgba(255,255,255,0.04)',
                             border: '1px solid rgba(255,255,255,0.08)',
-                            color: 'white', fontSize: '1.4rem',
+                            color: 'white', fontSize: '1.5rem',
                             display: 'flex', alignItems: 'center', justifyContent: 'center',
                             cursor: 'pointer', transition: 'all 0.2s', flexShrink: 0,
                           }}
@@ -397,14 +397,14 @@ export default function PlanTrip() {
                   <div>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '14px', marginBottom: '28px' }}>
                       <div style={{
-                        width: 48, height: 48, borderRadius: '14px',
+                        width: 48, height: 48, borderRadius: 14,
                         background: 'rgba(245,158,11,0.12)',
                         display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
                       }}>
                         <Wallet className="w-6 h-6 text-warning-500" />
                       </div>
                       <div>
-                        <h2 style={{ fontSize: '1.2rem', fontWeight: 700, color: 'white', marginBottom: '4px' }}>
+                        <h2 style={{ fontSize: '1.25rem', fontWeight: 700, color: 'white', marginBottom: '4px' }}>
                           What's your budget?
                         </h2>
                         <p style={{ fontSize: '0.875rem', color: 'var(--color-text-secondary)' }}>
@@ -423,7 +423,7 @@ export default function PlanTrip() {
                     >
                       <div>
                         <label style={{
-                          display: 'block', fontSize: '0.8rem', fontWeight: 600,
+                          display: 'block', fontSize: '0.875rem', fontWeight: 600,
                           color: 'var(--color-text-secondary)', marginBottom: '8px',
                         }}>
                           Total Budget
@@ -439,7 +439,7 @@ export default function PlanTrip() {
                       </div>
                       <div>
                         <label style={{
-                          display: 'block', fontSize: '0.8rem', fontWeight: 600,
+                          display: 'block', fontSize: '0.875rem', fontWeight: 600,
                           color: 'var(--color-text-secondary)', marginBottom: '8px',
                         }}>
                           Currency
@@ -472,14 +472,14 @@ export default function PlanTrip() {
                           onClick={() => updateField('budget', b.value)}
                           style={{
                             padding: '16px',
-                            borderRadius: '12px',
+                            borderRadius: 12,
                             textAlign: 'center',
                             cursor: 'pointer',
                             border: Number(formData.budget) === b.value
-                              ? '1px solid rgba(59,130,246,0.5)'
+                              ? '1px solid rgba(79,124,255,0.5)'
                               : '1px solid rgba(255,255,255,0.06)',
                             background: Number(formData.budget) === b.value
-                              ? 'rgba(59,130,246,0.12)'
+                              ? 'rgba(79,124,255,0.12)'
                               : 'rgba(255,255,255,0.03)',
                             transition: 'all 0.2s',
                           }}
@@ -504,14 +504,14 @@ export default function PlanTrip() {
                   <div>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '14px', marginBottom: '24px' }}>
                       <div style={{
-                        width: 48, height: 48, borderRadius: '14px',
+                        width: 48, height: 48, borderRadius: 14,
                         background: 'rgba(16,185,129,0.12)',
                         display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
                       }}>
                         <Compass className="w-6 h-6 text-success-500" />
                       </div>
                       <div>
-                        <h2 style={{ fontSize: '1.2rem', fontWeight: 700, color: 'white', marginBottom: '4px' }}>
+                        <h2 style={{ fontSize: '1.25rem', fontWeight: 700, color: 'white', marginBottom: '4px' }}>
                           Travel Style
                         </h2>
                         <p style={{ fontSize: '0.875rem', color: 'var(--color-text-secondary)' }}>
@@ -532,14 +532,14 @@ export default function PlanTrip() {
                           onClick={() => updateField('style', s.id)}
                           style={{
                             padding: '16px',
-                            borderRadius: '12px',
+                            borderRadius: 12,
                             textAlign: 'left',
                             cursor: 'pointer',
                             border: formData.style === s.id
-                              ? '1px solid rgba(59,130,246,0.6)'
+                              ? '1px solid rgba(79,124,255,0.6)'
                               : '1px solid rgba(255,255,255,0.06)',
                             background: formData.style === s.id
-                              ? 'rgba(59,130,246,0.12)'
+                              ? 'rgba(79,124,255,0.12)'
                               : 'rgba(255,255,255,0.03)',
                             transition: 'all 0.2s',
                           }}
@@ -560,7 +560,7 @@ export default function PlanTrip() {
                     </div>
 
                     <h3 style={{
-                      fontSize: '0.7rem', fontWeight: 600,
+                      fontSize: '0.75rem', fontWeight: 600,
                       color: 'var(--color-text-muted)',
                       textTransform: 'uppercase', letterSpacing: '0.1em',
                       marginBottom: '14px',
@@ -583,15 +583,15 @@ export default function PlanTrip() {
                             )}
                             style={{
                               padding: '12px 14px',
-                              borderRadius: '10px',
+                              borderRadius: 10,
                               textAlign: 'left',
-                              fontSize: '0.8rem',
+                              fontSize: '0.875rem',
                               cursor: 'pointer',
                               border: selected
-                                ? '1px solid rgba(59,130,246,0.4)'
+                                ? '1px solid rgba(79,124,255,0.4)'
                                 : '1px solid rgba(255,255,255,0.05)',
                               background: selected
-                                ? 'rgba(59,130,246,0.1)'
+                                ? 'rgba(79,124,255,0.1)'
                                 : 'rgba(255,255,255,0.02)',
                               color: selected ? 'white' : 'var(--color-text-secondary)',
                               transition: 'all 0.2s',
@@ -632,7 +632,7 @@ export default function PlanTrip() {
                             transition={{ duration: 1.5, repeat: Infinity, ease: 'linear' }}
                           />
                         </div>
-                        <h2 style={{ fontSize: '1.5rem', fontWeight: 800, color: 'white', marginBottom: '10px' }}>
+                        <h2 style={{ fontSize: '1.5rem', fontWeight: 700, color: 'white', marginBottom: '10px' }}>
                           AI is Planning Your Trip...
                         </h2>
                         <p style={{ color: 'var(--color-text-secondary)', maxWidth: 380, margin: '0 auto 16px' }}>
@@ -647,7 +647,7 @@ export default function PlanTrip() {
                     ) : (
                       <div>
                         <div style={{ fontSize: '4rem', marginBottom: '20px' }} className="animate-bounce-soft">🎯</div>
-                        <h2 style={{ fontSize: '1.75rem', fontWeight: 800, color: 'white', marginBottom: '10px' }}>
+                        <h2 style={{ fontSize: '1.75rem', fontWeight: 700, color: 'white', marginBottom: '10px' }}>
                           Ready to Generate!
                         </h2>
                         <p style={{
@@ -660,7 +660,7 @@ export default function PlanTrip() {
                         <button
                           onClick={handleGenerate}
                           className="btn-primary glass-card-glow"
-                          style={{ padding: '16px 40px', fontSize: '1.05rem', borderRadius: '12px', width: '100%', maxWidth: 320 }}
+                          style={{ padding: '16px 40px', fontSize: '1.125rem', borderRadius: 12, width: '100%', maxWidth: 320 }}
                         >
                           <Sparkles className="w-5 h-5" />
                           Generate My Itinerary
@@ -727,12 +727,12 @@ export default function PlanTrip() {
                 position: 'sticky',
                 top: '88px',
                 padding: '28px',
-                borderColor: 'rgba(59,130,246,0.15)',
+                borderColor: 'rgba(79,124,255,0.15)',
                 background: 'rgba(15,17,23,0.8)',
               }}
             >
               <h3 style={{
-                fontSize: '1.05rem', fontWeight: 700,
+                fontSize: '1.125rem', fontWeight: 700,
                 color: 'white', marginBottom: '24px',
                 display: 'flex', alignItems: 'center', gap: '8px',
               }}>
@@ -749,12 +749,12 @@ export default function PlanTrip() {
                   marginBottom: '16px',
                 }}>
                   <p style={{
-                    fontSize: '0.65rem', fontWeight: 600, textTransform: 'uppercase',
+                    fontSize: '0.6875rem', fontWeight: 600, textTransform: 'uppercase',
                     letterSpacing: '0.1em', color: 'var(--color-text-muted)', marginBottom: '6px',
                   }}>
                     Destination
                   </p>
-                  <p style={{ fontSize: '1.1rem', fontWeight: 600, color: 'white' }}>
+                  <p style={{ fontSize: '1.125rem', fontWeight: 600, color: 'white' }}>
                     {formData.destination
                       ? formData.destination
                       : <span style={{ color: 'var(--color-dark-600)' }}>Not selected yet</span>
@@ -769,12 +769,12 @@ export default function PlanTrip() {
                   marginBottom: '16px',
                 }}>
                   <p style={{
-                    fontSize: '0.65rem', fontWeight: 600, textTransform: 'uppercase',
+                    fontSize: '0.6875rem', fontWeight: 600, textTransform: 'uppercase',
                     letterSpacing: '0.1em', color: 'var(--color-text-muted)', marginBottom: '6px',
                   }}>
                     Dates & Duration
                   </p>
-                  <p style={{ fontWeight: 500, color: 'white', fontSize: '0.9rem' }}>
+                  <p style={{ fontWeight: 500, color: 'white', fontSize: '0.9375rem' }}>
                     {formData.startDate
                       ? formData.startDate
                       : <span style={{ color: 'var(--color-dark-600)' }}>MM/DD/YYYY</span>
@@ -797,13 +797,13 @@ export default function PlanTrip() {
                 }}>
                   <div>
                     <p style={{
-                      fontSize: '0.65rem', fontWeight: 600, textTransform: 'uppercase',
+                      fontSize: '0.6875rem', fontWeight: 600, textTransform: 'uppercase',
                       letterSpacing: '0.1em', color: 'var(--color-text-muted)', marginBottom: '6px',
                     }}>
                       Travelers
                     </p>
                     <p style={{
-                      fontWeight: 600, color: 'white', fontSize: '0.9rem',
+                      fontWeight: 600, color: 'white', fontSize: '0.9375rem',
                       display: 'flex', alignItems: 'center', gap: '6px',
                     }}>
                       <Users style={{ width: 15, height: 15, color: 'var(--color-text-muted)' }} />
@@ -812,13 +812,13 @@ export default function PlanTrip() {
                   </div>
                   <div>
                     <p style={{
-                      fontSize: '0.65rem', fontWeight: 600, textTransform: 'uppercase',
+                      fontSize: '0.6875rem', fontWeight: 600, textTransform: 'uppercase',
                       letterSpacing: '0.1em', color: 'var(--color-text-muted)', marginBottom: '6px',
                     }}>
                       Budget
                     </p>
                     <p style={{
-                      fontWeight: 600, color: 'white', fontSize: '0.9rem',
+                      fontWeight: 600, color: 'white', fontSize: '0.9375rem',
                       display: 'flex', alignItems: 'center', gap: '6px',
                     }}>
                       <Wallet style={{ width: 15, height: 15, color: 'var(--color-text-muted)' }} />
@@ -833,7 +833,7 @@ export default function PlanTrip() {
                 {/* Style & Preferences */}
                 <div>
                   <p style={{
-                    fontSize: '0.65rem', fontWeight: 600, textTransform: 'uppercase',
+                    fontSize: '0.6875rem', fontWeight: 600, textTransform: 'uppercase',
                     letterSpacing: '0.1em', color: 'var(--color-text-muted)', marginBottom: '10px',
                   }}>
                     Style & Preferences
@@ -844,7 +844,7 @@ export default function PlanTrip() {
                         padding: '4px 12px',
                         background: 'rgba(16,185,129,0.1)',
                         color: 'var(--color-success)',
-                        borderRadius: '999px',
+                        borderRadius: 9999,
                         fontSize: '0.75rem',
                         fontWeight: 500,
                         textTransform: 'capitalize',
@@ -856,7 +856,7 @@ export default function PlanTrip() {
                         padding: '4px 12px',
                         border: '1px dashed var(--color-dark-600)',
                         color: 'var(--color-text-muted)',
-                        borderRadius: '999px',
+                        borderRadius: 9999,
                         fontSize: '0.75rem',
                       }}>
                         Not selected
@@ -867,7 +867,7 @@ export default function PlanTrip() {
                         padding: '4px 12px',
                         background: 'rgba(255,255,255,0.04)',
                         color: 'var(--color-text-secondary)',
-                        borderRadius: '999px',
+                        borderRadius: 9999,
                         fontSize: '0.75rem',
                         textTransform: 'capitalize',
                       }}>

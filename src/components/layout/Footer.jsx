@@ -28,10 +28,10 @@ function ProductLink({ label, path, Icon }) {
         }}
       >
         <span style={{
-          width: 28, height: 28, borderRadius: 7, flexShrink: 0,
-          background: hovered ? 'rgba(59,130,246,0.15)' : 'rgba(255,255,255,0.04)',
+          width: 28, height: 28, borderRadius: 8, flexShrink: 0,
+          background: hovered ? 'rgba(79,124,255,0.15)' : 'rgba(255,255,255,0.04)',
           display: 'flex', alignItems: 'center', justifyContent: 'center',
-          color: hovered ? '#60a5fa' : 'var(--color-text-muted)',
+          color: hovered ? 'var(--color-primary-400)' : 'var(--color-text-muted)',
           transition: 'all 0.18s',
         }}>
           <Icon style={{ width: 13, height: 13 }} />
@@ -54,14 +54,14 @@ function DestLink({ label, path }) {
         style={{
           display: 'flex', alignItems: 'center', gap: 8,
           padding: '8px 10px', borderRadius: 8,
-          color: hovered ? '#60a5fa' : 'var(--color-text-secondary)',
-          background: hovered ? 'rgba(59,130,246,0.06)' : 'transparent',
+          color: hovered ? 'var(--color-primary-400)' : 'var(--color-text-secondary)',
+          background: hovered ? 'rgba(79,124,255,0.06)' : 'transparent',
           fontSize: '0.875rem', textDecoration: 'none', transition: 'all 0.18s',
         }}
       >
         <span style={{
           width: 5, height: 5, borderRadius: '50%', flexShrink: 0,
-          background: hovered ? '#60a5fa' : 'rgba(255,255,255,0.2)',
+          background: hovered ? 'var(--color-primary-400)' : 'rgba(255,255,255,0.2)',
           transition: 'background 0.18s',
         }} />
         {label}
@@ -137,7 +137,7 @@ export default function Footer() {
       {/* Top gradient line */}
       <div style={{
         position: 'absolute', top: 0, left: 0, right: 0, height: 1,
-        background: 'linear-gradient(90deg, transparent, rgba(59,130,246,0.5), transparent)',
+        background: 'linear-gradient(90deg, transparent, rgba(79,124,255,0.5), transparent)',
       }} />
 
       <div style={{ maxWidth: 1280, margin: '0 auto', padding: '72px 24px 40px' }}>
@@ -163,8 +163,8 @@ export default function Footer() {
             {/* Newsletter */}
             <div style={{ marginBottom: 28 }}>
               <h5 style={{
-                color: 'white', fontSize: '0.7rem', fontWeight: 700,
-                textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: 12,
+                color: 'white', fontSize: '0.6875rem', fontWeight: 600,
+                textTransform: 'uppercase', letterSpacing: '0.12em', marginBottom: 12,
               }}>
                 Join our newsletter
               </h5>
@@ -178,15 +178,8 @@ export default function Footer() {
                   <input
                     type="email"
                     placeholder="Enter your email"
-                    style={{
-                      width: '100%', paddingLeft: 40, paddingRight: 14,
-                      paddingTop: 11, paddingBottom: 11,
-                      background: 'rgba(255,255,255,0.04)',
-                      border: '1px solid rgba(255,255,255,0.08)',
-                      borderRadius: 8, fontSize: '0.85rem', color: 'white', outline: 'none',
-                    }}
-                    onFocus={e => { e.target.style.borderColor = '#3B82F6'; e.target.style.background = 'rgba(255,255,255,0.06)'; }}
-                    onBlur={e => { e.target.style.borderColor = 'rgba(255,255,255,0.08)'; e.target.style.background = 'rgba(255,255,255,0.04)'; }}
+                    className="input-field !py-2.5 !pl-10"
+                    aria-label="Email address"
                   />
                 </div>
                 <button className="btn-primary" style={{ padding: '10px 14px', borderRadius: 8, flexShrink: 0 }}>
@@ -206,8 +199,8 @@ export default function Footer() {
           {/* ── Product ── */}
           <div>
             <h4 style={{
-              color: 'white', fontWeight: 700, fontSize: '0.75rem',
-              textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: 20,
+              color: 'white', fontWeight: 600, fontSize: '0.6875rem',
+              textTransform: 'uppercase', letterSpacing: '0.12em', marginBottom: 20,
             }}>
               Product
             </h4>
@@ -221,11 +214,11 @@ export default function Footer() {
           {/* ── Destinations ── */}
           <div>
             <h4 style={{
-              color: 'white', fontWeight: 700, fontSize: '0.75rem',
-              textTransform: 'uppercase', letterSpacing: '0.1em',
+              color: 'white', fontWeight: 600, fontSize: '0.6875rem',
+              textTransform: 'uppercase', letterSpacing: '0.12em',
               marginBottom: 20, display: 'flex', alignItems: 'center', gap: 6,
             }}>
-              <MapPin style={{ width: 13, height: 13, color: '#60a5fa' }} />
+              <MapPin style={{ width: 13, height: 13, color: 'var(--color-primary-400)' }} />
               Destinations
             </h4>
             <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 2 }}>
@@ -238,8 +231,8 @@ export default function Footer() {
           {/* ── Support ── */}
           <div>
             <h4 style={{
-              color: 'white', fontWeight: 700, fontSize: '0.75rem',
-              textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: 20,
+              color: 'white', fontWeight: 600, fontSize: '0.6875rem',
+              textTransform: 'uppercase', letterSpacing: '0.12em', marginBottom: 20,
             }}>
               Support
             </h4>
@@ -259,14 +252,14 @@ export default function Footer() {
           justifyContent: 'space-between', gap: 12,
         }}>
           <p style={{
-            color: 'var(--color-text-muted)', fontSize: '0.78rem',
+            color: 'var(--color-text-muted)', fontSize: '0.875rem',
             display: 'flex', alignItems: 'center', gap: 5, margin: 0,
           }}>
             © {currentYear} AI Trip Planner. Made with{' '}
-            <Heart style={{ width: 12, height: 12, color: '#F59E0B', fill: '#F59E0B' }} />{' '}
+            <Heart style={{ width: 12, height: 12, color: 'var(--color-primary-400)', fill: 'var(--color-primary-400)' }} />{' '}
             for travelers worldwide.
           </p>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 8, color: 'var(--color-text-muted)', fontSize: '0.78rem' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8, color: 'var(--color-text-muted)', fontSize: '0.875rem' }}>
             <Globe style={{ width: 13, height: 13 }} />
             <span>195 Countries · 150+ Currencies · Powered by Gemini AI</span>
           </div>
@@ -292,11 +285,11 @@ function SocialIcon({ Icon, href, label }) {
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       style={{
-        width: 36, height: 36, borderRadius: 9,
-        background: hovered ? 'rgba(59,130,246,0.1)' : 'rgba(255,255,255,0.04)',
-        border: hovered ? '1px solid rgba(59,130,246,0.25)' : '1px solid rgba(255,255,255,0.06)',
+        width: 36, height: 36, borderRadius: 8,
+        background: hovered ? 'rgba(79,124,255,0.1)' : 'rgba(255,255,255,0.04)',
+        border: hovered ? '1px solid rgba(79,124,255,0.25)' : '1px solid rgba(255,255,255,0.06)',
         display: 'flex', alignItems: 'center', justifyContent: 'center',
-        color: hovered ? '#60a5fa' : 'var(--color-text-muted)',
+        color: hovered ? 'var(--color-primary-400)' : 'var(--color-text-muted)',
         textDecoration: 'none', transition: 'all 0.2s',
         transform: hovered ? 'translateY(-2px)' : 'translateY(0)',
       }}

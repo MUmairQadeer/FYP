@@ -27,13 +27,13 @@ const getTripEmoji = (destination = '') => {
 /* ── Destination gradient helper ── */
 const getCardGradient = (destination = '') => {
   const d = destination.toLowerCase();
-  if (d.includes('paris') || d.includes('france')) return 'linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%)';
-  if (d.includes('dubai') || d.includes('uae'))   return 'linear-gradient(135deg, #1a0a00 0%, #2d1500 50%, #4a2800 100%)';
-  if (d.includes('japan') || d.includes('tokyo')) return 'linear-gradient(135deg, #1a001a 0%, #2d0030 50%, #4a0050 100%)';
-  if (d.includes('bali') || d.includes('indo'))   return 'linear-gradient(135deg, #001a0a 0%, #002d15 50%, #004a28 100%)';
-  if (d.includes('istanbul') || d.includes('turkey')) return 'linear-gradient(135deg, #1a0000 0%, #2d0a0a 50%, #4a1a1a 100%)';
-  if (d.includes('london') || d.includes('uk'))   return 'linear-gradient(135deg, #0a0a1a 0%, #15152d 50%, #20204a 100%)';
-  return 'linear-gradient(135deg, #0f1117 0%, #1a1d27 50%, #242736 100%)';
+  if (d.includes('paris') || d.includes('france')) return 'linear-gradient(135deg, #121A33 0%, #1B2A5E 50%, #25397F 100%)';
+  if (d.includes('dubai') || d.includes('uae'))   return 'linear-gradient(135deg, #0F162E 0%, #1A274F 50%, #243463 100%)';
+  if (d.includes('japan') || d.includes('tokyo')) return 'linear-gradient(135deg, #131B36 0%, #202F66 50%, #2C448C 100%)';
+  if (d.includes('bali') || d.includes('indo'))   return 'linear-gradient(135deg, #101A38 0%, #1C2F63 50%, #28407F 100%)';
+  if (d.includes('istanbul') || d.includes('turkey')) return 'linear-gradient(135deg, #141B33 0%, #1E2A5A 50%, #2A3A70 100%)';
+  if (d.includes('london') || d.includes('uk'))   return 'linear-gradient(135deg, #0E1529 0%, #182346 50%, #222F63 100%)';
+  return 'linear-gradient(135deg, #0F1117 0%, #1A1D27 50%, #242736 100%)';
 };
 
 /* ── Style tags helper ── */
@@ -44,7 +44,7 @@ const STYLE_COLORS = {
   foodie:      { bg: 'rgba(245,158,11,0.15)', text: '#fbbf24' },
   luxury:      { bg: 'rgba(234,179,8,0.15)',  text: '#fde047' },
   budget:      { bg: 'rgba(34,197,94,0.15)',  text: '#4ade80' },
-  family:      { bg: 'rgba(59,130,246,0.15)', text: '#60a5fa' },
+  family:      { bg: 'rgba(79,124,255,0.15)', text: '#6F9AFF' },
   romantic:    { bg: 'rgba(236,72,153,0.15)', text: '#f472b6' },
 };
 
@@ -89,8 +89,8 @@ function TripCard({ trip, index }) {
         boxShadow: '0 4px 20px rgba(0,0,0,0.15)',
       }}
       onMouseEnter={e => {
-        e.currentTarget.style.borderColor = 'rgba(59,130,246,0.3)';
-        e.currentTarget.style.boxShadow = '0 12px 40px rgba(0,0,0,0.25), 0 0 0 1px rgba(59,130,246,0.15)';
+        e.currentTarget.style.borderColor = 'rgba(79,124,255,0.3)';
+        e.currentTarget.style.boxShadow = '0 12px 40px rgba(0,0,0,0.25), 0 0 0 1px rgba(79,124,255,0.15)';
       }}
       onMouseLeave={e => {
         e.currentTarget.style.borderColor = 'var(--color-border-dark)';
@@ -125,10 +125,10 @@ function TripCard({ trip, index }) {
         {/* Days badge */}
         <div style={{
           position: 'absolute', top: 14, left: 14, zIndex: 3,
-          padding: '4px 10px', borderRadius: 999,
+          padding: '4px 10px', borderRadius: 9999,
           background: 'rgba(0,0,0,0.55)', backdropFilter: 'blur(8px)',
           border: '1px solid rgba(255,255,255,0.12)',
-          color: 'white', fontSize: '0.7rem', fontWeight: 600,
+          color: 'white', fontSize: '0.75rem', fontWeight: 600,
           display: 'flex', alignItems: 'center', gap: 5,
         }}>
           <Clock style={{ width: 11, height: 11 }} />
@@ -138,9 +138,9 @@ function TripCard({ trip, index }) {
         {/* Style tag */}
         <div style={{
           position: 'absolute', top: 14, right: 14, zIndex: 3,
-          padding: '4px 10px', borderRadius: 999,
+          padding: '4px 10px', borderRadius: 9999,
           background: styleColor.bg, color: styleColor.text,
-          fontSize: '0.7rem', fontWeight: 600,
+          fontSize: '0.75rem', fontWeight: 600,
           border: `1px solid ${styleColor.text}30`,
           backdropFilter: 'blur(8px)',
           textTransform: 'capitalize',
@@ -166,19 +166,19 @@ function TripCard({ trip, index }) {
               display: 'flex', alignItems: 'center', gap: 5, cursor: 'pointer',
               background: liked ? 'rgba(239,68,68,0.12)' : 'transparent',
               border: liked ? '1px solid rgba(239,68,68,0.25)' : '1px solid transparent',
-              borderRadius: 999, padding: '4px 8px',
+              borderRadius: 9999, padding: '4px 8px',
               color: liked ? '#f87171' : 'var(--color-text-muted)',
               transition: 'all 0.2s', flexShrink: 0,
             }}
           >
             <Heart style={{ width: 13, height: 13, fill: liked ? '#f87171' : 'none' }} />
-            <span style={{ fontSize: '0.72rem', fontWeight: 600 }}>{likeCount}</span>
+            <span style={{ fontSize: '0.75rem', fontWeight: 600 }}>{likeCount}</span>
           </button>
         </div>
 
         {/* Description */}
         <p style={{
-          color: 'var(--color-text-secondary)', fontSize: '0.82rem',
+          color: 'var(--color-text-secondary)', fontSize: '0.875rem',
           lineHeight: 1.55, marginBottom: 16,
           display: '-webkit-box', WebkitLineClamp: 2,
           WebkitBoxOrient: 'vertical', overflow: 'hidden',
@@ -208,9 +208,9 @@ function TripCard({ trip, index }) {
           <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
             <div style={{
               width: 28, height: 28, borderRadius: '50%',
-              background: 'rgba(59,130,246,0.2)',
+              background: 'rgba(79,124,255,0.2)',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
-              fontSize: '0.75rem', fontWeight: 700, color: '#60a5fa', flexShrink: 0,
+              fontSize: '0.75rem', fontWeight: 700, color: '#6F9AFF', flexShrink: 0,
             }}>
               {initial}
             </div>
@@ -224,7 +224,7 @@ function TripCard({ trip, index }) {
               padding: '7px 16px', borderRadius: 8,
               background: 'transparent',
               border: '1px solid rgba(255,255,255,0.1)',
-              color: 'white', fontSize: '0.78rem', fontWeight: 600,
+              color: 'white', fontSize: '0.875rem', fontWeight: 600,
               textDecoration: 'none', transition: 'all 0.2s',
               display: 'inline-flex', alignItems: 'center', gap: 4,
             }}
@@ -286,10 +286,10 @@ export default function Community() {
           {/* Icon badge */}
           <div style={{
             display: 'inline-flex', alignItems: 'center', gap: 8,
-            padding: '6px 16px', borderRadius: 999,
-            background: 'rgba(59,130,246,0.1)',
-            border: '1px solid rgba(59,130,246,0.2)',
-            color: '#60a5fa', fontSize: '0.8rem', fontWeight: 600,
+            padding: '6px 16px', borderRadius: 9999,
+            background: 'rgba(79,124,255,0.1)',
+            border: '1px solid rgba(79,124,255,0.2)',
+            color: '#6F9AFF', fontSize: '0.875rem', fontWeight: 600,
             marginBottom: 20,
           }}>
             <Globe style={{ width: 14, height: 14 }} />
@@ -297,8 +297,8 @@ export default function Community() {
           </div>
 
           <h1 style={{
-            fontSize: 'clamp(1.8rem, 4vw, 2.8rem)',
-            fontWeight: 800,
+            fontSize: 'clamp(1.75rem, 4vw, 2.75rem)',
+            fontWeight: 700,
             fontFamily: 'var(--font-heading)',
             color: 'white',
             letterSpacing: '-0.02em',
@@ -330,7 +330,7 @@ export default function Community() {
               onChange={e => setSearch(e.target.value)}
               placeholder="Search destinations..."
               className="input-field"
-              style={{ paddingLeft: 48, paddingTop: 14, paddingBottom: 14, fontSize: '0.95rem' }}
+              style={{ paddingLeft: 48, paddingTop: 14, paddingBottom: 14, fontSize: '0.9375rem' }}
             />
           </div>
         </motion.div>
@@ -361,16 +361,16 @@ export default function Community() {
             }}>
               <div style={{
                 width: 40, height: 40, borderRadius: 10,
-                background: 'rgba(59,130,246,0.1)',
+              background: 'rgba(79,124,255,0.1)',
                 display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
               }}>
-                <s.icon style={{ width: 18, height: 18, color: '#60a5fa' }} />
+                <s.icon style={{ width: 18, height: 18, color: '#6F9AFF' }} />
               </div>
               <div>
-                <p style={{ color: 'var(--color-text-muted)', fontSize: '0.7rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 2 }}>
+                <p style={{ color: 'var(--color-text-muted)', fontSize: '0.75rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 2 }}>
                   {s.label}
                 </p>
-                <p style={{ color: 'white', fontSize: '1.4rem', fontWeight: 800, fontFamily: 'var(--font-heading)', lineHeight: 1 }}>
+                <p style={{ color: 'white', fontSize: '1.5rem', fontWeight: 700, fontFamily: 'var(--font-heading)', lineHeight: 1 }}>
                   {s.value}
                 </p>
               </div>
@@ -389,14 +389,14 @@ export default function Community() {
               key={f}
               onClick={() => setActiveFilter(f)}
               style={{
-                padding: '8px 18px', borderRadius: 999,
-                fontSize: '0.83rem', fontWeight: 600,
+                padding: '8px 18px', borderRadius: 9999,
+                fontSize: '0.875rem', fontWeight: 600,
                 cursor: 'pointer', whiteSpace: 'nowrap',
                 transition: 'all 0.2s',
                 border: activeFilter === f ? 'none' : '1px solid rgba(255,255,255,0.08)',
                 background: activeFilter === f ? 'var(--color-brand-blue)' : 'transparent',
                 color: activeFilter === f ? 'white' : 'var(--color-text-muted)',
-                boxShadow: activeFilter === f ? '0 4px 12px rgba(59,130,246,0.3)' : 'none',
+                boxShadow: activeFilter === f ? '0 4px 12px rgba(79,124,255,0.3)' : 'none',
               }}
             >
               {f}
@@ -404,7 +404,7 @@ export default function Community() {
           ))}
           <span style={{
             marginLeft: 'auto', flexShrink: 0,
-            fontSize: '0.8rem', color: 'var(--color-text-muted)', whiteSpace: 'nowrap',
+            fontSize: '0.875rem', color: 'var(--color-text-muted)', whiteSpace: 'nowrap',
           }}>
             {filtered.length} trip{filtered.length !== 1 ? 's' : ''}
           </span>
@@ -413,7 +413,7 @@ export default function Community() {
         {/* ── Loading ── */}
         {isLoading && (
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '80px 24px' }}>
-            <Loader2 style={{ width: 40, height: 40, color: '#60a5fa', marginBottom: 16 }} className="animate-spin" />
+            <Loader2 style={{ width: 40, height: 40, color: '#6F9AFF', marginBottom: 16 }} className="animate-spin" />
             <p style={{ color: 'var(--color-text-secondary)' }}>Loading community trips...</p>
           </div>
         )}
@@ -441,7 +441,7 @@ export default function Community() {
             style={{
               background: 'var(--color-secondary-dark)',
               border: '1px solid var(--color-border-dark)',
-              borderRadius: 20,
+              borderRadius: 18,
               display: 'flex', flexDirection: 'column',
               alignItems: 'center', justifyContent: 'center',
               padding: '80px 32px', textAlign: 'center',
@@ -449,14 +449,14 @@ export default function Community() {
           >
             <div style={{
               width: 80, height: 80, borderRadius: '50%',
-              background: 'rgba(59,130,246,0.1)',
+              background: 'rgba(79,124,255,0.1)',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
               marginBottom: 24, fontSize: '2.5rem',
             }}>
               🌍
             </div>
             <h3 style={{
-              fontSize: '1.35rem', fontWeight: 800,
+              fontSize: '1.5rem', fontWeight: 700,
               fontFamily: 'var(--font-heading)',
               color: 'white', marginBottom: 12,
             }}>
@@ -464,7 +464,7 @@ export default function Community() {
             </h3>
             <p style={{
               color: 'var(--color-text-secondary)',
-              fontSize: '0.95rem', lineHeight: 1.6,
+              fontSize: '0.9375rem', lineHeight: 1.6,
               maxWidth: 380, marginBottom: 28,
             }}>
               {search || activeFilter !== 'All'

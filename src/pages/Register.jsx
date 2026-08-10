@@ -27,7 +27,7 @@ function PasswordStrength({ password }) {
       <div style={{ display: 'flex', gap: 4, marginBottom: 8 }}>
         {[0, 1, 2, 3].map(i => (
           <div key={i} style={{
-            flex: 1, height: 3, borderRadius: 99,
+            flex: 1, height: 3, borderRadius: 9999,
             background: i < strength ? barColors[strength - 1] : 'rgba(255,255,255,0.08)',
             transition: 'background 0.3s',
           }} />
@@ -37,7 +37,7 @@ function PasswordStrength({ password }) {
         {checks.map(({ label, met }) => (
           <div key={label} style={{
             display: 'flex', alignItems: 'center', gap: 6,
-            fontSize: '0.72rem',
+            fontSize: '0.75rem',
             color: met ? '#10B981' : '#475569',
           }}>
             {met
@@ -61,7 +61,7 @@ function MockBoardingPass() {
         background: 'rgba(26,29,39,0.75)',
         backdropFilter: 'blur(20px)',
         border: '1px solid rgba(255,255,255,0.1)',
-        borderRadius: 20,
+        borderRadius: 18,
         padding: '24px 28px',
         width: '100%',
         maxWidth: 340,
@@ -73,20 +73,20 @@ function MockBoardingPass() {
       <div style={{
         position: 'absolute', top: -80, right: -80,
         width: 180, height: 180, borderRadius: '50%',
-        background: 'rgba(245,158,11,0.15)', filter: 'blur(40px)',
+        background: 'rgba(79,124,255,0.15)', filter: 'blur(40px)',
         pointerEvents: 'none',
       }} />
 
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 20 }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 7 }}>
-          <Plane style={{ width: 14, height: 14, color: '#60a5fa' }} />
-          <span style={{ fontSize: '0.65rem', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#94A3B8' }}>
+          <Plane style={{ width: 14, height: 14, color: 'var(--color-primary-400)' }} />
+          <span style={{ fontSize: '0.6875rem', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#94A3B8' }}>
             AI Boarding Pass
           </span>
         </div>
         <span style={{
-          fontSize: '0.65rem', color: '#10B981', fontWeight: 700,
-          background: 'rgba(16,185,129,0.12)', padding: '3px 10px', borderRadius: 999,
+          fontSize: '0.6875rem', color: '#10B981', fontWeight: 700,
+          background: 'rgba(16,185,129,0.12)', padding: '3px 10px', borderRadius: 9999,
           border: '1px solid rgba(16,185,129,0.2)',
         }}>
           Confirmed
@@ -95,16 +95,16 @@ function MockBoardingPass() {
 
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 20 }}>
         <div>
-          <p style={{ fontSize: '2rem', fontWeight: 800, color: 'white', lineHeight: 1, margin: 0 }}>LHE</p>
-          <p style={{ fontSize: '0.68rem', color: '#475569', marginTop: 3 }}>Lahore, PK</p>
+          <p style={{ fontSize: '2rem', fontWeight: 700, color: 'white', lineHeight: 1, margin: 0 }}>LHE</p>
+          <p style={{ fontSize: '0.6875rem', color: '#475569', marginTop: 3 }}>Lahore, PK</p>
         </div>
         <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '0 14px', position: 'relative' }}>
           <div style={{ width: '100%', borderTop: '2px dashed rgba(255,255,255,0.1)' }} />
-          <Plane style={{ width: 14, height: 14, color: '#F59E0B', position: 'absolute', transform: 'rotate(90deg)' }} />
+          <Plane style={{ width: 14, height: 14, color: 'var(--color-primary-400)', position: 'absolute', transform: 'rotate(90deg)' }} />
         </div>
         <div style={{ textAlign: 'right' }}>
-          <p style={{ fontSize: '2rem', fontWeight: 800, color: 'white', lineHeight: 1, margin: 0 }}>CDG</p>
-          <p style={{ fontSize: '0.68rem', color: '#475569', marginTop: 3 }}>Paris, FR</p>
+          <p style={{ fontSize: '2rem', fontWeight: 700, color: 'white', lineHeight: 1, margin: 0 }}>CDG</p>
+          <p style={{ fontSize: '0.6875rem', color: '#475569', marginTop: 3 }}>Paris, FR</p>
         </div>
       </div>
 
@@ -113,13 +113,13 @@ function MockBoardingPass() {
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px 8px' }}>
         {[
           { label: 'Passenger',   value: 'Umair Qadeer',   align: 'left',  color: 'white' },
-          { label: 'Cabin Class', value: 'AI First Class', align: 'right', color: '#60a5fa' },
+          { label: 'Cabin Class', value: 'AI First Class', align: 'right', color: 'var(--color-primary-400)' },
           { label: 'Date',        value: 'June 24, 2026',  align: 'left',  color: 'white' },
-          { label: 'Smart Seat',  value: 'Seat AI-01',     align: 'right', color: '#F59E0B' },
+          { label: 'Smart Seat',  value: 'Seat AI-01',     align: 'right', color: 'var(--color-primary-400)' },
         ].map(({ label, value, align, color }) => (
           <div key={label} style={{ textAlign: align }}>
-            <p style={{ fontSize: '0.6rem', color: '#475569', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 3 }}>{label}</p>
-            <p style={{ fontSize: '0.8rem', fontWeight: 700, color }}>{value}</p>
+            <p style={{ fontSize: '0.6875rem', color: '#475569', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 3 }}>{label}</p>
+            <p style={{ fontSize: '0.875rem', fontWeight: 700, color }}>{value}</p>
           </div>
         ))}
       </div>
@@ -223,8 +223,8 @@ export default function Register() {
         }}
       >
         {/* Glows */}
-        <div style={{ position: 'absolute', top: -160, left: -160, width: 480, height: 480, borderRadius: '50%', background: 'rgba(245,158,11,0.1)', filter: 'blur(80px)', pointerEvents: 'none' }} />
-        <div style={{ position: 'absolute', bottom: -100, right: -100, width: 320, height: 320, borderRadius: '50%', background: 'rgba(59,130,246,0.08)', filter: 'blur(60px)', pointerEvents: 'none' }} />
+        <div style={{ position: 'absolute', top: -160, left: -160, width: 480, height: 480, borderRadius: '50%', background: 'rgba(79,124,255,0.1)', filter: 'blur(80px)', pointerEvents: 'none' }} />
+        <div style={{ position: 'absolute', bottom: -100, right: -100, width: 320, height: 320, borderRadius: '50%', background: 'rgba(79,124,255,0.07)', filter: 'blur(60px)', pointerEvents: 'none' }} />
 
         {/* Content */}
         <div style={{
@@ -234,17 +234,17 @@ export default function Register() {
         }}>
           <div>
             <h2 style={{
-              fontSize: 'clamp(1.8rem, 2.5vw, 2.4rem)',
-              fontWeight: 800, fontFamily: 'var(--font-heading)',
+              fontSize: 'clamp(1.75rem, 2.5vw, 2.25rem)',
+              fontWeight: 700, fontFamily: 'var(--font-heading)',
               color: 'white', lineHeight: 1.2,
               letterSpacing: '-0.02em', marginBottom: 16,
             }}>
               Start your journey<br />
-              <span style={{ color: '#F59E0B' }}>with AI today.</span>
+              <span style={{ color: 'var(--color-primary-400)' }}>with AI today.</span>
             </h2>
             <p style={{
               color: 'var(--color-text-secondary)',
-              fontSize: '0.95rem', lineHeight: 1.7,
+              fontSize: '0.9375rem', lineHeight: 1.7,
               maxWidth: 340, marginBottom: 36,
             }}>
               Create a free account to generate infinite itineraries,
@@ -256,10 +256,11 @@ export default function Register() {
                 <div key={label} style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
                   <div style={{
                     width: 32, height: 32, borderRadius: 8, flexShrink: 0,
-                    background: 'rgba(245,158,11,0.12)',
+                    background: 'rgba(79,124,255,0.1)',
+                    border: '1px solid rgba(79,124,255,0.2)',
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
                   }}>
-                    <Icon style={{ width: 15, height: 15, color: '#F59E0B' }} />
+                    <Icon style={{ width: 15, height: 15, color: 'var(--color-primary-400)' }} />
                   </div>
                   <span style={{ color: 'var(--color-text-secondary)', fontSize: '0.875rem' }}>{label}</span>
                 </div>
@@ -281,7 +282,7 @@ export default function Register() {
         <div style={{
           position: 'absolute', bottom: -80, left: -80,
           width: 360, height: 360, borderRadius: '50%',
-          background: 'rgba(245,158,11,0.07)', filter: 'blur(80px)', pointerEvents: 'none',
+          background: 'rgba(79,124,255,0.06)', filter: 'blur(80px)', pointerEvents: 'none',
         }} />
 
         <motion.div
@@ -294,26 +295,26 @@ export default function Register() {
           <div style={{ textAlign: 'center', marginBottom: 24 }} className="register-mobile-logo">
             <div style={{
               width: 52, height: 52, borderRadius: 14,
-              background: 'linear-gradient(135deg, #F59E0B, #3B82F6)',
+              background: 'linear-gradient(135deg, var(--color-primary-500), var(--color-primary-700))',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
               margin: '0 auto 10px',
             }}>
               <Plane style={{ width: 24, height: 24, color: 'white' }} />
             </div>
-            <p style={{ color: 'var(--color-text-muted)', fontSize: '0.8rem' }}>Create your TripPlanner AI account</p>
+            <p style={{ color: 'var(--color-text-muted)', fontSize: '0.875rem' }}>Create your TripPlanner AI account</p>
           </div>
 
           {/* Form Card */}
           <div style={{
             background: 'var(--color-secondary-dark)',
             border: '1px solid var(--color-border-dark)',
-            borderRadius: 20, padding: '36px',
+            borderRadius: 18, padding: '36px',
             boxShadow: '0 20px 48px rgba(0,0,0,0.25)',
           }}>
             {/* Heading */}
             <div style={{ textAlign: 'center', marginBottom: 24 }}>
               <h1 style={{
-                fontSize: '1.6rem', fontWeight: 800,
+                fontSize: '1.75rem', fontWeight: 700,
                 fontFamily: 'var(--font-heading)',
                 color: 'white', marginBottom: 6, letterSpacing: '-0.01em',
               }}>
@@ -329,7 +330,7 @@ export default function Register() {
               <div style={{
                 marginBottom: 18, padding: '12px 16px', borderRadius: 10,
                 background: 'rgba(239,68,68,0.08)', border: '1px solid rgba(239,68,68,0.2)',
-                color: '#f87171', fontSize: '0.85rem', display: 'flex', alignItems: 'center', gap: 8,
+                color: '#f87171', fontSize: '0.875rem', display: 'flex', alignItems: 'center', gap: 8,
               }}>
                 <Sparkles style={{ width: 14, height: 14, flexShrink: 0 }} />
                 {error}
@@ -341,7 +342,7 @@ export default function Register() {
 
               {/* Full Name */}
               <div>
-                <label style={{ display: 'block', fontSize: '0.8rem', fontWeight: 600, color: 'var(--color-text-secondary)', marginBottom: 8 }}>
+                <label style={{ display: 'block', fontSize: '0.875rem', fontWeight: 600, color: 'var(--color-text-secondary)', marginBottom: 8 }}>
                   Full Name
                 </label>
                 <div style={{ position: 'relative' }}>
@@ -356,7 +357,7 @@ export default function Register() {
 
               {/* Email */}
               <div>
-                <label style={{ display: 'block', fontSize: '0.8rem', fontWeight: 600, color: 'var(--color-text-secondary)', marginBottom: 8 }}>
+                <label style={{ display: 'block', fontSize: '0.875rem', fontWeight: 600, color: 'var(--color-text-secondary)', marginBottom: 8 }}>
                   Email
                 </label>
                 <div style={{ position: 'relative' }}>
@@ -371,7 +372,7 @@ export default function Register() {
 
               {/* Password */}
               <div>
-                <label style={{ display: 'block', fontSize: '0.8rem', fontWeight: 600, color: 'var(--color-text-secondary)', marginBottom: 8 }}>
+                <label style={{ display: 'block', fontSize: '0.875rem', fontWeight: 600, color: 'var(--color-text-secondary)', marginBottom: 8 }}>
                   Password
                 </label>
                 <div style={{ position: 'relative' }}>
@@ -395,7 +396,7 @@ export default function Register() {
 
               {/* Confirm Password */}
               <div>
-                <label style={{ display: 'block', fontSize: '0.8rem', fontWeight: 600, color: 'var(--color-text-secondary)', marginBottom: 8 }}>
+                <label style={{ display: 'block', fontSize: '0.875rem', fontWeight: 600, color: 'var(--color-text-secondary)', marginBottom: 8 }}>
                   Confirm Password
                 </label>
                 <div style={{ position: 'relative' }}>
@@ -415,7 +416,7 @@ export default function Register() {
                   </button>
                 </div>
                 {confirmPassword && password !== confirmPassword && (
-                  <p style={{ color: '#f87171', fontSize: '0.72rem', marginTop: 6, display: 'flex', alignItems: 'center', gap: 5 }}>
+                  <p style={{ color: '#f87171', fontSize: '0.75rem', marginTop: 6, display: 'flex', alignItems: 'center', gap: 5 }}>
                     <X style={{ width: 11, height: 11 }} /> Passwords don't match
                   </p>
                 )}
@@ -424,7 +425,7 @@ export default function Register() {
               {/* Terms */}
               <label style={{
                 display: 'flex', alignItems: 'flex-start', gap: 10,
-                fontSize: '0.82rem', color: 'var(--color-text-secondary)', cursor: 'pointer',
+                fontSize: '0.875rem', color: 'var(--color-text-secondary)', cursor: 'pointer',
               }}>
                 <input
                   type="checkbox" checked={agreed} onChange={e => setAgreed(e.target.checked)}
@@ -444,7 +445,7 @@ export default function Register() {
                 className="btn-primary"
                 style={{
                   width: '100%', justifyContent: 'center',
-                  padding: '14px', fontSize: '0.95rem', marginTop: 4,
+                  padding: '14px', fontSize: '0.9375rem', marginTop: 4,
                   opacity: isLoading ? 0.6 : 1,
                   cursor: isLoading ? 'not-allowed' : 'pointer',
                 }}
@@ -463,7 +464,7 @@ export default function Register() {
               <span style={{
                 position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)',
                 background: 'var(--color-secondary-dark)', padding: '0 12px',
-                color: 'var(--color-text-muted)', fontSize: '0.78rem', whiteSpace: 'nowrap',
+                color: 'var(--color-text-muted)', fontSize: '0.875rem', whiteSpace: 'nowrap',
               }}>
                 or continue with
               </span>
@@ -491,7 +492,7 @@ export default function Register() {
               Google
             </button>
 
-            <p style={{ textAlign: 'center', color: 'var(--color-text-secondary)', fontSize: '0.85rem', marginTop: 20 }}>
+            <p style={{ textAlign: 'center', color: 'var(--color-text-secondary)', fontSize: '0.875rem', marginTop: 20 }}>
               Already have an account?{' '}
               <Link to="/login" style={{ color: 'var(--color-brand-blue)', fontWeight: 700, textDecoration: 'none' }}>Sign in</Link>
             </p>
